@@ -1,5 +1,7 @@
 """
     Server.py
+    Server Class
+    Handle the "master" part of a connexion
 """
 
 #!/usr/bin/python3.5
@@ -30,6 +32,12 @@ class Server(object):
     def set_up_connexion(self, timeout=5, multiClients=False, maxClients=2):
         """
             Connexion set-up method
+            Arguments :
+                - timeout : the amount of time the server waits
+                for something to happen before raising an error
+                - multiClients
+
+
         """
         socket.setdefaulttimeout(timeout)
 
