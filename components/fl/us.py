@@ -21,13 +21,6 @@ def measure_distance_cb(data, arg):
         Trigger an ultrasonic measure and sends back the echo time in seconds
     """
 
-    #GPIO setup :
-    GPIO.setup(RB.gpiodef.SONAR["trigger"], GPIO.OUT)
-    GPIO.setup(RB.gpiodef.SONAR["echo"], GPIO.IN)
-
-    #Waiting for the sonar to initialize
-    time.sleep(0.05)
-
     #Triggering :
     GPIO.output(RB.gpiodef.SONAR["trigger"], GPIO.HIGH)
     time.sleep(0.00001)
@@ -47,12 +40,15 @@ def measure_distance_cb(data, arg):
     arg["connexion"].send_to_clients([duration])
 
 
+#GPIO setup :
+GPIO.setup(RB.gpiodef.SONAR["trigger"], GPIO.OUT)
+GPIO.setup(RB.gpiodef.SONAR["echo"], GPIO.IN)
 
 
 SOCKETS = RB.sockets
 
 #Creating the connexion object
-CONNEXION = SOCKETS.tcp.Server.Server(12345)
+CONNEXION = SOCKETS.tcp.Server.Server(RB.ports.FL["us"])
 
 #We'll send floats (duration in seconds)
 CONNEXION.set_sending_datagram(['FLOAT'])
