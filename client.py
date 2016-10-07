@@ -7,11 +7,19 @@
 #-*- coding: utf-8 -*-
 
 import robotBasics as RB
+import atexit
 
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Client.Client(12345, ['SMALL_INT', ['BITS', [2, 1, 3]], 'SMALL_INT', 'LARGE_INT_SIGNED', 'FLOAT', 'BOOL', 'BYTE'])
+TCP = SOCKETS.tcp.Client.Client(12345)
+
+TCP.set_sending_datagram(['BOOL'])
+TCP.set_receiving_datagram(['FLOAT'])
 
 TCP.set_up_connexion()
 
-TCP.send_data([0, [3, 1, 5], 54, -23785, 17.33451, True, int(17).to_bytes(1, byteorder='big')])
+TCP.send_data([True])
+
+print(TCP.receive_data()[0])
+
+atexit.register(TCP.close)
