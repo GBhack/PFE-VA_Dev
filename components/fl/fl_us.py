@@ -1,6 +1,9 @@
 """
     fl_us.py
     Fonctionnal Level module : Ultrasonic Sensor manager
+    Waits for a TCP request on its own port
+    If a request is received, triggers an ultrasound on the
+    HC-SR04 and responds with the echo time in seconds
 """
 
 
@@ -31,9 +34,7 @@ def measure_distance(data, arg):
 
     duration = endTime - startTime
 
-    distance = duration * 171.5
-
-    arg["connexion"].send_to_clients([distance])
+    arg["connexion"].send_to_clients([duration])
 
 
 
