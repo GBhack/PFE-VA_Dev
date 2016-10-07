@@ -20,3 +20,10 @@ ENGINES = {
         "enable":       "GPIO0_48"
     }
 }
+
+LEDS = {
+    "left": "GPIO0_15",
+    "right": "GPIO0_49",
+    "stop": "GPIO0_117",
+    "status": "GPIO0_14"
+}
