@@ -1,5 +1,5 @@
 """
-    fl_us.py
+    us.py
     Fonctionnal Level module : Ultrasonic Sensor manager
     Waits for a TCP request on its own port
     If a request is received, triggers an ultrasound on the
