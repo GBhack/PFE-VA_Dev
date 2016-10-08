@@ -1,2 +1,4 @@
 # PFE-VA_Dev
-Développements logiciels liés au projet de fin d'étude "Véhicules Autonomes"
+All software developpments for the Graduation Project "Autonomous Vehicules"
+
+Each sub-directory has its own "README" file.

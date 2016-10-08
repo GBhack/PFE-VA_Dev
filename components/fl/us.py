@@ -1,6 +1,6 @@
 """
     us.py
-    Fonctionnal Level module : Ultrasonic Sensor manager
+    Functional Level module : Ultrasonic Sensor manager
     Waits for a TCP request on its own port
     If a request is received, triggers an ultrasound on the
     HC-SR04 and responds with the echo time in seconds
@@ -22,15 +22,15 @@ def measure_distance_cb(data, arg):
     """
 
     #Triggering :
-    GPIO.output(RB.gpiodef.SONAR["trigger"], GPIO.HIGH)
+    GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
     time.sleep(0.00001)
-    GPIO.output(RB.gpiodef.SONAR["trigger"], GPIO.LOW)
+    GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
 
     #Waiting for the echo pin to be "high" (echo start)
-    while not GPIO.input(RB.gpiodef.SONAR["echo"]):
+    while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         startTime = time.time()
     #Waiting for the echo pin to be "low" (echo stop)
-    while GPIO.input(RB.gpiodef.SONAR["echo"]):
+    while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         endTime = time.time()
 
     #Computing echo duration
@@ -41,14 +41,14 @@ def measure_distance_cb(data, arg):
 
 
 #GPIO setup :
-GPIO.setup(RB.gpiodef.SONAR["trigger"], GPIO.OUT)
-GPIO.setup(RB.gpiodef.SONAR["echo"], GPIO.IN)
+GPIO.setup(RB.constants.gpiodef.SONAR["trigger"], GPIO.OUT)
+GPIO.setup(RB.constants.gpiodef.SONAR["echo"], GPIO.IN)
 
 
 SOCKETS = RB.sockets
 
 #Creating the connexion object
-CONNEXION = SOCKETS.tcp.Server.Server(RB.ports.FL["us"])
+CONNEXION = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
 
 #We'll send floats (duration in seconds)
 CONNEXION.set_sending_datagram(['FLOAT'])

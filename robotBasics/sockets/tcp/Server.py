@@ -13,7 +13,7 @@ import time
 import threading
 
 from ..datahandling import Message
-from ... import constants as CONSTANTS
+from ...constants import misc as MISC
 
 class Server(object):
     """
@@ -21,7 +21,7 @@ class Server(object):
     """
 
 
-    def __init__(self, port, frequency=CONSTANTS.SOCKETS["frequency"]):
+    def __init__(self, port, frequency=MISC.SOCKETS["frequency"]):
         """
             Initialization
         """
@@ -36,7 +36,7 @@ class Server(object):
     def set_receiving_datagram(self, datagram):
         self._receivingDatagram = Message.Message(datagram)
 
-    def set_up_connexion(self, timeout=CONSTANTS.SOCKETS["timeout"], multiClients=False, maxClients=2):
+    def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"], multiClients=False, maxClients=2):
         """
             Connexion set-up method
             Arguments :
