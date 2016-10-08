@@ -11,50 +11,49 @@ import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 
 def init():
-	motorLeft=RB.gpiodef.ENGINES["left"]
-	GPIO.setup(motorLeft["PWM"], GPIO.OUT)
-	GPIO.setup(motorLeft["direction"], GPIO.OUT)
-	GPIO.setup(motorLeft["enable"], GPIO.OUT)
+    #Documentation : https://learn.adafruit.com/setting-up-io-python-library-on-beaglebone-black/pwm
+    motorLeft = RB.gpiodef.ENGINES["left"]
+    motorRight = RB.gpiodef.ENGINES["right"]
 
-	motorRight=RB.gpiodef.ENGINES["right"]
-	GPIO.setup(motorRight["PWM"], GPIO.OUT)
-	GPIO.setup(motorRight["direction"], GPIO.OUT)
-	GPIO.setup(motorRight["enable"], GPIO.OUT)
+    #Start PWM with a 0% duty cycle
+    pwmMotorLeft = PWM.start(motorLeft["PWM"], 0)
+    pwmMotorRight = PWM.start(motorRight["PWM"], 0)
+    
+    #Declare motor enabling pins
+    GPIO.setup(motorLeft["enable"], GPIO.OUT)
+    GPIO.setup(motorRight["enable"], GPIO.OUT)
+
+    #Declare direction pins
+    GPIO.setup(motorLeft["direction"], GPIO.OUT)
+    GPIO.setup(motorRight["direction"], GPIO.OUT)
+
+    #Enable motors (active HIGH)
+    GPIO.output(motorLeft["direction"], GPIO.HIGH)
+    GPIO.output(motorRight["direction"], GPIO.HIGH)
+
+    #Initialize direction
+    # LOW = Forward
+    # HIGH = Backward
+    GPIO.output(motorLeft["direction"], GPIO.LOW)
+    GPIO.output(motorRight["direction"], GPIO.LOW)
 
 
-def set_pwm_motor_l(data, arg):
+def set_pwm(data, arg):
 
 
-    time.sleep(0.05)
-"""
-PWM
-direction
-enable
-"""
-def set_pwm_motor_r(data, arg):
 
 
 SOCKETS = RB.sockets
 
-CONNEXION_PWM_MOTOR_L = SOCKETS.tcp.Server.Server(1110)
-CONNEXION_PWM_MOTOR_L.set_sending_datagram(['BOOL'])
-CONNEXION_PWM_MOTOR_L.set_receiving_datagram(['BYTE'])
-CONNEXION_PWM_MOTOR_L.set_up_connexion()
+CONNEXION = SOCKETS.tcp.Server.Server(RB.ports.FL["pwm"])
+CONNEXION.set_sending_datagram(['BOOL'])
+CONNEXION.set_receiving_datagram(['BYTE'])
+CONNEXION.set_up_connexion()
 
-ARGUMENTS_PWM_MOTOR_L = {
-    "connexion" : CONNEXION_PWM_MOTOR_L
+ARGUMENTS = {
+    "connexion" : CONNEXION
 }
-
-CONNEXION_PWM_MOTOR_R = SOCKETS.tcp.Server.Server(1120)
-CONNEXION_PWM_MOTOR_R.set_sending_datagram(['BOOL'])
-CONNEXION_PWM_MOTOR_R.set_receiving_datagram(['BYTE'])
-CONNEXION_PWM_MOTOR_R.set_up_connexion()
-
-ARGUMENTS_PWM_MOTOR_R = {
-    "connexion" : CONNEXION_PWM_MOTOR_R
-}
-
-CONNEXION.listen_to_clients(set_pwm_motor_l, ARGUMENTS_PWM_MOTOR_L)
-CONNEXION.listen_to_clients(set_pwm_motor_r, ARGUMENTS_PWM_MOTOR_R)
 
 init()
+
+CONNEXION.listen_to_clients(set_pwm, ARGUMENTS)
