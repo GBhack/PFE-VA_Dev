@@ -8,7 +8,7 @@
 import socket
 
 from ..datahandling import Message
-from ... import constants as CONSTANTS
+from ...constants import misc as MISC
 
 
 class Client:
@@ -29,7 +29,7 @@ class Client:
         self._receivingDatagram = Message.Message(datagram)
         self._receivingMessageSize = self._receivingDatagram.get_size()
 
-    def set_up_connexion(self, timeout=CONSTANTS.SOCKETS["timeout"]):
+    def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"]):
         """
             Connexion set-up method
         """
