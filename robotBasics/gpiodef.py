@@ -8,28 +8,28 @@
 
 ENGINES = {
     "left": {
-        "PWM":          "GPIO0_51",
-        "direction":    "GPIO0_60",
-        "enable":       "GPIO0_05"
+        "PWM":          "P9_16",
+        "direction":    "P9_12",
+        "enable":       "P9_17"
     },
     "right": {
-        "PWM":          "GPIO0_50",
-        "direction":    "GPIO0_31",
-        "enable":       "GPIO0_48"
+        "PWM":          "P9_14",
+        "direction":    "P9_13",
+        "enable":       "P9_15"
     }
 }
 
 LEDS = {
-    "left": "GPIO0_15",
-    "right": "GPIO0_49",
-    "stop": "GPIO0_117",
-    "status": "GPIO0_14"
+    "left": "P9_24",
+    "right": "P9_23",
+    "stop": "P9_25",
+    "status": "P9_26"
 }
 
 SONAR = {
-    "trigger": "GPIO0_123",
-    "echo": "GPIO0_121"
+    "trigger": "P9_28",
+    "echo": "P9_29"
 }
-RESET = "GPIO0_115"
+RESET = "P9_27"
 
 
