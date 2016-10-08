@@ -1,52 +1,69 @@
 """
     Message.py
+    Define the Message class.
+    We call "message" the data transmitted through sockets.
+    A message is composed of "packets" (see Packet.py)
 """
 
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Standard imports :
 import math
+
+#Specific imports :
 from . import Packet
 
 class Message(object):
     """
         Message Class
+        A message is a set of packets (see documentation)
     """
 
-    def __init__(self, datagram):
+    def __init__(self, datagramPattern):
         """
-            Initialization
+            Initialization Method
+            ARGUMENTS :
+            - datagramPattern : The pattern of the datagram, as a list (see documentation)
         """
-        _messageSize = 0
-        self.messageSize = 0
 
+        #The global size of the message (in bytes)
+        self._messageSize = 0
+
+        #List of the packets composing the message (as Packet objects : see class definition)
         self.packets = []
 
-
-        for data in datagram:
+        #For each distinct packet in the datagram pattern list
+        for data in datagramPattern:
 
             self.packets.append(Packet.Packet(data))
-            _messageSize += int(self.packets[-1].get_size()/8)
+            self._messageSize += int(self.packets[-1].get_size()/8)
 
         #If the packet size is not a power of two :
-        if _messageSize != 0 and  (_messageSize & (_messageSize - 1)) != 0:
-            _nextPowerOfTwo = math.ceil(math.log2(_messageSize))
+        if (self._messageSize != 0 and
+                (self._messageSize & (self._messageSize - 1)) != 0):
+
+            _nextPowerOfTwo = math.ceil(math.log2(self._messageSize))
             _nextPowerOfTwo = int(math.pow(2, _nextPowerOfTwo))
-            _fillingSize = _messageSize - _nextPowerOfTwo
+            _fillingSize = self._messageSize - _nextPowerOfTwo
             self.packets.append(Packet.Packet(['FILLER', _fillingSize]))
-            _messageSize = _nextPowerOfTwo
-        self.messageSize = _messageSize
+            self._messageSize = _nextPowerOfTwo
 
     def get_size(self):
         """
             get_size method
-            Returns the size of the message
+            Returns the size of the message in bytes
         """
-        return self.messageSize
+        return self._messageSize
 
     def encode(self, dataset):
         """
             Datagran encoding (to bytes)
+            Encode the whole dataset into a bytes array that can be transmitted
+            through socket according to the datagram structure
+            ARGUMENTS :
+            - dataset : The set of data we want to encode (must be compliant
+            with the datagram pattern provided during initialization)
         """
         _output = bytes()
         for index, packet in enumerate(self.packets):

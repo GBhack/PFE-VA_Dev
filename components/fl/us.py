@@ -2,7 +2,7 @@
     us.py
     Functional Level module : Ultrasonic Sensor manager
     Waits for a TCP request on its own port
-    If a request is received, triggers an ultrasound on the
+    When gets a request, triggers an ultrasound on the
     HC-SR04 and responds with the echo time in seconds
 """
 
@@ -10,9 +10,12 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Standard imports :
+import time
+
+#Specific imports :
 import robotBasics as RB
 import Adafruit_BBIO.GPIO as GPIO
-import time
 
 def measure_distance_cb(data, arg):
     """

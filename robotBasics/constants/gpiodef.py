@@ -6,6 +6,7 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Engines-related I/O :
 ENGINES = {
     "left": {
         "PWM":          "GPIO0_51",
@@ -19,6 +20,7 @@ ENGINES = {
     }
 }
 
+#LEDs-related I/O :
 LEDS = {
     "left": "GPIO0_15",
     "right": "GPIO0_49",
@@ -26,10 +28,11 @@ LEDS = {
     "status": "GPIO0_14"
 }
 
+#Sonar-related I/O :
 SONAR = {
     "trigger": "GPIO0_123",
     "echo": "GPIO0_121"
 }
+
+#Reset pushbutton
 RESET = "GPIO0_115"
-
-

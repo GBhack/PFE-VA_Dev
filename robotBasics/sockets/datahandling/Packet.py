@@ -5,6 +5,7 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Standard imports :
 import math
 
 class Packet(object):
@@ -128,7 +129,9 @@ class Packet(object):
             return _output.to_bytes(int(self.size/8), byteorder='big')
         elif self.type == 'FLOAT':
             from struct import pack
-            return pack('f', data)
+            print("FLOAT :")
+            print(bytearray(pack('f', data)))
+            return bytearray(pack('f', data))
         elif self.type == 'BOOL':
             assert data in [True, False, 0, 1]
             if data:
