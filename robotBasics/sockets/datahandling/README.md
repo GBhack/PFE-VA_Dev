@@ -9,6 +9,9 @@ So, if the total size of the packets composing the message is not a power of two
 
 
 **A packet** is an actual piece of data.
+It has a type (integer, float...) and a size which is a power of two bytes (1,2,4,8 bytes...).<br />
+It is initialized with a type so that it can be properly encoded/decoded to and from raw bytes.<br />
+
 A packet can represent :
 - An integer :
 	- SMALL (0-255 unsigned, -127-127 signed) : 1 byte
