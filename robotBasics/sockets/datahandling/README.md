@@ -26,11 +26,17 @@ A packet can represent :
 
 Packets allways weigh bytes. A packet cannot be 10 bits long : it will be filled to be 16 bits (2 bytes) long.<br />
 <br />
-So, on the sending side, we can create a Message object like this :<br />
-'''	sendingMessage = Message(['SMALL_INT_UNSIGNED', 'FLOAT', 'BOOL', ['BITS',[1,1,2]] ])'''
+So, on the sending side, we can create a Message object like this :
+```
+sendingMessage = Message(['SMALL_INT_UNSIGNED', 'FLOAT', 'BOOL', ['BITS',[1,1,2]] ])
+```
 Then we can use this object to pack data we want to sent :
-'''	dataToSend = sendingMessage.encode([212, 3.141593, True, [1,0,2]])'''
+```
+dataToSend = sendingMessage.encode([212, 3.141593, True, [1,0,2]])
+```
 So we have :
-'''	dataToSend = b'\xdc\x0fI@'
-	dataToSend = ['0xd4', '0xdc', '0x0f', '0x49', '0x40', '0x01', '0x09']
-	dataToSend = [1101 0100, 1101 1100, 0000 1111, 0100 1001, 0100 0000, 0000 0001, 0000 1001]
+```
+dataToSend = b'\xdc\x0fI@'
+dataToSend = ['0xd4', '0xdc', '0x0f', '0x49', '0x40', '0x01', '0x09']
+dataToSend = [1101 0100, 1101 1100, 0000 1111, 0100 1001, 0100 0000, 0000 0001, 0000 1001]
+```
