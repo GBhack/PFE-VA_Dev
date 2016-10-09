@@ -36,8 +36,15 @@ dataToSend = sendingMessage.encode([212, 3.141593, True, [1,0,2]])
 ```
 So we have :
 ```
-dataToSend = b'\xdc\x0fI@'
 dataToSend = ['0xd4', '0xdc', '0x0f', '0x49', '0x40', '0x01', '0x09']
-dataToSend = [1101 0100, 1101 1100, 0000 1111, 0100 1001, 0100 0000, 0000 0001, 0000 1001]
-             |   212   |              0.3141593....                |  True    |  1,0,10  |
+dataToSend = [1101 0100, 1101 1100, 0000 1111, 0100 1001, 0100 0000, 0000 0001, 0000 1001, 0000 0000]
+             |   212   |              0.3141593....                |  True    |  1,0,10  | filling  |
+```
+
+Other example :
+```
+sendingMessage = Message(['MEDIUM_INT', 'LARGE_INT_SIGNED', 'BOOL', 'BYTE', ['BITS', [2,2,2,2,2]]])
+dataToSend = sendingMessage.encode([7834, -178922462, False, 0b01001110, [0,1,2,3,2]])
+dataToSend = ['0x1e', '0x9a', '0x75', '0x55', '0xdc', '0x21', '0x00',  '0x4e',  '0x02', '0xe4', '0x00', '0x00', '0x00', '0x00', '0x00', '0x00']
+             |     7834     |         -178922462            | False |01001100|0000001011100100| Filling...
 ```
