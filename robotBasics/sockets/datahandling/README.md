@@ -23,7 +23,7 @@ A packet can represent :
 	Then can be used to send unsigned integers.<br />
 	No size limit.<br />
 	For instance : ['BITS', [1,1,2,4,2]] can be used to pack [0,1,3,11,2] or [1,0,2,5,1] but not [2,3,4,53,5]<br />
-<br />
+
 Packets allways weigh bytes. A packet cannot be 10 bits long : it will be filled to be 16 bits (2 bytes) long.<br />
 <br />
 So, on the sending side, we can create a Message object like this :<br />
