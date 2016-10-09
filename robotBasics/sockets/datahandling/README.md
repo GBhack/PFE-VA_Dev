@@ -3,12 +3,12 @@ Modules dedicated to the data-handling part of socket communication (encoding an
 
 In order to be able to flexibly exchange data while complying to sockets requirements, we adopted a system based on Messages composed of Packets :<br />
 
-A Message is what is actually sent and received through the socket.
+**A Message** is what is actually sent and received through the socket.
 A message is an array of raw bytes (Bytes object in Python). A message must have a size being a power of two bytes.
 So, if the total size of the packets composing the message is not a power of two, the packet will be completed with zeros until it reaches the next power of two.
 
 
-A packet is an actual piece of data.
+**A packet** is an actual piece of data.
 A packet can represent :
 - An integer :
 	- SMALL (0-255 unsigned, -127-127 signed) : 1 byte
