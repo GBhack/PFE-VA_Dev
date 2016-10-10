@@ -1,8 +1,7 @@
 """
     Client.py
-    Defines the TCP Client class.
-    We call "client" the entity that connects to a pre-existing server.
-    The client is the "slave" part of the connexion.
+    Defines the UDP Client class.
+    We call "client" the entity that waits for the data sent by the server.
 """
 
 #!/usr/bin/python3.5
@@ -10,9 +9,10 @@
 
 #Standard imports :
 import socket
+import threading
 
 #Specific imports :
-from ..datahandling import Message
+#from ..datahandling import Message
 
 
 class Client:
@@ -37,40 +37,26 @@ class Client:
         self._sendingSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self._sendingSocket.bind(self._connexionInfo)
-    def set_sending_datagram(self, datagram):
-        """
-            Encode the data for the sending process
-        """
 
-        self._sendingDatagram = Message.Message(datagram)
+    def set_up_connexion(self, callback):
+        connexion = WaitForData(callback, self._sendingSocket)
+        connexion.start()
+
 
     def set_receiving_datagram(self, datagram):
         """
             Decode the data sent
         """
-        self._receivingDatagram = Message.Message(datagram)
-        self._receivingMessageSize = self._receivingDatagram.get_size()
-
-    # def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"]):
-    #     """
-    #         Connexion set-up method
-    #     """
-    #     socket.setdefaulttimeout(timeout)
-    #     self.connexion.connect(('127.0.0.1', self.port))
-
-    # def send_data(self, data):
-    #     """
-    #         Data sending method
-    #     """
-    #     self.connexion.send(self._sendingDatagram.encode(data))
+        # self._receivingDatagram = Message.Message(datagram)
+        # self._receivingMessageSize = self._receivingDatagram.get_size()
 
     def receive_data(self):
         """
             Data sending method
         """
-        data = self._sendingSocket.recv(self._receivingMessageSize)
+        data = self._sendingSocket.recv(1024) #self._receivingMessageSize)
         if data:
-            return self._receivingDatagram.decode(data)
+            return data.decode() #self._receivingDatagram.decode(data)
         else:
             return 0
 
@@ -80,6 +66,28 @@ class Client:
         """
         self._sendingSocket.close()
         print('Closing')
+
+class WaitForData(threading.Thread):
+    """
+        Thread for data receiving
+    """
+
+    def __init__(self, callback, connexion):
+
+        threading.Thread.__init__(self)
+        self.callback = callback
+        self.connexion = connexion
+        print('INIT OK')
+
+    def run(self):
+        """
+            Running (when start is called)
+        """
+        while 1:
+            print('Waiting for data')
+            data = self.connexion.recv(1024)
+            if data:
+                self.callback(data.decode())
 
 """
 >>> import socket
