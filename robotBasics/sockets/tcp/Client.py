@@ -1,12 +1,17 @@
 """
     Client.py
+    Defines the TCP Client class.
+    We call "client" the entity that connects to a pre-existing server.
+    The client is the "slave" part of the connexion.
 """
 
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Standard imports :
 import socket
 
+#Specific imports :
 from ..datahandling import Message
 from ...constants import misc as MISC
 

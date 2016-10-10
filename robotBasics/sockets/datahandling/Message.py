@@ -1,6 +1,6 @@
 """
     Message.py
-    Define the Message class.
+    Defines the Message class.
     We call "message" the data transmitted through sockets.
     A message is composed of "packets" (see Packet.py and directory's README)
 """

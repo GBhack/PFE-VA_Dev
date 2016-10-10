@@ -1,6 +1,6 @@
 """
     Packet.py
-    Define the Packet class.
+    Defines the Packet class.
     We call "packet" the data transmitted through sockets gathered inside Messages.
     The "packets" contains the actual data (see Packet.py and directory's README)
 """
@@ -29,13 +29,18 @@ class Packet(object):
 
         #By default, we consider those attributes :
         self.type = 'OTHER'
-        self._definition = 'OTHER'
-        self._signing = 'UNSIGNED'
         self.size = 0
-        self.signed = False
-        self._offset = 0
-        self._masks = []
-        self._shift = []
+        self._intAttr = {
+            'definition':   'OTHER',
+            'signing':      'UNSIGNED',
+            'signed':       False,
+            'offset':       0
+        }
+
+        self._bitsAttr = {
+            'masks':     [],
+            'shift':    []
+        }
 
         #If the description is a list (for the type BITS or FILLING) :
         try:
@@ -47,11 +52,11 @@ class Packet(object):
         except AssertionError:
             #If the definition and the signing method are given, we store them :
             try:
-                self._definition, self.type, self._signing = description.split('_')
+                self._intAttr['definition'], self.type, self._intAttr['signing'] = description.split('_')
             except ValueError:
                 #If only the definition is given, we store it :
                 try:
-                    self._definition, self.type = description.split('_')
+                    self._intAttr['definition'], self.type = description.split('_')
                 except ValueError:
                     self.type = description
 
@@ -81,21 +86,21 @@ class Packet(object):
         #For an integer, those signing methods can be declared :
         _knownSigning = ['SIGNED', 'UNSIGNED']
 
-        if  self._definition not in _knownDefinitions:
-            raise ValueError('Unknown definition : '+self._definition)
-        if self._signing not in _knownSigning:
-            raise ValueError('Unknown signing type : '+self._signing)
+        if  self._intAttr['definition'] not in _knownDefinitions:
+            raise ValueError('Unknown definition : '+self._intAttr['definition'])
+        if self._intAttr['signing'] not in _knownSigning:
+            raise ValueError('Unknown signing type : '+self._intAttr['signing'])
 
-        if self._definition == 'SMALL':
+        if self._intAttr['definition'] == 'SMALL':
             self.size = 8
-        elif self._definition == 'MEDIUM':
+        elif self._intAttr['definition'] == 'MEDIUM':
             self.size = 16
-        elif self._definition == 'LARGE':
+        elif self._intAttr['definition'] == 'LARGE':
             self.size = 32
 
-        if self._signing == 'SIGNED':
-            self.signed = True
-            self._offset = pow(2, self.size-1)-1
+        if self._intAttr['signing'] == 'SIGNED':
+            self._intAttr['signed'] = True
+            self._intAttr['offset'] = pow(2, self.size-1)-1
 
     def _init_float(self):
         """
@@ -124,8 +129,8 @@ class Packet(object):
             _mask = 0
             for i in range(0, block):
                 _mask += math.pow(2, i + _bits)
-            self._shift.append(int(_bits))
-            self._masks.append(int(_mask))
+            self._bitsAttr['shift'].append(int(_bits))
+            self._bitsAttr['masks'].append(int(_mask))
             _bits += block
 
     def _init_filler(self):
@@ -160,9 +165,9 @@ class Packet(object):
             Encoding method for integer type
         """
 
-        if not self.signed:
+        if not self._intAttr['signed']:
             assert data >= 0
-        data = int(data+self._offset)
+        data = int(data+self._intAttr['offset'])
         assert data < pow(2, self.size) and data >= 0
         return data.to_bytes(int(self.size/8), byteorder='big')
 
@@ -212,7 +217,7 @@ class Packet(object):
         """
 
         data = int.from_bytes(data, byteorder='big')
-        return int(data - self._offset)
+        return int(data - self._intAttr['offset'])
 
     def _decode_bits(self, data):
         """
@@ -221,8 +226,8 @@ class Packet(object):
 
         data = int.from_bytes(data, byteorder='big')
         _output = []
-        for index, mask in enumerate(self._masks):
-            _output.append((data & mask) >> self._shift[index])
+        for index, mask in enumerate(self._bitsAttr['masks']):
+            _output.append((data & mask) >> self._bitsAttr['shift'][index])
         return _output
 
 

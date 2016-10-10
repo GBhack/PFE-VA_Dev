@@ -1,17 +1,18 @@
 """
     Server.py
-    Server Class
+    Defines the Server Class
     Handle the "master" part of a connexion
 """
 
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Standard imports :
 import socket
 import time
-
 import threading
 
+#Specific imports :
 from ..datahandling import Message
 from ...constants import misc as MISC
 
