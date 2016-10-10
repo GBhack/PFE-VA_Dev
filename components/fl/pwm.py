@@ -55,7 +55,7 @@ def set_settings_cb(data, arg):
                 set_pwm_motor_right(pwmValue)
 
         except ValueError:
-            print('The needed value is a percentage and must be between 0 and 100\n')
+            print('The required value is a percentage and must be between 0 and 100\n')
             print('Setting everything to 0 duty cycle\n')
             set_pwm_motor_left(0)
             set_pwm_motor_right(0)

@@ -10,11 +10,9 @@
 #Standard imports :
 import socket
 import time
-import threading
 
 #Specific imports :
 from ..datahandling import Message
-from ...constants import misc as MISC
 
 
 class Server(object):
@@ -28,7 +26,19 @@ class Server(object):
             Initialization
         """
         self._port = port
-        self._newSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        
+        #Broadcasting address
+        self._broadcastAddr = "127.255.255.255"
+
+        self._connexionInfo = (self._broadcastAddr, self._port)
+
+        #Configure the socket tu use UDP
+        self._sendingSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+        #Configure the socket to broadcast packets
+        self._sendingSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
+        self._creationTime = time.time()
 
     def set_sending_datagram(self, datagram):
         """
@@ -36,33 +46,29 @@ class Server(object):
         """
         self._sendingDatagram = Message.Message(datagram)
 
-    def set_receiving_datagram(self, datagram):
-        """
-            Handles the unpacking process for data to send
-        """
-        self._receivingDatagram = Message.Message(datagram)
+    # def set_receiving_datagram(self, datagram):
+    #     """
+    #         Handles the unpacking process for data to send
+    #     """
+    #     self._receivingDatagram = Message.Message(datagram)
 
-    def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"]):
+    def get_socket_creation_time(self):
         """
-            Connexion set-up method
-            Arguments :
-                - timeout : the amount of time the server waits
-                for something to happen before raising an error
-                - multiClients
+            Getter : retrieve the socket creation time
         """
-        socket.setdefaulttimeout(timeout)
-        socketCreationTime = time.time()
+        return self._creationTime
+
 
 
     def send_to_clients(self, data):
         """
             Send to clients Method
         """
-        self._newSocket.sendto(self._sendingDatagram.encode(data), ('127.0.0.1', self._port))
+        self._sendingSocket.sendto(self._sendingDatagram.encode(data), self._connexionInfo)
 
     def close(self):
         """
             Closing socket
         """
-        self._newSocket.close()
+        self._sendingSocket.close()
         print('UDP Socket closed')
