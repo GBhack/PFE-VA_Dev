@@ -5,10 +5,19 @@
 
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
-def ButtonPressed():
+import robotBasics as RB
+import Adafruit_BBIO.GPIO as GPIO
 
-def ButtonReleased():
+def button_pressed_event():
+    """
+        Handles the pressed button event
+    """
 
+def button_released_event():
+    """
+        Handles the released button event
+    """
+    pass
 
-GPIO.add_event_detect(RB.gpiodef.RESET, GPIO.FALLING, callback=ButtonPressed)
-GPIO.add_event_detect(RB.gpiodef.RESET, GPIO.FALLING, callback=ButtonReleased)
+GPIO.add_event_detect(RB.constants.gpiodef.RESET, GPIO.FALLING, callback=button_pressed_event)
+GPIO.add_event_detect(RB.constants.gpiodef.RESET, GPIO.FALLING, callback=button_released_event)
