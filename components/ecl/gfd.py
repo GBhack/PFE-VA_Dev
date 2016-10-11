@@ -13,6 +13,8 @@
 #Specific imports :
 import robotBasics as RB
 
+CONSTANTS = RB.constants
+
 def compute_distance_cb(data, arg):
     """
         Callback method
@@ -21,10 +23,13 @@ def compute_distance_cb(data, arg):
         frontal distance in meters.
     """
 
+    distance = data * 343.2 / 2
+    arg['CLIENT'].send_data(distance)
+
 SOCKETS = RB.sockets
 
 #Creating the connexion object
-SERVER = SOCKETS.tcp.Server.Server(RB.constants.ports.ECL["gfd"])
+SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["gfd"])
 
 #We'll send floats (distance in meters)
 SERVER.set_sending_datagram(['FLOAT'])
@@ -36,7 +41,7 @@ SERVER.set_up_connexion()
 
 
 #Creating the connexion object
-CLIENT = SOCKETS.tcp.Server.Client(RB.constants.ports.FL["us"])
+CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.FL["us"])
 
 #We'll send floats (distance in meters)
 CLIENT.set_sending_datagram(['BOOL'])
