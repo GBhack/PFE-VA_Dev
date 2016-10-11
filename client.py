@@ -23,7 +23,7 @@ while 1:
 
     TCP.send_data([True])
 
-    print(TCP.receive_data()[0])
+    print('Received data :'+ str(TCP.receive_data()[0]))
 
     time.sleep(2)
 
