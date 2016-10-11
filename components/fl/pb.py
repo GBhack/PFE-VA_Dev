@@ -14,11 +14,11 @@ def button_event():
     """
         Handles the reset button event
     """
-    UDP.send_to_clients(GPIO.input(RB.constants.gpiodef.RESET))
+    UDP.send_to_clients(not GPIO.input(RB.constants.gpiodef.RESET))
 
 SOCKETS = RB.sockets
-###########DEFINE GPIO AS INPUT
 UDP = SOCKETS.udp.Server.Server(RB.constants.ports.FL["pb"])
 UDP.set_sending_datagram(["BOOL"])
 
+GPIO.setup(RB.constants.gpiodef.RESET, GPIO.INPUT)
 GPIO.add_edge_callback(RB.constants.gpiodef.RESET, button_event)

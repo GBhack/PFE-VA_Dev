@@ -39,7 +39,6 @@ class Server(object):
         """
             Handles the packing process for data to send
         """
-
         self._sendingDatagram = Message.Message(datagram)
 
     def get_socket_creation_time(self):

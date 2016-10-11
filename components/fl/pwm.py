@@ -50,7 +50,7 @@ def set_pwm_motor_left(data, args):
         GPIO.output(MOTOR_LEFT["direction"], GPIO.LOW)
     else:
         GPIO.output(MOTOR_LEFT["direction"], GPIO.HIGH)
-    PWM.set_duty_cycle(MOTOR_LEFT["PWM"], dutyCycle)
+    PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
 
 def set_pwm_motor_right(data, args):
     """
@@ -64,7 +64,7 @@ def set_pwm_motor_right(data, args):
     else:
         GPIO.output(MOTOR_RIGHT["direction"], GPIO.HIGH)
 
-    PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], dutyCycle)
+    PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], abs(dutyCycle))
 
 SOCKETS = RB.sockets
 

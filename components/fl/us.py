@@ -24,34 +24,52 @@ def measure_distance_cb(data, arg):
         Called when a tcp request is received
         Trigger an ultrasonic measure and sends back the echo time in seconds
     """
-
+    global connexionInfo
+    connexionInfo = arg
+    
     print('Request received')
+
     #Triggering :
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
 
-    print('Triggering')
+    print('Trigger signal sent. Now waiting for echo.')
 
-    #Waiting for the echo pin to be "high" (echo start)
-    while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
-        startTime = time.time()
-    #Waiting for the echo pin to be "low" (echo stop)
-    while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
-        endTime = time.time()
-
-    print('Echo received')
-    #Computing echo duration
-    duration = endTime - startTime
+    ##### DEPRECATED ####
+    # #Waiting for the echo pin to be "high" (echo start)
+    # while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
+    #     startTime = time.time()
+    # #Waiting for the echo pin to be "low" (echo stop)
+    # while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
+    #     endTime = time.time()
 
     #Responding to the request with the echo duration
-    arg["connexion"].send_to_clients([duration])
 
+def echo_received_event():
+    """
+        Handles the echo receiving process
+    """
+    global connexionInfo
+    if waitingForRisingEdge:    #If true, echo just received
+        print('Echo received')
+        startTime = time.time()
+    else:                       #Means that echo ended
+        print('Echo ended')
+        connexionInfo["connexion"].send_to_clients([time.time() - startTime])
+
+    waitingForRisingEdge = not waitingForRisingEdge # = waiting for falling edge
+    
 
 #GPIO setup :
 GPIO.setup(RB.constants.gpiodef.SONAR["trigger"], GPIO.OUT)
 GPIO.setup(RB.constants.gpiodef.SONAR["echo"], GPIO.IN)
 
+# Using edge event for echo duration measurement
+GPIO.add_edge_callback(RB.constants.gpiodef.SONAR["echo"], echo_received_event)
+
+# Used in the echo_received_event callback function.
+waitingForRisingEdge = True
 
 SOCKETS = RB.sockets
 
