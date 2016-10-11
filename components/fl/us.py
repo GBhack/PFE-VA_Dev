@@ -52,6 +52,7 @@ SOCKETS = RB.sockets
 
 #Creating the connexion object
 CONNEXION = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
+print(RB.constants.ports.FL["us"])
 
 #We'll send floats (duration in seconds)
 CONNEXION.set_sending_datagram(['FLOAT'])
