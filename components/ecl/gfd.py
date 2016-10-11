@@ -21,25 +21,6 @@ def compute_distance_cb(data, arg):
         frontal distance in meters.
     """
 
-    #Triggering :
-    GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
-    time.sleep(0.00001)
-    GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
-
-    #Waiting for the echo pin to be "high" (echo start)
-    while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
-        startTime = time.time()
-    #Waiting for the echo pin to be "low" (echo stop)
-    while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
-        endTime = time.time()
-
-    #Computing echo duration
-    duration = endTime - startTime
-
-    #Responding to the request with the echo duration
-    arg["connexion"].send_to_clients([duration])
-
-
 SOCKETS = RB.sockets
 
 #Creating the connexion object
