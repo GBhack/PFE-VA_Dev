@@ -18,7 +18,7 @@ from ...constants import misc as MISC
 
 class Client:
     """
-        class Client
+        Client class
     """
     def __init__(self, port):
         """
@@ -28,11 +28,21 @@ class Client:
         self.connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def set_sending_datagram(self, datagram):
+        """
+            Sending-Datagram set method
+            [Arguments] :
+            - datagram : the message pattern for all data sent (see datahandling's readme)
+        """
         self._sendingDatagram = Message.Message(datagram)
 
     def set_receiving_datagram(self, datagram):
+        """
+            Receiving-Datagram set method
+            [Arguments] :
+            - datagram : the message pattern for all data received (see datahandling's readme)
+        """
         self._receivingDatagram = Message.Message(datagram)
-        self._receivingMessageSize = self._receivingDatagram.get_size()
+        self._receivingMessageSize = self._receivingDatagram.size
 
     def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"]):
         """

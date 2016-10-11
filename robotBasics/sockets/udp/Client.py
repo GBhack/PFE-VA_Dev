@@ -12,7 +12,7 @@ import socket
 import threading
 
 #Specific imports :
-#from ..datahandling import Message
+from ..datahandling import Message
 
 
 class Client:
@@ -23,12 +23,8 @@ class Client:
         """
             Initialization
         """
-        self._port = port
 
-        #Broadcasting address
-        self._broadcastAddr = "127.255.255.255"
-
-        self._connexionInfo = (self._broadcastAddr, self._port)
+        self._connexionInfo = ("127.255.255.255", port)
 
         #Configure the socket tu use UDP
         self._sendingSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -36,18 +32,23 @@ class Client:
         #Configure the socket to allow other process to use the port (for broadcasting)
         self._sendingSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-        self._sendingSocket.bind(self._connexionInfo)
+        
 
     def set_up_connexion(self, callback):
-        connexion = WaitForData(callback, self._sendingSocket)
-        connexion.start()
+        
+        self._sendingSocket.bind(self._connexionInfo)
+        
 
+    def listen_to_server(self, callback, args
+        stopEvent = threading.Event()
+        connexion = WaitForData(callback, self._sendingSocket)     
+        connexion.start()   
 
     def set_receiving_datagram(self, datagram):
         """
             Decode the data sent
         """
-        # self._receivingDatagram = Message.Message(datagram)
+        self._receivingDatagram = Message.Message(datagram)
         # self._receivingMessageSize = self._receivingDatagram.get_size()
 
     def receive_data(self):
