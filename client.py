@@ -17,7 +17,7 @@ TCP = SOCKETS.tcp.Client.Client(1300)
 TCP.set_sending_datagram(['BOOL'])
 TCP.set_receiving_datagram(['FLOAT'])
 
-TCP.set_up_connexion()
+TCP.set_up_connexion(30)
 
 while 1:
 
