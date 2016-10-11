@@ -28,7 +28,7 @@ class Message(object):
         """
 
         #The global size of the message (in bytes)
-        self._messageSize = 0
+        self.size = 0
 
         #List of the packets composing the message (as Packet objects : see class definition)
         self.packets = []
@@ -36,26 +36,19 @@ class Message(object):
         #For each distinct packet in the datagram pattern list
         for packetPattern in messagePattern:
             self.packets.append(Packet.Packet(packetPattern))
-            self._messageSize += int(self.packets[-1].size/8)
+            self.size += int(self.packets[-1].size/8)
 
         #If the message size is not a power of two :
-        if (self._messageSize != 0 and
-                (self._messageSize & (self._messageSize - 1)) != 0):
+        if (self.size != 0 and
+                (self.size & (self.size - 1)) != 0):
             #We compute the next power of two :
-            _nextPowerOfTwo = math.ceil(math.log2(self._messageSize))
+            _nextPowerOfTwo = math.ceil(math.log2(self.size))
             _nextPowerOfTwo = int(math.pow(2, _nextPowerOfTwo))
             #We compute the number of bytes missing to get a power of two
-            _fillingSize = _nextPowerOfTwo - self._messageSize
+            _fillingSize = _nextPowerOfTwo - self.size
             #We "fill" the message to get a power of two size
             self.packets.append(Packet.Packet(['FILLER', _fillingSize]))
-            self._messageSize = _nextPowerOfTwo
-
-    def get_size(self):
-        """
-            get_size method
-            Returns the size of the message in bytes
-        """
-        return self._messageSize
+            self.size = _nextPowerOfTwo
 
     def encode(self, dataset):
         """

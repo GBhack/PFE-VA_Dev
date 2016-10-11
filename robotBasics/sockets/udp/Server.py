@@ -25,12 +25,7 @@ class Server(object):
         """
             Initialization
         """
-        self._port = port
-        
-        #Broadcasting address
-        self._broadcastAddr = "127.255.255.255"
-
-        self._connexionInfo = (self._broadcastAddr, self._port)
+        self._connexionInfo = ("127.255.255.255", port)
 
         #Configure the socket tu use UDP
         self._sendingSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -44,13 +39,8 @@ class Server(object):
         """
             Handles the packing process for data to send
         """
-        self._sendingDatagram = Message.Message(datagram)
 
-    # def set_receiving_datagram(self, datagram):
-    #     """
-    #         Handles the unpacking process for data to send
-    #     """
-    #     self._receivingDatagram = Message.Message(datagram)
+        self._sendingDatagram = Message.Message(datagram)
 
     def get_socket_creation_time(self):
         """
@@ -64,7 +54,8 @@ class Server(object):
         """
             Send to clients Method
         """
-        self._sendingSocket.sendto(data.encode(), self._connexionInfo)
+        self._sendingSocket.sendto(self._sendingDatagram.encode(data), self._connexionInfo)
+
 
     def close(self):
         """

@@ -9,22 +9,27 @@
 
 #Standard imports :
 import socket
+import time
 import threading
 
 #Specific imports :
 from ..datahandling import Message
-
+from ...constants import misc as MISC
 
 class Client:
     """
         class Client
     """
-    def __init__(self, port):
+    def __init__(self, port, frequency=MISC.SOCKETS["frequency"]):
         """
             Initialization
         """
 
         self._connexionInfo = ("127.255.255.255", port)
+
+        self._frequency = frequency
+
+        self._stopEvent = threading.Event()
 
         #Configure the socket tu use UDP
         self._sendingSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -34,15 +39,15 @@ class Client:
 
         
 
-    def set_up_connexion(self, callback):
+    def set_up_connexion(self):
         
         self._sendingSocket.bind(self._connexionInfo)
         
 
-    def listen_to_server(self, callback, args
-        stopEvent = threading.Event()
-        connexion = WaitForData(callback, self._sendingSocket)     
-        connexion.start()   
+    def listen_to_server(self, callback, args):
+        
+        connexion = WaitForData(self._sendingSocket, self._receivingDatagram, callback, args, self._frequency, self._stopEvent)     
+        connexion.start()
 
     def set_receiving_datagram(self, datagram):
         """
@@ -51,20 +56,12 @@ class Client:
         self._receivingDatagram = Message.Message(datagram)
         # self._receivingMessageSize = self._receivingDatagram.get_size()
 
-    def receive_data(self):
-        """
-            Data sending method
-        """
-        data = self._sendingSocket.recv(7) #self._receivingMessageSize)
-        if data:
-            return data.decode() #self._receivingDatagram.decode(data)
-        else:
-            return 0
-
     def close(self):
         """
             Dispose the socket's binding 
         """
+        self._stopEvent.set()
+        time.sleep(0.001)
         self._sendingSocket.close()
         print('Closing')
 
@@ -73,19 +70,24 @@ class WaitForData(threading.Thread):
         Thread for data receiving
     """
 
-    def __init__(self, callback, connexion):
+    def __init__(self, connexion, datagram, callback, args, frequency, stopEvent):
 
         threading.Thread.__init__(self)
-        self.callback = callback
-        self.connexion = connexion
+        self._connexion = connexion
+        self._callback = callback
+        self._datagram = datagram
+        self._args = args
+        self._frequency = frequency
+        self._stopEvent = stopEvent
+
+        
         
     def run(self):
         """
             Running (when start is called)
         """
-        while 1:
-            print('Waiting for data')
-            data = self.connexion.recv(1024)
+        while not self._stopEvent.is_set():
+            data = self._connexion.recv(self._datagram.size)
             if data:
-                self.callback(data.decode())
+                self._callback(self._datagram.decode(data), self._args)
 
