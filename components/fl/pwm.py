@@ -1,5 +1,5 @@
 """
-    LF_PWM.py
+    pwm.py
     Handles the PWM generation
 """
 
@@ -38,55 +38,57 @@ GPIO.output(MOTOR_RIGHT["enable"], GPIO.HIGH)
 GPIO.output(MOTOR_LEFT["direction"], GPIO.LOW)
 GPIO.output(MOTOR_RIGHT["direction"], GPIO.LOW)
 
-# def set_settings_cb(data, arg):
-#     """ 
-#         This method handles the input arguments
-#         It ensures that the input args are correct and redirect to appropriate method
-#     """
-#     if arg[0] == "pwmMotorLeft" or arg[0] == "pwmMotorRight":
-#         pwmValue = arg[1]
-#         try:
-#             if pwmValue < 0 or pwmValue > 100:
-#                 raise ValueError
-
-#             if arg[0] == "pwmMotorLeft":
-#                 set_pwm_motor_left(pwmValue)
-#             elif arg[0] == "pwmMotorRight":
-#                 set_pwm_motor_right(pwmValue)
-
-#         except ValueError:
-#             print('The required value is a percentage and must be between 0 and 100\n')
-#             print('Setting everything to 0 duty cycle\n')
-#             set_pwm_motor_left(0)
-#             set_pwm_motor_right(0)
-#             raise
-#         except Exception:
-#             raise
-#     elif arg[0] == "setFrequency":
-#         set_frequency(arg[1])
-#     elif arg[0] == "setPeriod":
-#         set_period(arg[1])
-#     else:
-#         print('Invalid argument : unknown method ' + arg[0])
-
-
-def set_pwm_motor_left(dutyCycle):
+def set_pwm_motor_left(data, args):
     """
         Set the pwm duty cycle of the left motor
     """
+    assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
+    if dutyCycle >= 0:
+        GPIO.output(MOTOR_LEFT["direction"], GPIO.LOW)
+    else:
+        GPIO.output(MOTOR_LEFT["direction"], GPIO.HIGH)
     PWM.set_duty_cycle(MOTOR_LEFT["PWM"], dutyCycle)
 
-def set_pwm_motor_right(dutyCycle):
+def set_pwm_motor_right(data, args):
     """
         Set the pwm duty cycle of the right motor
     """
-    PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], dutyCycle)
+    assert (dutyCycle >= -100 or dutyCycle <= 100), "PWM must be set between -100 and 100"
+    if dutyCycle >= 0:
+        GPIO.output(MOTOR_RIGHT["direction"], GPIO.LOW)
+    else:
+        GPIO.output(MOTOR_RIGHT["direction"], GPIO.HIGH)
 
+    PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], dutyCycle)
 
 SOCKETS = RB.sockets
 
-CONNEXION_MOTOR_RIGHT = SOCKETS.udp.Client.Client(RB.constants.ports.FL["pwm_right"])
-CONNEXION_MOTOR_RIGHT.set_up_connexion(set_pwm_motor_right)
+#Creating the connexion object
+CONNEXION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["pwm_left"])
+CONNEXION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["pwm_right"])
 
-CONNEXION_MOTOR_LEFT = SOCKETS.udp.Client.Client(RB.constants.ports.FL["pwm_left"])
-CONNEXION_MOTOR_LEFT.set_up_connexion(set_pwm_motor_left)
+#We'll send booleans (status of the operation)
+CONNEXION_MOTOR_LEFT.set_sending_datagram(['BOOL'])
+CONNEXION_MOTOR_RIGHT.set_sending_datagram(['BOOL'])
+
+#We'll receive small signed integers (-100 -> 100% of thrust)
+CONNEXION_MOTOR_LEFT.set_receiving_datagram(['SMALL_INT_SIGNED'])
+CONNEXION_MOTOR_RIGHT.set_receiving_datagram(['SMALL_INT_SIGNED'])
+
+#Opening the connexion
+CONNEXION_MOTOR_LEFT.set_up_connexion()
+CONNEXION_MOTOR_RIGHT.set_up_connexion()
+
+#Arguments object for the callback method
+#We pass the CONNEXION object so that the callback can respond to the request
+ARGUMENTS_MOTOR_LEFT = {
+    "connexion" : CONNEXION_MOTOR_LEFT
+}
+
+ARGUMENTS_MOTOR_RIGHT = {
+    "connexion" : CONNEXION_MOTOR_RIGHT
+}
+
+#Waiting for requests and linking them to the callback method
+CONNEXION_MOTOR_RIGHT.listen_to_clients(set_pwm_motor_left, ARGUMENTS_MOTOR_LEFT)
+CONNEXION_MOTOR_RIGHT.listen_to_clients(set_pwm_motor_right, ARGUMENTS_MOTOR_RIGHT)
