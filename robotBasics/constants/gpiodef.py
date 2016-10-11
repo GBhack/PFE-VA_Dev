@@ -10,29 +10,29 @@
 ENGINES = {
     "left": {
         "PWM":          "P9_16",
-        "direction":    "P9_12",
-        "enable":       "P9_17"
+        "direction":    "P8_7",
+        "enable":       "P8_10"
     },
     "right": {
         "PWM":          "P9_14",
-        "direction":    "P9_13",
-        "enable":       "P9_15"
+        "direction":    "P8_8",
+        "enable":       "P8_9"
     }
 }
 
 #LEDs-related I/O :
 LEDS = {
-    "left": "P9_24",
-    "right": "P9_23",
-    "stop": "P9_25",
-    "status": "P9_26"
+    "left": "P8_15",
+    "right": "P8_16",
+    "stop": "P8_14",
+    "status": "P8_17"
 }
 
 #Sonar-related I/O :
 SONAR = {
-    "trigger": "P9_28",
-    "echo": "P9_29"
+    "trigger": "P8_11",
+    "echo": "P8_12"
 }
 
 #Reset pushbutton
-RESET = "P9_27"
+RESET = "P8_18"
