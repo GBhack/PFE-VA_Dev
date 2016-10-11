@@ -12,6 +12,7 @@
 
 #Standard imports :
 import time
+import atexit
 
 #Specific imports :
 import robotBasics as RB
@@ -24,10 +25,13 @@ def measure_distance_cb(data, arg):
         Trigger an ultrasonic measure and sends back the echo time in seconds
     """
 
+    print('Request received')
     #Triggering :
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
+
+    print('Triggering')
 
     #Waiting for the echo pin to be "high" (echo start)
     while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
@@ -36,6 +40,7 @@ def measure_distance_cb(data, arg):
     while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         endTime = time.time()
 
+    print('Echo received')
     #Computing echo duration
     duration = endTime - startTime
 
@@ -60,7 +65,7 @@ CONNEXION.set_sending_datagram(['FLOAT'])
 CONNEXION.set_receiving_datagram(['BOOL'])
 
 #Opening the connexion
-CONNEXION.set_up_connexion()
+CONNEXION.set_up_connexion(10)
 
 #Arguments object for the callback method
 #We pass the CONNEXION object so that the callback can respond to the request
@@ -72,4 +77,4 @@ ARGUMENTS = {
 CONNEXION.listen_to_clients(measure_distance_cb, ARGUMENTS)
 
 
-#TCP.close()
+atexit.register(CONNEXION.close)
