@@ -22,6 +22,7 @@ TCP.set_up_connexion(30)
 while 1:
 
     TCP.send_data([True])
+    print('Init')
 
     print('Received data :'+ str(TCP.receive_data()[0]))
 
