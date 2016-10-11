@@ -77,4 +77,4 @@ ARGUMENTS = {
 CONNEXION.listen_to_clients(measure_distance_cb, ARGUMENTS)
 
 
-atexit.register(TCP.close)
+atexit.register(CONNEXION.close)
