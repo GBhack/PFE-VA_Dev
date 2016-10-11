@@ -24,10 +24,13 @@ def measure_distance_cb(data, arg):
         Trigger an ultrasonic measure and sends back the echo time in seconds
     """
 
+    print('Request received')
     #Triggering :
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
+
+    print('Triggering')
 
     #Waiting for the echo pin to be "high" (echo start)
     while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
@@ -36,6 +39,7 @@ def measure_distance_cb(data, arg):
     while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         endTime = time.time()
 
+    print('Echo received')
     #Computing echo duration
     duration = endTime - startTime
 
