@@ -64,7 +64,7 @@ class Server(object):
         """
             Send to clients Method
         """
-        self._sendingSocket.sendto(self._sendingDatagram.encode(data), self._connexionInfo)
+        self._sendingSocket.sendto(data.encode(), self._connexionInfo)
 
     def close(self):
         """

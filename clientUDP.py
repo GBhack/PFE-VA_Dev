@@ -6,7 +6,6 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-import atexit
 import robotBasics as RB
 
 
@@ -18,9 +17,5 @@ def callback_cb(data):
 
 
 SOCKETS = RB.sockets
-print(1)
-UDP = SOCKETS.udp.Client.Client(1051)
-print(2)
+UDP = SOCKETS.udp.Client.Client(12345)
 UDP.set_up_connexion(callback_cb)
-
-print(3)

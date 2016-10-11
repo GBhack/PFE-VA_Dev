@@ -54,7 +54,7 @@ class Client:
         """
             Data sending method
         """
-        data = self._sendingSocket.recv(1024) #self._receivingMessageSize)
+        data = self._sendingSocket.recv(7) #self._receivingMessageSize)
         if data:
             return data.decode() #self._receivingDatagram.decode(data)
         else:
@@ -77,8 +77,7 @@ class WaitForData(threading.Thread):
         threading.Thread.__init__(self)
         self.callback = callback
         self.connexion = connexion
-        print('INIT OK')
-
+        
     def run(self):
         """
             Running (when start is called)
@@ -89,29 +88,3 @@ class WaitForData(threading.Thread):
             if data:
                 self.callback(data.decode())
 
-"""
->>> import socket
->>> UDPSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
->>> addr=('',3333)
->>> UDPSock.bind(addr)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-OSError: [Errno 98] Address already in use
->>> s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
->>> >>> s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-  File "<stdin>", line 1
-    >>> s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-     ^
-SyntaxError: invalid syntax
->>> s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
->>> s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
->>> s.bind(('127.255.255.255',3333))
->>> s.recvfrom(1024)
-(b'coucou', ('127.0.0.1', 46679))
->>> s.recvfrom(1024)
-(b'coucou', ('127.0.0.1', 46679))
->>> s.recvfrom(1024)
-(b'coucou', ('127.0.0.1', 46679))
->>> 
-
-"""

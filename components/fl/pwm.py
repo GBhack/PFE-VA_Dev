@@ -86,4 +86,7 @@ def set_pwm_motor_right(dutyCycle):
 SOCKETS = RB.sockets
 
 CONNEXION_MOTOR_RIGHT = SOCKETS.udp.Client.Client(RB.constants.ports.FL["pwm_right"])
-print(CONNEXION_MOTOR_RIGHT.receive_data())
+CONNEXION_MOTOR_RIGHT.set_up_connexion(set_pwm_motor_right)
+
+CONNEXION_MOTOR_LEFT = SOCKETS.udp.Client.Client(RB.constants.ports.FL["pwm_left"])
+CONNEXION_MOTOR_LEFT.set_up_connexion(set_pwm_motor_left)
