@@ -111,7 +111,7 @@ class WaitForData(threading.Thread):
         self.connexion = connexion
         self._frequency = frequency
         self._datagram = datagram
-        self._messageSize = datagram.get_size()
+        self._messageSize = datagram.size
         print('Message size : '+str(self._messageSize))
         self._stopEvent = stopEvent
         self._args = args
