@@ -42,6 +42,9 @@ def set_pwm_motor_left(data, args):
     """
         Set the pwm duty cycle of the left motor
     """
+    
+    assert (data), "No data"
+    dutyCycle = data[0]
     assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
     if dutyCycle >= 0:
         GPIO.output(MOTOR_LEFT["direction"], GPIO.LOW)
@@ -53,6 +56,8 @@ def set_pwm_motor_right(data, args):
     """
         Set the pwm duty cycle of the right motor
     """
+    assert (data), "No data"
+    dutyCycle = data[0]
     assert (dutyCycle >= -100 or dutyCycle <= 100), "PWM must be set between -100 and 100"
     if dutyCycle >= 0:
         GPIO.output(MOTOR_RIGHT["direction"], GPIO.LOW)
@@ -64,8 +69,8 @@ def set_pwm_motor_right(data, args):
 SOCKETS = RB.sockets
 
 #Creating the connexion object
-CONNEXION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["pwm_left"])
-CONNEXION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["pwm_right"])
+CONNEXION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["pwm"]["left"])
+CONNEXION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["pwm"]["right"])
 
 #We'll send booleans (status of the operation)
 CONNEXION_MOTOR_LEFT.set_sending_datagram(['BOOL'])
