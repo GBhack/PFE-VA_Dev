@@ -51,14 +51,21 @@ def echo_received_event():
         Handles the echo receiving process
     """
     global connexionInfo
-    if waitingForRisingEdge:    #If true, echo just received
-        print('Echo received')
-        startTime = time.time()
-    else:                       #Means that echo ended
-        print('Echo ended')
-        connexionInfo["connexion"].send_to_clients([time.time() - startTime])
 
-    waitingForRisingEdge = not waitingForRisingEdge # = waiting for falling edge
+    # Next line is a bad situation : waiting for a falling edge whereas a rising edge event appends
+    # This situation may potentially happen at initialization or in case of interferences.
+    if not waitingForRisingEdge and GPIO.input(RB.constants.gpiodef.SONAR["echo"]:
+        if waitingForRisingEdge:    #If true, echo just received
+            print('Echo received')
+            startTime = time.time()
+        else:                       #Means that echo just ended
+            print('Echo ended')
+            connexionInfo["connexion"].send_to_clients([time.time() - startTime])
+        waitingForRisingEdge = not waitingForRisingEdge # = waiting for falling edge
+    else:
+        # "0" corresponds to an error and never should happen in nominal mode. A second TCP call should be done
+        connexionInfo["connexion"].send_to_clients([0])
+
     
 
 #GPIO setup :
