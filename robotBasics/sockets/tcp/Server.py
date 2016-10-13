@@ -30,6 +30,7 @@ class Server(object):
         self._frequency = frequency
         self._connexions = []
         self._clientsListeningThreads = []
+        self.alive = True
 
         self.waitForClient = True
 
@@ -96,18 +97,21 @@ class Server(object):
                 self.close_single_socket(connexion)
 
     def close_single_socket(self, connexion):
-        print("Closing single")
         connexion["stopEvent"].set()
         time.sleep(0.01)
         connexion["sock"].close()
         self._connexions.remove(connexion)
-        print("Connection closed")
-        if len(self._connexions):
+        print("Connection closed by client.", str(len(self._connexions)), " client(s) remaining.")
+        if len(self._connexions) <= 0:
             print("All clients disconnected. Closing the server.")
+            try:
+                connexion["sock"].shutdown(socket.SHUT_RDWR)
+            except:
+                pass
+            self.alive = False
 
     def close(self):
         self.waitForClient = False
-        print('Closing')
         for connexion in self._connexions:
             connexion["stopEvent"].set()
             time.sleep(0.01)
@@ -118,6 +122,7 @@ class Server(object):
             connexion["sock"].close()
             self._connexions.remove(connexion)
             print('Closing')
+            self.alive = False
         #for thread in self._clientsListeningThreads:
         #    thread.join()
 
@@ -149,5 +154,4 @@ class WaitForData(threading.Thread):
                 if data:
                     self.callback(self._datagram.decode(data), self._args)
             except ConnectionResetError:
-                print("Connection closed by client")
                 self._closeMethod(self.connexion)

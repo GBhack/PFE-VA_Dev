@@ -28,12 +28,13 @@ atexit.register(TCP.close)
 TCP.set_sending_datagram(['FLOAT'])
 TCP.set_receiving_datagram(['BOOL'])
 
-TCP.set_up_connexion(20, False)
+TCP.set_up_connexion(20, True, 2)
 
-while 1:
+while TCP.alive:
     TCP.listen_to_clients(print_message, test)
     TCP.send_to_clients([0.123451])
     time.sleep(1)
+
 TCP.close()
 
 
