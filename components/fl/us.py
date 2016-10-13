@@ -36,7 +36,7 @@ def measure_distance_cb(data, arg):
 
     #Waiting for the echo pin to be "high" (echo start)
     #GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.RISING)
-    print("GPIO : " + str(RB.constants.gpiodef.SONAR["echo"]))
+    print("GPIO : " + str(GPIO.input(RB.constants.gpiodef.SONAR["echo"])))
     while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         pass
     #print("Edge received")
