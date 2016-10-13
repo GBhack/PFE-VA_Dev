@@ -44,6 +44,7 @@ class Server(object):
     def get_socket_creation_time(self):
         """
             Getter : retrieve the socket creation time
+            For debug or information purposes
         """
         return self._creationTime
 

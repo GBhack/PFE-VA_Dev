@@ -6,3 +6,4 @@
 #-*- coding: utf-8 -*-
 import robotBasics.sockets
 import robotBasics.constants
+import robotBasics.GPIO
