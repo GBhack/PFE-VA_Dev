@@ -54,7 +54,7 @@ def echo_received_event():
 
     # Next line is a bad situation : waiting for a falling edge whereas a rising edge event appends
     # This situation may potentially happen at initialization or in case of interferences.
-    if not waitingForRisingEdge and GPIO.input(RB.constants.gpiodef.SONAR["echo"]:
+    if not waitingForRisingEdge and GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         if waitingForRisingEdge:    #If true, echo just received
             print('Echo received')
             startTime = time.time()
