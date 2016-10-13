@@ -7,6 +7,7 @@
 
 import robotBasics as RB
 import time
+import atexit
 
 test = [1]
 
@@ -20,15 +21,19 @@ def print_message(message, arg):
 
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Server.Server(12345)
+TCP = SOCKETS.tcp.Server.Server(1300)
+
+atexit.register(TCP.close)
 
 TCP.set_sending_datagram(['FLOAT'])
 TCP.set_receiving_datagram(['BOOL'])
 
-TCP.set_up_connexion(5, False)
+TCP.set_up_connexion(20, False)
 
-TCP.listen_to_clients(print_message, test)
-
-TCP.send_to_clients([0.123451])
-
+while 1:
+    TCP.listen_to_clients(print_message, test)
+    TCP.send_to_clients([0.123451])
+    time.sleep(1)
 TCP.close()
+
+

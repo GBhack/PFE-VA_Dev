@@ -31,6 +31,8 @@ class Server(object):
         self._connexions = []
         self._clientsListeningThreads = []
 
+        self.waitForClient = True
+
     def set_sending_datagram(self, datagram):
         self._sendingDatagram = Message.Message(datagram)
 
@@ -51,24 +53,26 @@ class Server(object):
         newSocket.bind(('', self._port))
         newSocket.listen(1)
 
-        waitForClient = True
         clientsConnected = 0
         socketCreationTime = time.time()
 
-        while waitForClient:
+        while self.waitForClient:
             try:
                 newConnexion, _ = newSocket.accept()
                 self._connexions.append({"sock": newConnexion, "stopEvent":threading.Event()})
                 clientsConnected += 1
                 if clientsConnected >= maxClients or not multiClients:
                     print('Maximum amount of clients reached (', clientsConnected, ')')
-                    waitForClient = False
+                    self.waitForClient = False
                 if time.time() - socketCreationTime > timeout:
                     print("Timeout : ", clientsConnected, " clients connected")
-                    waitForClient = False
+                    self.waitForClient = False
+            except KeyboardInterrupt:
+                print("Interrupt received, stopping…")
+                self.close()
             except socket.timeout:
                 print("Timeout : ", clientsConnected, " clients connected")
-                waitForClient = False
+                self.waitForClient = False
 
         if clientsConnected > 0:
             print("Success !")
@@ -78,7 +82,7 @@ class Server(object):
             Listening to clients Method
         """
         for connexion in self._connexions:
-            self._clientsListeningThreads.append(WaitForData(connexion["sock"], self._receivingDatagram, callback, args, self._frequency, connexion["stopEvent"]))
+            self._clientsListeningThreads.append(WaitForData(connexion, self._receivingDatagram, callback, args, self._frequency, self.close_single_socket))
             self._clientsListeningThreads[-1].start()
 
     def send_to_clients(self, data):
@@ -86,42 +90,64 @@ class Server(object):
             Send to clients Method
         """
         for connexion in self._connexions:
-            connexion["sock"].send(self._sendingDatagram.encode(data))
+            try:
+                connexion["sock"].send(self._sendingDatagram.encode(data))
+            except (ConnectionResetError, BrokenPipeError):
+                self.close_single_socket(connexion)
+
+    def close_single_socket(self, connexion):
+        print("Closing single")
+        connexion["stopEvent"].set()
+        time.sleep(0.01)
+        connexion["sock"].close()
+        self._connexions.remove(connexion)
+        print("Connection closed")
+        if len(self._connexions):
+            print("All clients disconnected. Closing the server.")
 
     def close(self):
+        self.waitForClient = False
+        print('Closing')
         for connexion in self._connexions:
             connexion["stopEvent"].set()
             time.sleep(0.01)
+            try:
+                connexion["sock"].shutdown(socket.SHUT_RDWR)
+            except:
+                pass
             connexion["sock"].close()
+            self._connexions.remove(connexion)
             print('Closing')
-        for thread in self._clientsListeningThreads:
-            thread.join()
+        #for thread in self._clientsListeningThreads:
+        #    thread.join()
 
 class WaitForData(threading.Thread):
     """
         WaitForData Class (threading)
     """
 
-    def __init__(self, connexion, datagram, callback, args, frequency, stopEvent):
+    def __init__(self, connexion, datagram, callback, args, frequency, closeMethod):
         """
             Initialization
         """
         threading.Thread.__init__(self)
-        self.callback = callback
         self.connexion = connexion
-        self._frequency = frequency
         self._datagram = datagram
         self._messageSize = datagram.size
-        print('Message size : '+str(self._messageSize))
-        self._stopEvent = stopEvent
+        self.callback = callback
         self._args = args
+        self._frequency = frequency
+        self._closeMethod = closeMethod        
 
     def run(self):
         """
             Running (when start is called)
         """
-        while not self._stopEvent.is_set():
-            data = self.connexion.recv(self._messageSize)
-            if data:
-                self.callback(self._datagram.decode(data), self._args)
-            time.sleep(self._frequency)
+        while not self.connexion["stopEvent"].is_set():
+            try:
+                data = self.connexion["sock"].recv(self._messageSize)
+                if data:
+                    self.callback(self._datagram.decode(data), self._args)
+            except ConnectionResetError:
+                print("Connection closed by client")
+                self._closeMethod(self.connexion)

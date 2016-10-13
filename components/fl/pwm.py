@@ -6,6 +6,7 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+#Specific imports :
 import robotBasics as RB
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
@@ -51,6 +52,7 @@ def set_pwm_motor_left(data, args):
     else:
         GPIO.output(MOTOR_LEFT["direction"], GPIO.HIGH)
     PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
+    arg["connexion"].send_to_clients([True])
 
 def set_pwm_motor_right(data, args):
     """
@@ -65,6 +67,8 @@ def set_pwm_motor_right(data, args):
         GPIO.output(MOTOR_RIGHT["direction"], GPIO.HIGH)
 
     PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], abs(dutyCycle))
+    arg["connexion"].send_to_clients([True])
+
 
 SOCKETS = RB.sockets
 

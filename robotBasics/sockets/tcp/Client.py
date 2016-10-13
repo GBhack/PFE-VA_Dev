@@ -49,7 +49,12 @@ class Client:
             Connexion set-up method
         """
         socket.setdefaulttimeout(timeout)
-        self.connexion.connect(('127.0.0.1', self.port))
+        try:
+            self.connexion.connect(('127.0.0.1', self.port))
+            return True
+        except ConnectionRefusedError:
+            print("Connection refused. Is the server running with available sockets ?")
+            return False
 
     def send_data(self, data):
         """
