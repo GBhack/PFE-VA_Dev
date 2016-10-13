@@ -29,12 +29,14 @@ def measure_distance_cb(data, arg):
 
     #Triggering :
     before = time.time()
+    now = time.time()
+    
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
-    now = time.time()
+    
 
-    print("Diff : "+ now - before)
+    print("Diff : "+ str(now - before))
 
     #print('Trigger signal sent. Now waiting for echo.')
 
@@ -52,6 +54,7 @@ def measure_distance_cb(data, arg):
     #print("End of edge")
     #Responding to the request with the echo duration
     arg["connexion"].send_to_clients([time.time() - startTime])
+    #Diff : 0.0005784034729003906
 
     
     print("envoye")
