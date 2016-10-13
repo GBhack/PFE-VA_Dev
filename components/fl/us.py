@@ -35,12 +35,16 @@ def measure_distance_cb(data, arg):
     #print('Trigger signal sent. Now waiting for echo.')
 
     #Waiting for the echo pin to be "high" (echo start)
-    GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.RISING)
+    #GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.RISING)
+    while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
+        pass
     #print("Edge received")
     startTime = time.time()
     #Waiting for the echo pin to be "low" (echo stop)
-    GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.FALLING)
-    print("End of edge")
+    #GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.FALLING)
+    while GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
+        pass
+    #print("End of edge")
     #Responding to the request with the echo duration
     arg["connexion"].send_to_clients([time.time() - startTime])
 
