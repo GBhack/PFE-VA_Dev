@@ -29,7 +29,7 @@ def measure_distance_cb(data, arg):
 
     #Triggering :
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
-    time.sleep(0.00001)
+    time.sleep(5)
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
 
     print('Trigger signal sent. Now waiting for echo.')
