@@ -13,8 +13,8 @@ import atexit
 
 #Specific imports :
 import robotBasics as RB
-#import Adafruit_BBIO.GPIO as GPIO
-#import Adafruit_BBIO.PWM as PWM
+import Adafruit_BBIO.GPIO as GPIO
+import Adafruit_BBIO.PWM as PWM
 
 
 #Documentation : https://learn.adafruit.com/setting-up-io-python-library-on-beaglebone-black/pwm
@@ -22,27 +22,24 @@ MOTOR_LEFT = RB.constants.gpiodef.ENGINES["left"]
 MOTOR_RIGHT = RB.constants.gpiodef.ENGINES["right"]
 
 #Start PWM with a 0% duty cycle
-#PWM.start(MOTOR_LEFT["mot"], 0)
-#PWM.start(MOTOR_RIGHT["mot"], 0)
+PWM.start(MOTOR_LEFT["PWM"], 0)
+PWM.start(MOTOR_RIGHT["PWM"], 0)
 
 #Declare motor enabling pins
-#GPIO.setup(MOTOR_LEFT["enable"], GPIO.OUT)
-#GPIO.setup(MOTOR_RIGHT["enable"], GPIO.OUT)
+########### NOTE ############
+# To go forward  : set forward  pin to 1 and backward pin to 0
+# To go backward : set backward pin to 1 and forward  pin to 0
+GPIO.setup(MOTOR_LEFT["forward"], GPIO.OUT)
+GPIO.setup(MOTOR_RIGHT["forward"], GPIO.OUT)
+GPIO.setup(MOTOR_LEFT["backward"], GPIO.OUT)
+GPIO.setup(MOTOR_RIGHT["backward"], GPIO.OUT)
 
-#Declare direction pins
-#GPIO.setup(MOTOR_LEFT["direction"], GPIO.OUT)
-#GPIO.setup(MOTOR_RIGHT["direction"], GPIO.OUT)
+#Enable motors (active HIGH) : forward configuration
+GPIO.output(MOTOR_LEFT["forward"], GPIO.HIGH)
+GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
+GPIO.output(MOTOR_LEFT["backward"], GPIO.LOW)
+GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
 
-#Enable motors (active HIGH)
-#GPIO.output(MOTOR_LEFT["enable"], GPIO.HIGH)
-#GPIO.output(MOTOR_RIGHT["enable"], GPIO.HIGH)
-
-#Initialize direction
-# LOW = Forward
-# HIGH = Backward
-# # DEFAULT : Forward # #
-#GPIO.output(MOTOR_LEFT["direction"], GPIO.LOW)
-#GPIO.output(MOTOR_RIGHT["direction"], GPIO.LOW)
 
 def set_pwm_motor_left_cb(data, args):
     """
@@ -53,13 +50,17 @@ def set_pwm_motor_left_cb(data, args):
     dutyCycle = data[0]
     assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
     if dutyCycle >= 0:
+        GPIO.output(MOTOR_LEFT["backward"], GPIO.LOW)
+        GPIO.output(MOTOR_LEFT["forward"], GPIO.HIGH)
         print("LEFT direction : low")
         #GPIO.output(MOTOR_LEFT["direction"], GPIO.LOW)
     else:
+        GPIO.output(MOTOR_LEFT["forward"], GPIO.LOW)
+        GPIO.output(MOTOR_LEFT["backward"], GPIO.HIGH)
         print("LEFT direction : high")
         #GPIO.output(MOTOR_LEFT["direction"], GPIO.HIGH)
     print("LEFT PWM : " + str(abs(dutyCycle)))
-    #PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
+    PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
     args["connection"].send_to_clients([True])
 
 def set_pwm_motor_right_cb(data, args):
@@ -68,11 +69,15 @@ def set_pwm_motor_right_cb(data, args):
     """
     assert (data), "No data"
     dutyCycle = data[0]
-    assert (dutyCycle >= -100 or dutyCycle <= 100), "PWM must be set between -100 and 100"
+    assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
     if dutyCycle >= 0:
+        GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
+        GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
         print("RIGHT direction : low")
         #GPIO.output(MOTOR_RIGHT["direction"], GPIO.LOW)
     else:
+        GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
+        GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
         print("RIGHT direction : high")
         #GPIO.output(MOTOR_RIGHT["direction"], GPIO.HIGH)
     print("RIGHT PWM : " + str(abs(dutyCycle)))

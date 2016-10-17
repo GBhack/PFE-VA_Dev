@@ -9,14 +9,14 @@
 #Engines-related I/O :
 ENGINES = {
     "left": {
-        "PWM":          "P9_16",
-        "direction":    "P8_7",
-        "enable":       "P8_10"
+        "PWM":        "P9_16",
+        "forward":    "P8_7",
+        "backward":   "P8_10"
     },
     "right": {
-        "PWM":          "P9_14",
-        "direction":    "P8_8",
-        "enable":       "P8_9"
+        "PWM":        "P9_14",
+        "forward":    "P8_8",
+        "backward":   "P8_9"
     }
 }
 
