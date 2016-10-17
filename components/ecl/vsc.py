@@ -124,13 +124,4 @@ VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)
 #STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
 
 
-CONNECTION_MOTOR_LEFT.send_data([75])
-time.sleep(0.01)
-CONNECTION_MOTOR_RIGHT.send_data([-53])
-time.sleep(0.01)
-CONNECTION_MOTOR_LEFT.send_data([90])
-time.sleep(0.01)
-CONNECTION_MOTOR_RIGHT.send_data([-75])
-
-
 stopped = False

@@ -39,8 +39,8 @@ GPIO.setup(MOTOR_LEFT["backward"], GPIO.OUT)
 GPIO.setup(MOTOR_RIGHT["backward"], GPIO.OUT)
 
 #Enable motors (active HIGH) : forward configuration
-GPIO.output(MOTOR_LEFT["forward"], GPIO.HIGH)
-GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
+GPIO.output(MOTOR_LEFT["forward"], GPIO.LOW)
+GPIO.output(MOTOR_RIGHT["forward"], GPIO.LOW)
 GPIO.output(MOTOR_LEFT["backward"], GPIO.LOW)
 GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
 
@@ -70,6 +70,7 @@ def set_pwm_motor_left_cb(data, args):
     #
     #
     if dutyCycle > 0 :
+        print("running")
         GPIO.output(MOTOR_LEFT["PWM"], GPIO.HIGH)
     else:
         GPIO.output(MOTOR_LEFT["PWM"], GPIO.LOW)
