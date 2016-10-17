@@ -22,12 +22,8 @@ MOTOR_LEFT = RB.constants.gpiodef.ENGINES["left"]
 MOTOR_RIGHT = RB.constants.gpiodef.ENGINES["right"]
 
 #Start PWM with a 0% duty cycle
-#PWM.start(MOTOR_LEFT["PWM"], 0)
-#PWM.start(MOTOR_RIGHT["PWM"], 0)
-GPIO.setup(MOTOR_LEFT["PWM"], GPIO.OUT)
-GPIO.setup(MOTOR_RIGHT["PWM"], GPIO.OUT)
-GPIO.output(MOTOR_LEFT["PWM"], GPIO.LOW)
-GPIO.output(MOTOR_RIGHT["PWM"], GPIO.LOW)
+PWM.start(MOTOR_LEFT["PWM"], 0)
+PWM.start(MOTOR_RIGHT["PWM"], 0)
 
 #Declare motor enabling pins
 ########### NOTE ############
@@ -64,11 +60,7 @@ def set_pwm_motor_left_cb(data, args):
         print("LEFT direction : high")
         #GPIO.output(MOTOR_LEFT["direction"], GPIO.HIGH)
     print("LEFT PWM : " + str(abs(dutyCycle)))
-    #PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
-    #
-    #
-    #
-    #
+    PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
     if dutyCycle > 0 :
         print("running")
         GPIO.output(MOTOR_LEFT["PWM"], GPIO.HIGH)
@@ -99,15 +91,7 @@ def set_pwm_motor_right_cb(data, args):
         print("RIGHT direction : high")
         #GPIO.output(MOTOR_RIGHT["direction"], GPIO.HIGH)
     print("RIGHT PWM : " + str(abs(dutyCycle)))
-    #PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], abs(dutyCycle))
-    #
-    #
-    #
-    #
-    if dutyCycle > 0 :
-        GPIO.output(MOTOR_RIGHT["PWM"], GPIO.HIGH)
-    else:
-        GPIO.output(MOTOR_RIGHT["PWM"], GPIO.LOW)
+    PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], abs(dutyCycle))
     args["connection"].send_to_clients([True])
 
 
