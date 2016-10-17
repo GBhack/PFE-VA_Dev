@@ -34,8 +34,10 @@ def measure_distance_cb(data, arg):
         stopTime = time.time()
 
     duration = stopTime - startTime
+    distance =    duration * 343.2 / 2
     print("Echo duration : " + str(duration))
-    arg["connexion"].send_to_clients([duration])
+    print("Distance: " + str(distance) + "m")
+    arg["connexion"].send_to_clients([distance])
 
 
 #GPIO setup :
