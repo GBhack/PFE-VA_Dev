@@ -27,5 +27,3 @@ if TCP.set_up_connection(600):
         TCP.send_data([int(value)])
         time.sleep(0.5)
         print(TCP.receive_data())
-
-        time.sleep(2)
