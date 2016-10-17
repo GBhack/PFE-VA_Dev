@@ -11,45 +11,24 @@
 #-*- coding: utf-8 -*-
 
 #Standard imports :
-import time
 import atexit
 
 #Specific imports :
 import robotBasics as RB
 import Adafruit_BBIO.GPIO as GPIO
 
-def measure_distance_cb(data, arg):
+def is_too_close(data, arg):
     """
         Callback method
         Called when a tcp request is received
         Trigger an ultrasonic measure and sends back the echo time in seconds
     """
     
-    print('Request received')
+    arg["connexion"].send_to_clients(GPIO.input(RB.constants.gpiodef.SONAR))
 
-    #Triggering :
-    GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
-    time.sleep(0.000015)
-    GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
-
-    #print('Trigger signal sent. Now waiting for echo.')
-
-    #Waiting for the echo pin to be "high" (echo start)
-    GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.RISING)
-    #print("Edge received")
-    startTime = time.time()
-    #Waiting for the echo pin to be "low" (echo stop)
-    GPIO.wait_for_edge(RB.constants.gpiodef.SONAR["echo"], GPIO.FALLING)
-    print("End of edge")
-    #Responding to the request with the echo duration
-    arg["connexion"].send_to_clients([time.time() - startTime])
-
-    
-    print("envoye")
 
 #GPIO setup :
-GPIO.setup(RB.constants.gpiodef.SONAR["trigger"], GPIO.OUT)
-GPIO.setup(RB.constants.gpiodef.SONAR["echo"], GPIO.IN)
+GPIO.setup(RB.constants.gpiodef.SONAR, GPIO.IN)
 
 SOCKETS = RB.sockets
 
@@ -57,8 +36,12 @@ SOCKETS = RB.sockets
 CONNEXION = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
 print(RB.constants.ports.FL["us"])
 
-#We'll send floats (duration in seconds)
-CONNEXION.set_sending_datagram(['FLOAT'])
+#We'll send bool
+#   Object too close :
+#       HIGH = YES
+#       LOW = NO
+CONNEXION.set_sending_datagram(['BOOL'])
+
 #We'll receive booleans (request)
 CONNEXION.set_receiving_datagram(['BOOL'])
 
@@ -72,7 +55,7 @@ ARGUMENTS = {
 }
 
 #Waiting for requests and linking them to the callback method
-CONNEXION.listen_to_clients(measure_distance_cb, ARGUMENTS)
+CONNEXION.listen_to_clients(is_too_close, ARGUMENTS)
 
 
 atexit.register(CONNEXION.close)
