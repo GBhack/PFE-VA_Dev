@@ -92,7 +92,7 @@ VELOCITY_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
 VELOCITY_SERVER.set_up_connection(600)
 
 
-STEERING_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["steering"])
+STEERING_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["radius"])
 
 STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
 STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
