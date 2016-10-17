@@ -92,12 +92,12 @@ VELOCITY_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
 VELOCITY_SERVER.set_up_connection(600)
 
 
-STEERING_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["radius"])
+#STEERING_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["radius"])
 
-STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
-STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
+#STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
+#STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
 
-STEERING_SERVER.set_up_connection(600)
+#STEERING_SERVER.set_up_connection(600)
 
 CURRENT_STATE = {
     "velocity": 0,
@@ -121,7 +121,7 @@ ARGUMENTS_STEERING = {
 }
 
 VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)
-STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
+#STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
 
 
 CONNECTION_MOTOR_LEFT.send_data([75])
