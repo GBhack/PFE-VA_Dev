@@ -12,21 +12,20 @@ import atexit
 
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Client.Client(1300)
+TCP = SOCKETS.tcp.Client.Client(2300)
 
 atexit.register(TCP.close)
 
-TCP.set_sending_datagram(['BOOL'])
-TCP.set_receiving_datagram(['FLOAT'])
+TCP.set_sending_datagram(['SMALL_INT_SIGNED'])
+TCP.set_receiving_datagram(['SMALL_INT_SIGNED'])
 
-if TCP.set_up_connexion(30):
+if TCP.set_up_connection(600):
 
     while 1:
 
-        TCP.send_data([True])
-        print('Init')
-
-        print('Received data :')
+        value = input("Velocity ?")
+        TCP.send_data([int(value)])
+        time.sleep(0.5)
         print(TCP.receive_data())
 
         time.sleep(2)

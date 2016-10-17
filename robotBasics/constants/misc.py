@@ -11,3 +11,7 @@ SOCKETS = {
     "timeout": 2,
     "frequency": 0.02
 }
+
+PHYSICAL = {
+    "axle": 0.15
+}

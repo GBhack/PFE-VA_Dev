@@ -2,7 +2,7 @@
     Client.py
     Defines the TCP Client class.
     We call "client" the entity that connects to a pre-existing server.
-    The client is the "slave" part of the connexion.
+    The client is the "slave" part of the connection.
 """
 
 #!/usr/bin/python3.5
@@ -25,7 +25,7 @@ class Client:
             Initialization
         """
         self.port = port
-        self.connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def set_sending_datagram(self, datagram):
         """
@@ -44,13 +44,14 @@ class Client:
         self._receivingDatagram = Message.Message(datagram)
         self._receivingMessageSize = self._receivingDatagram.size
 
-    def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"]):
+    def set_up_connection(self, timeout=MISC.SOCKETS["timeout"]):
         """
             Connexion set-up method
         """
+        print("CLIENT")
         socket.setdefaulttimeout(timeout)
         try:
-            self.connexion.connect(('127.0.0.1', self.port))
+            self.connection.connect(('127.0.0.1', self.port))
             return True
         except ConnectionRefusedError:
             print("Connection refused. Is the server running with available sockets ?")
@@ -60,13 +61,13 @@ class Client:
         """
             Data sending method
         """
-        self.connexion.send(self._sendingDatagram.encode(data))
+        self.connection.send(self._sendingDatagram.encode(data))
 
     def receive_data(self):
         """
             Data sending method
         """
-        data = self.connexion.recv(self._receivingMessageSize)
+        data = self.connection.recv(self._receivingMessageSize)
         print('Test :')
         if data:
             print('data received')
@@ -76,5 +77,5 @@ class Client:
             return 0
 
     def close(self):
-        self.connexion.close()
+        self.connection.close()
         print('Closing')

@@ -1,7 +1,7 @@
 """
     Server.py
     Defines the Server Class
-    Handle the "master" part of a connexion
+    Handle the "master" part of a connection
 """
 
 #!/usr/bin/python3.5
@@ -28,7 +28,7 @@ class Server(object):
         """
         self._port = port
         self._frequency = frequency
-        self._connexions = []
+        self._connections = []
         self._clientsListeningThreads = []
         self.alive = True
 
@@ -40,7 +40,7 @@ class Server(object):
     def set_receiving_datagram(self, datagram):
         self._receivingDatagram = Message.Message(datagram)
 
-    def set_up_connexion(self, timeout=MISC.SOCKETS["timeout"], multiClients=False, maxClients=2):
+    def set_up_connection(self, timeout=MISC.SOCKETS["timeout"], multiClients=False, maxClients=2):
         """
             Connexion set-up method
             Arguments :
@@ -60,7 +60,7 @@ class Server(object):
         while self.waitForClient:
             try:
                 newConnexion, _ = newSocket.accept()
-                self._connexions.append({"sock": newConnexion, "stopEvent":threading.Event()})
+                self._connections.append({"sock": newConnexion, "stopEvent":threading.Event()})
                 clientsConnected += 1
                 if clientsConnected >= maxClients or not multiClients:
                     print('Maximum amount of clients reached (', clientsConnected, ')')
@@ -82,45 +82,45 @@ class Server(object):
         """
             Listening to clients Method
         """
-        for connexion in self._connexions:
-            self._clientsListeningThreads.append(WaitForData(connexion, self._receivingDatagram, callback, args, self._frequency, self.close_single_socket))
+        for connection in self._connections:
+            self._clientsListeningThreads.append(WaitForData(connection, self._receivingDatagram, callback, args, self._frequency, self.close_single_socket))
             self._clientsListeningThreads[-1].start()
 
     def send_to_clients(self, data):
         """
             Send to clients Method
         """
-        for connexion in self._connexions:
+        for connection in self._connections:
             try:
-                connexion["sock"].send(self._sendingDatagram.encode(data))
+                connection["sock"].send(self._sendingDatagram.encode(data))
             except (ConnectionResetError, BrokenPipeError):
-                self.close_single_socket(connexion)
+                self.close_single_socket(connection)
 
-    def close_single_socket(self, connexion):
-        connexion["stopEvent"].set()
+    def close_single_socket(self, connection):
+        connection["stopEvent"].set()
         time.sleep(0.01)
-        connexion["sock"].close()
-        self._connexions.remove(connexion)
-        print("Connection closed by client.", str(len(self._connexions)), " client(s) remaining.")
-        if len(self._connexions) <= 0:
+        connection["sock"].close()
+        self._connections.remove(connection)
+        print("Connection closed by client.", str(len(self._connections)), " client(s) remaining.")
+        if len(self._connections) <= 0:
             print("All clients disconnected. Closing the server.")
             try:
-                connexion["sock"].shutdown(socket.SHUT_RDWR)
+                connection["sock"].shutdown(socket.SHUT_RDWR)
             except:
                 pass
             self.alive = False
 
     def close(self):
         self.waitForClient = False
-        for connexion in self._connexions:
-            connexion["stopEvent"].set()
+        for connection in self._connections:
+            connection["stopEvent"].set()
             time.sleep(0.01)
             try:
-                connexion["sock"].shutdown(socket.SHUT_RDWR)
+                connection["sock"].shutdown(socket.SHUT_RDWR)
             except:
                 pass
-            connexion["sock"].close()
-            self._connexions.remove(connexion)
+            connection["sock"].close()
+            self._connections.remove(connection)
             print('Closing')
             self.alive = False
         #for thread in self._clientsListeningThreads:
@@ -131,12 +131,12 @@ class WaitForData(threading.Thread):
         WaitForData Class (threading)
     """
 
-    def __init__(self, connexion, datagram, callback, args, frequency, closeMethod):
+    def __init__(self, connection, datagram, callback, args, frequency, closeMethod):
         """
             Initialization
         """
         threading.Thread.__init__(self)
-        self.connexion = connexion
+        self.connection = connection
         self._datagram = datagram
         self._messageSize = datagram.size
         self.callback = callback
@@ -148,10 +148,10 @@ class WaitForData(threading.Thread):
         """
             Running (when start is called)
         """
-        while not self.connexion["stopEvent"].is_set():
+        while not self.connection["stopEvent"].is_set():
             try:
-                data = self.connexion["sock"].recv(self._messageSize)
+                data = self.connection["sock"].recv(self._messageSize)
                 if data:
                     self.callback(self._datagram.decode(data), self._args)
             except ConnectionResetError:
-                self._closeMethod(self.connexion)
+                self._closeMethod(self.connection)

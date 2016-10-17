@@ -13,7 +13,7 @@ FL = {
     "lf":   1200,
     "us":   1300,
     "led":  1400,
-    "pwm":  {
+    "mot":  {
         "left":   1500,
         "right":  1510
     }
@@ -23,10 +23,9 @@ ECL = {
     "gcd":  2000,
     "gfd":  2100,
     "gori": 2200,
-    "vsr":  {
+    "vsc":  {
         "velocity":     2300,
-        "radius":       2310,
-        "brake":        2320
+        "radius":       2310
     },
     "gtls": 2400
 }
