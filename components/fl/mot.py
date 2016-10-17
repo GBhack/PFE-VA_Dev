@@ -61,15 +61,6 @@ def set_pwm_motor_left_cb(data, args):
         #GPIO.output(MOTOR_LEFT["direction"], GPIO.HIGH)
     print("LEFT PWM : " + str(abs(dutyCycle)))
     PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
-    if dutyCycle > 0 :
-        print("running")
-        GPIO.output(MOTOR_LEFT["PWM"], GPIO.HIGH)
-    else:
-        GPIO.output(MOTOR_LEFT["PWM"], GPIO.LOW)
-
-
-
-
 
     args["connection"].send_to_clients([True])
 
