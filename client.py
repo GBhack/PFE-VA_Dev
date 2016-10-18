@@ -25,5 +25,5 @@ if TCP.set_up_connection(600):
 
         value = input("Velocity ?")
         TCP.send_data([int(value)])
-        time.sleep(0.5)
+        time.sleep(0.1)
         print(TCP.receive_data())
