@@ -132,14 +132,14 @@ VELOCITY_SERVER.set_up_connection(600)
 #Creating the TCP instance
 STEERING_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["radius"])
 #Registering the close method to be executed at exit (clean deconnection)
-#atexit.register(STEERING_SERVER.close)
+atexit.register(STEERING_SERVER.close)
 
 #We'll receive and send small integers (% of max steering)
-#STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
-#STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
+STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
+STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
 
 #Opening the connection
-#STEERING_SERVER.set_up_connection(600)
+STEERING_SERVER.set_up_connection(600)
 
 ## Arguments :
 
@@ -168,7 +168,7 @@ ARGUMENTS_STEERING = {
 
 #Waiting for requests and redirecting them to the callback methods
 VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)
-#STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
+STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
 
 
 stopped = False
