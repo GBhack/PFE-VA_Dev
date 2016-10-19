@@ -72,21 +72,25 @@ def apply_modifications(args):
         time.sleep(0.0001)
 
     args["currentState"]["busy"] = True
-    if args["currentState"]["velocity"]*(1+0.5*abs(args["currentState"]["steeringRatio"])) <= 100:
-        leftVelocity = args["currentState"]["velocity"]*(1-0.5*args["currentState"]["steeringRatio"])
-        rightVelocity = args["currentState"]["velocity"]*(1+0.5*args["currentState"]["steeringRatio"])
+    if args["currentState"]["velocity"]*(100+0.5*abs(args["currentState"]["steeringRatio"])) <= 100:
+        leftVelocity = args["currentState"]["velocity"]*(100-0.5*args["currentState"]["steeringRatio"])
+        rightVelocity = args["currentState"]["velocity"]*(100+0.5*args["currentState"]["steeringRatio"])
     else:
         if args["currentState"]["steeringRatio"] > 0:
-            leftVelocity = args["currentState"]["velocity"]*(1-args["currentState"]["steeringRatio"])
+            leftVelocity = args["currentState"]["velocity"]*(100-args["currentState"]["steeringRatio"])
             rightVelocity = args["currentState"]["velocity"]
         else:
             leftVelocity = args["currentState"]["velocity"]
-            rightVelocity = args["currentState"]["velocity"]*(1-args["currentState"]["steeringRatio"])
+            rightVelocity = args["currentState"]["velocity"]*(100-args["currentState"]["steeringRatio"])
 
     #We apply the changes to the robot :
-    args["leftMotorConnection"].send_data([leftVelocity])
-    args["rightMotorConnection"].send_data([rightVelocity])
-
+    print("left velocity : " + str(leftVelocity))
+    print("right velocity : " + str(rightVelocity))
+    try:
+        args["leftMotorConnection"].send_data([leftVelocity])
+        args["rightMotorConnection"].send_data([rightVelocity])
+        except:
+            print('erreur lors de l\'envoi')
     args["currentState"]["busy"] = False
 
 ###########################################################################

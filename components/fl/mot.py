@@ -53,7 +53,7 @@ def set_pwm_motor_left_cb(data, args):
         When instructions are updated through a request to the
         server, deduces and apply the corresponding motor configuration
     """
-    
+
     assert (data), "No data"
     dutyCycle = data[0]
     assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
