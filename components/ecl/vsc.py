@@ -50,6 +50,7 @@ def velocity_control_cb(data, args):
     #We apply the changes to the robot :
     apply_modifications(args)
 
+
     #We send the velocity actually applied to the client :
     args["velocityConnection"].send_to_clients([args["currentState"]["velocity"]])
 
@@ -72,26 +73,29 @@ def apply_modifications(args):
         time.sleep(0.0001)
 
     args["currentState"]["busy"] = True
-    if args["currentState"]["velocity"]*(100+0.5*abs(args["currentState"]["steeringRatio"])) <= 100:
-        leftVelocity = args["currentState"]["velocity"]*(100-0.5*args["currentState"]["steeringRatio"])
-        rightVelocity = args["currentState"]["velocity"]*(100+0.5*args["currentState"]["steeringRatio"])
-    else:
-        if args["currentState"]["steeringRatio"] > 0:
-            leftVelocity = args["currentState"]["velocity"]*(100-args["currentState"]["steeringRatio"])
-            rightVelocity = args["currentState"]["velocity"]
-        else:
-            leftVelocity = args["currentState"]["velocity"]
-            rightVelocity = args["currentState"]["velocity"]*(100-args["currentState"]["steeringRatio"])
+
+    velocity = args["currentState"]["velocity"]
+    steering = args["currentState"]["steering"]
+
+    #We make sure not to go over 100% velocity on each wheel.
+    #If so, we have to reduce the mean velocity :
+    if velocity*(1+0.005*abs(steering)) > 100:
+        velocity = 100/(1+abs(steering)*0.005)
+    elif velocity*(1+0.005*abs(steering)) < -100:
+        velocity = -100/(1+abs(steering)*0.005)
+    leftVelocity = velocity*(1+0.005*steering)
+    rightVelocity = velocity*(1-0.005*steering)
+
+    args["currentState"]["velocity"] = velocity
 
     #We apply the changes to the robot :
-    print("left velocity : " + str(leftVelocity))
-    print("right velocity : " + str(rightVelocity))
     try:
         args["leftMotorConnection"].send_data([leftVelocity])
         args["rightMotorConnection"].send_data([rightVelocity])
     except:
             print('erreur lors de l\'envoi')
     args["currentState"]["busy"] = False
+
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
