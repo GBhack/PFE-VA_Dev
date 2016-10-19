@@ -75,7 +75,7 @@ def apply_modifications(args):
     args["currentState"]["busy"] = True
 
     velocity = args["currentState"]["velocity"]
-    steering = args["currentState"]["steering"]
+    steering = args["currentState"]["steeringRatio"]
 
     #We make sure not to go over 100% velocity on each wheel.
     #If so, we have to reduce the mean velocity :
