@@ -89,7 +89,7 @@ def apply_modifications(args):
     try:
         args["leftMotorConnection"].send_data([leftVelocity])
         args["rightMotorConnection"].send_data([rightVelocity])
-        except:
+    except:
             print('erreur lors de l\'envoi')
     args["currentState"]["busy"] = False
 
