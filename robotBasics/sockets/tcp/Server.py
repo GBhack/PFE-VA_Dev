@@ -51,6 +51,7 @@ class Server(object):
         socket.setdefaulttimeout(timeout)
 
         newSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        newSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         newSocket.bind(('', self._port))
         newSocket.listen(1)
 
