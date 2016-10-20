@@ -17,7 +17,7 @@ import robotBasics as RB
 CONSTANTS = RB.constants
 
 UPDATE_RATE = 0.2
-MINIMAL_DISTANCE = 0.05
+MINIMAL_DISTANCE = 0.075
 
 SOCKETS = RB.sockets
 

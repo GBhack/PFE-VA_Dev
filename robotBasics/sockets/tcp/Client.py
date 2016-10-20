@@ -69,10 +69,7 @@ class Client:
             Data sending method
         """
         data = self.connection.recv(self._receivingMessageSize)
-        print('Test :')
         if data:
-            print('data received')
-            print(self._receivingDatagram.decode(data))
             return self._receivingDatagram.decode(data)
         else:
             return 0
