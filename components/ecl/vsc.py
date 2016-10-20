@@ -83,8 +83,8 @@ def apply_modifications(args):
         velocity = 100/(1+abs(steering)*0.005)
     elif velocity*(1+0.005*abs(steering)) < -100:
         velocity = -100/(1+abs(steering)*0.005)
-    leftVelocity = velocity*(1+0.005*steering)
-    rightVelocity = velocity*(1-0.005*steering)
+    leftVelocity = round(velocity*(1+0.005*steering))
+    rightVelocity = round(velocity*(1-0.005*steering))
 
     args["currentState"]["velocity"] = velocity
 
