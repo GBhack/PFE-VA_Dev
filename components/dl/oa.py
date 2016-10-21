@@ -21,6 +21,8 @@ UPDATE_RATE = 0.2
 MINIMAL_DISTANCE = 0.075
 
 ####LOGGER :
+formatter = logging.Formatter("%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
+
 handler = logging.FileHandler("oa.log", mode="a", encoding="utf-8")
 
 handler.setFormatter(formatter)

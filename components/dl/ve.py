@@ -21,6 +21,8 @@ from robotBasics import sockets as SOCKETS
 
 
 ####LOGGER :
+formatter = logging.Formatter("%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
+
 handler = logging.FileHandler("ve.log", mode="a", encoding="utf-8")
 
 handler.setFormatter(formatter)
@@ -31,9 +33,6 @@ logger = logging.getLogger("ve.py")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(handler_info)
 
-
-
-formatter = logging.Formatter("%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
 
 VELOCITY_STATE = {
     "busy": False,
