@@ -23,7 +23,7 @@ if TCP.set_up_connection(600):
 
     while 1:
 
-        value = input("Velocity ?")
+        value = int(input("Velocity ?"))
         if value <= 100 and value >= -100:
             try:
                 TCP.send_data([int(value)])
