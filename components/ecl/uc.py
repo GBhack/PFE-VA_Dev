@@ -28,17 +28,16 @@ def frontal_distance_cb(data, args):
 CONNECTION_SENSOR = SOCKETS.tcp.Client.Client(CONSTANTS.ports.FL["us"])
 
 #We'll send small signed integers (-100 -> 100% of thrust / steering radius)
-CONNECTION_SENSOR.set_sending_datagram(['FLOAT'])
+CONNECTION_SENSOR.set_sending_datagram(['BOOL'])
 
 #We'll receive booleans (status of the operation)
-CONNECTION_SENSOR.set_receiving_datagram(['BOOL'])
+CONNECTION_SENSOR.set_receiving_datagram(['FLOAT'])
 
 #Opening the connection
 CONNECTION_SENSOR.set_up_connection(10)
 
 #### SERVER CONNECTION :
 
-## Velocity Server :
 
 #Creating the TCP instance
 SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["uc"])
