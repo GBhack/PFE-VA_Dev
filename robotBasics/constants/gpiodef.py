@@ -9,18 +9,19 @@
 #Engines-related I/O :
 ENGINES = {
     "left": {
-        "PWM":        "P9_16",
-        "forward":    "P8_7",
-        "backward":   "P8_10"
+        "PWM":        "P9_16", # NOIR
+        "forward":    "P9_17", # BLANC
+        "backward":   "P9_18"  # GRIS
     },
     "right": {
-        "PWM":        "P9_14",
+        "PWM":        "P9_14", 
         "forward":    "P8_8",
         "backward":   "P8_9"
     }
 }
 
 #LEDs-related I/O :
+# !!!!!! A CHANGER  !!!!!!!!
 LEDS = {
     "left": "P8_15",
     "right": "P8_16",
