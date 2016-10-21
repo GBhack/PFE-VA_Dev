@@ -31,7 +31,7 @@ handler.setLevel(logging.DEBUG)
 
 logger = logging.getLogger("ve.py")
 logger.setLevel(logging.DEBUG)
-logger.addHandler(handler_info)
+logger.addHandler(handler)
 
 
 VELOCITY_STATE = {

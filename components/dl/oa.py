@@ -31,7 +31,7 @@ handler.setLevel(logging.DEBUG)
 
 logger = logging.getLogger("oa.py")
 logger.setLevel(logging.DEBUG)
-logger.addHandler(handler_info)
+logger.addHandler(handler)
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
