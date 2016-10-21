@@ -12,7 +12,7 @@ import atexit
 
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Client.Client(2300)
+TCP = SOCKETS.tcp.Client.Client(2100)
 
 atexit.register(TCP.close)
 
@@ -24,9 +24,10 @@ if TCP.set_up_connection(600):
     while 1:
 
         value = input("Velocity ?")
-        try:
-            TCP.send_data([int(value)])
-        except:
-            print('erreur lors de l\'envoi')
-        time.sleep(0.1)
-        print(TCP.receive_data())
+        if value <= 100 and value >= -100:
+            try:
+                TCP.send_data([int(value)])
+            except:
+                print('erreur lors de l\'envoi')
+            time.sleep(0.05)
+            print(TCP.receive_data())

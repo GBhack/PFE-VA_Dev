@@ -20,7 +20,8 @@ from robotBasics import sockets as SOCKETS
 VELOCITY_STATE = {
     "busy": False,
     "oa_brake": False,
-    "velocity": 0
+    "actualVelocity": 0,
+    "desiredVelocity": 0
 }
 
 ###########################################################################
@@ -40,6 +41,14 @@ def oa_handling_cb(data, args):
     else:
         args["oa_brake"] = False
 
+def velocity_handling_cb(data, args):
+
+    while  args["velocity_state"]["busy"]:
+        time.sleep(0.0001)
+    args["velocity_state"]["busy"] = True
+    args["velocity_state"]["desiredVelocity"] = data[0]
+    args["velocity_server"].send_to_clients([True])
+    args["velocity_state"]["busy"] = False
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -48,7 +57,7 @@ def oa_handling_cb(data, args):
 #### CLIENTS CONNECTION :
 
 #
-VELOCITY_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.ECL["uc"])
+VELOCITY_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.ECL["vsc"]["velocity"])
 
 #We'll send booleans (request)
 VELOCITY_CLIENT.set_sending_datagram(['FLOAT'])
@@ -91,14 +100,19 @@ OA_ARGUMENTS = {
 }
 
 VELOCITY_ARGUMENTS = {
-    "velocity_state": VELOCITY_STATE
+    "velocity_state": VELOCITY_STATE,
+    "velocity_server": VELOCITY_SERVER
 }
+
+#Waiting for requests and redirecting them to the callback methods
+VELOCITY_SERVER.listen_to_clients(velocity_handling_cb, VELOCITY_ARGUMENTS)
+OA_SERVER.listen_to_clients(oa_handling_cb, OA_ARGUMENTS)
 
 while alive:
     if VELOCITY_STATE["oa_brake"]:
         desiredVelocity = 0
     else:
         desiredVelocity = VELOCITY_STATE["desiredVelocity"]
-    if VELOCITY_STATE["actualVelocity"] != desiredVelocity
+    if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
     VELOCITY_CLIENT.send_data([desiredVelocity])
     VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
