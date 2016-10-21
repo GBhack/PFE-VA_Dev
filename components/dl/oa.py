@@ -38,7 +38,7 @@ UC_CLIENT.set_up_connection()
 
 
 #Creating the Velocity/Steering regulator module's client object
-VE_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.DL["ve"])
+VE_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.DL["ve"]["oa"])
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(VE_CLIENT.close)
 
