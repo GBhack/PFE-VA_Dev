@@ -47,25 +47,26 @@ VELOCITY_STATE = {
 
 def oa_handling_cb(data, args):
     if data[0]:
-        while  args["velocity_state"]["busy"]:
-            time.sleep(0.0001)
+        #while  args["velocity_state"]["busy"]:
+        #    time.sleep(0.0001)
         args["velocity_state"]["busy"] = True
         args["velocity_state"]["oa_brake"] = True
         args["velocity_state"]["desiredVelocity"]
         args["velocity_client"].send_data([0])
         _ = args["velocity_client"].receive_data()
-        args["velocity_state"]["busy"] = False
+        #args["velocity_state"]["busy"] = False
     else:
         args["oa_brake"] = False
 
 def velocity_handling_cb(data, args):
 
-    while  args["velocity_state"]["busy"]:
-        time.sleep(0.0001)
+    #while  args["velocity_state"]["busy"]:
+    #    time.sleep(0.0001)
+    print("New velocity request received")
     args["velocity_state"]["busy"] = True
     args["velocity_state"]["desiredVelocity"] = data[0]
     args["velocity_server"].send_to_clients([True])
-    args["velocity_state"]["busy"] = False
+    #args["velocity_state"]["busy"] = False
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
