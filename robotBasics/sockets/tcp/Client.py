@@ -26,7 +26,6 @@ class Client:
         """
         self.port = port
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     def set_sending_datagram(self, datagram):
         """

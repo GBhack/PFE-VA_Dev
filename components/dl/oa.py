@@ -60,12 +60,16 @@ VE_CLIENT.set_sending_datagram(['BOOL'])
 #Opening the connection
 VE_CLIENT.set_up_connection()
 
-while True:
+alive = True
+print('Running ')
+while alive:
     UC_CLIENT.send_data([True])
     if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
         VE_CLIENT.send_data([True])
+        print('OBSTACLE !!!')
         logger.debug('OBSTACLE !')
     else:
         VE_CLIENT.send_data([False])
+        print('No obstacle')
         logger.debug('No obstacle')
     time.sleep(UPDATE_RATE)

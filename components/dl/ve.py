@@ -128,6 +128,8 @@ OA_SERVER.listen_to_clients(oa_handling_cb, OA_ARGUMENTS)
 
 alive = True
 
+print('Running')
+
 while alive:
     if VELOCITY_STATE["oa_brake"]:
         desiredVelocity = 0
@@ -136,6 +138,8 @@ while alive:
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
         VELOCITY_CLIENT.send_data([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
+    print('Required velocity : ' + str(desiredVelocity))
+    print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     logger.debug('Required velocity : ' + str(desiredVelocity))
     logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     time.sleep(0.1)

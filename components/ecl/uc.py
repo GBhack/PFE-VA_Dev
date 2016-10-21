@@ -34,7 +34,7 @@ CONNECTION_SENSOR.set_sending_datagram(['BOOL'])
 CONNECTION_SENSOR.set_receiving_datagram(['FLOAT'])
 
 #Opening the connection
-CONNECTION_SENSOR.set_up_connection(10)
+CONNECTION_SENSOR.set_up_connection()
 
 #### SERVER CONNECTION :
 
