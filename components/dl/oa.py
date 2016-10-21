@@ -20,8 +20,16 @@ from robotBasics import sockets as SOCKETS
 UPDATE_RATE = 0.2
 MINIMAL_DISTANCE = 0.075
 
-logging.basicConfig(filename='oa.log',level=logging.DEBUG,\
-      format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s')
+####LOGGER :
+handler = logging.FileHandler("oa.log", mode="a", encoding="utf-8")
+
+handler.setFormatter(formatter)
+
+handler.setLevel(logging.DEBUG)
+
+logger = logging.getLogger("oa.py")
+logger.setLevel(logging.DEBUG)
+logger.addHandler(handler_info)
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -56,8 +64,8 @@ while True:
     UC_CLIENT.send_data([True])
     if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
         VE_CLIENT.send_data([True])
-        logging.debug('OBSTACLE !')
+        logger.debug('OBSTACLE !')
     else:
         VE_CLIENT.send_data([False])
-        logging.debug('No obstacle')
+        logger.debug('No obstacle')
     time.sleep(UPDATE_RATE)

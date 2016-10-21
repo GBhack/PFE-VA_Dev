@@ -18,8 +18,22 @@ import logging
 from robotBasics import constants as CONSTANTS
 from robotBasics import sockets as SOCKETS
 
-logging.basicConfig(filename='ve.log',level=logging.DEBUG,\
-      format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s')
+
+
+####LOGGER :
+handler = logging.FileHandler("ve.log", mode="a", encoding="utf-8")
+
+handler.setFormatter(formatter)
+
+handler.setLevel(logging.DEBUG)
+
+logger = logging.getLogger("ve.py")
+logger.setLevel(logging.DEBUG)
+logger.addHandler(handler_info)
+
+
+
+formatter = logging.Formatter("%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
 
 VELOCITY_STATE = {
     "busy": False,
@@ -122,6 +136,6 @@ while alive:
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
         VELOCITY_CLIENT.send_data([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
-    logging.debug('Required velocity : ' + str(desiredVelocity))
-    logging.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
+    logger.debug('Required velocity : ' + str(desiredVelocity))
+    logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     time.sleep(0.1)
