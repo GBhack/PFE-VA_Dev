@@ -24,9 +24,10 @@ def measure_distance_cb(data, arg):
         Called when a tcp request is received
         Trigger an ultrasonic measure and sends back the echo time in seconds
     """
+
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
     GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
-
+    print('Wating for echo')
     while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
         startTime = time.time()
 
