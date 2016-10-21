@@ -15,8 +15,8 @@ ENGINES = {
     },
     "right": {
         "PWM":        "P9_14", 
-        "forward":    "P8_8",
-        "backward":   "P8_9"
+        "forward":    "P9_12",
+        "backward":   "P9_13"
     }
 }
 
@@ -31,8 +31,8 @@ LEDS = {
 
 #Sonar-related I/O :
 SONAR = {
-    "trigger": "P8_11",
-    "echo": "P8_12"
+    "trigger": "P8_7",
+    "echo": "P8_8"
 }
 
 #Reset pushbutton
