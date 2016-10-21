@@ -60,9 +60,9 @@ def velocity_handling_cb(data, args):
 VELOCITY_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.ECL["vsc"]["velocity"])
 
 #We'll send booleans (request)
-VELOCITY_CLIENT.set_sending_datagram(['FLOAT'])
+VELOCITY_CLIENT.set_sending_datagram(['SMALL_INT_SIGNED'])
 #We'll receive floats (distance in meters)
-VELOCITY_CLIENT.set_receiving_datagram(['FLOAT'])
+VELOCITY_CLIENT.set_receiving_datagram(['SMALL_INT_SIGNED'])
 
 #Opening the connection
 VELOCITY_CLIENT.set_up_connection()
@@ -88,7 +88,7 @@ VELOCITY_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.DL["ve"]["velocity"]
 atexit.register(VELOCITY_SERVER.close)
 
 #We'll receive and send small integers (velocity in percent of nominal velocity)
-VELOCITY_SERVER.set_receiving_datagram(['FLOAT'])
+VELOCITY_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
 VELOCITY_SERVER.set_sending_datagram(['BOOL'])
 
 #Opening the connection
