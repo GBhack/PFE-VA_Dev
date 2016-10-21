@@ -141,4 +141,4 @@ while alive:
     print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     logger.debug('Required velocity : ' + str(desiredVelocity))
     logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
-    time.sleep(0.1)
+    time.sleep(5)
