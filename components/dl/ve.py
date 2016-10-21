@@ -114,5 +114,5 @@ while alive:
     else:
         desiredVelocity = VELOCITY_STATE["desiredVelocity"]
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
-    VELOCITY_CLIENT.send_data([desiredVelocity])
-    VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
+        VELOCITY_CLIENT.send_data([desiredVelocity])
+        VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
