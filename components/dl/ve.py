@@ -59,7 +59,7 @@ def oa_handling_cb(data, args):
         args["oa_brake"] = False
 
 def velocity_handling_cb(data, args):
-data[0]
+
     #while  args["velocity_state"]["busy"]:
     #    time.sleep(0.0001)
     print("New velocity request received : "+str(data[0]))
