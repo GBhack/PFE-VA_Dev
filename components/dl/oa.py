@@ -65,7 +65,9 @@ VE_CLIENT.set_up_connection()
 alive = True
 print('Running ')
 while alive:
+    print('Send request to uc : ')
     UC_CLIENT.send_data([True])
+    print('Request sent to uc')
     if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
         VE_CLIENT.send_data([True])
         print('OBSTACLE !!!')

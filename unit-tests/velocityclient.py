@@ -17,7 +17,7 @@ TCP = SOCKETS.tcp.Client.Client(3110)
 atexit.register(TCP.close)
 
 TCP.set_sending_datagram(['SMALL_INT_SIGNED'])
-TCP.set_receiving_datagram(['SMALL_INT_SIGNED'])
+TCP.set_receiving_datagram(['BOOL'])
 
 if TCP.set_up_connection(600):
 
