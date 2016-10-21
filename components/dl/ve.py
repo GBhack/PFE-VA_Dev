@@ -18,7 +18,7 @@ import logging
 from robotBasics import constants as CONSTANTS
 from robotBasics import sockets as SOCKETS
 
-logging.basicConfig(filename='oa.log',level=logging.DEBUG,\
+logging.basicConfig(filename='ve.log',level=logging.DEBUG,\
       format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s')
 
 VELOCITY_STATE = {
