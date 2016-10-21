@@ -12,10 +12,14 @@
 #Standard imports :
 import time
 import atexit
+import logging
 
 #Specific imports :
 from robotBasics import constants as CONSTANTS
 from robotBasics import sockets as SOCKETS
+
+logging.basicConfig(filename='oa.log',level=logging.DEBUG,\
+      format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s')
 
 VELOCITY_STATE = {
     "busy": False,
@@ -118,6 +122,6 @@ while alive:
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
         VELOCITY_CLIENT.send_data([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
-    print('Required velocity : ' + str(desiredVelocity))
-    print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
+    logging.debug('Required velocity : ' + str(desiredVelocity))
+    logging.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     time.sleep(0.1)

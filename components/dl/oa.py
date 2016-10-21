@@ -11,6 +11,7 @@
 #Standard imports :
 import time
 import atexit
+import logging
 
 #Specific imports :
 from robotBasics import constants as CONSTANTS
@@ -18,6 +19,9 @@ from robotBasics import sockets as SOCKETS
 
 UPDATE_RATE = 0.2
 MINIMAL_DISTANCE = 0.075
+
+logging.basicConfig(filename='oa.log',level=logging.DEBUG,\
+      format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s')
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -52,8 +56,8 @@ while True:
     UC_CLIENT.send_data([True])
     if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
         VE_CLIENT.send_data([True])
-        print('OBSTACLE !')
+        logging.debug('OBSTACLE !')
     else:
         VE_CLIENT.send_data([False])
-        print('No obstacle')
+        logging.debug('No obstacle')
     time.sleep(UPDATE_RATE)
