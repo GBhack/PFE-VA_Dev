@@ -18,7 +18,7 @@ from robotBasics import sockets as SOCKETS
 
 
 def frontal_distance_cb(data, args):
-
+    print('callback')
     args["client"].send_data([True])
     response = args["client"].receive_data()
     print(response)

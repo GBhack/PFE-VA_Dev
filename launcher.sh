@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 components/fl/us.py &
+#python3 components/fl/us.py &
 sleep 0.5
 python3 components/fl/mot.py &
 sleep 0.5

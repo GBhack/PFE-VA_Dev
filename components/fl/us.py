@@ -37,7 +37,7 @@ def measure_distance_cb(data, arg):
     distance =    duration * 343.2 / 2
     print("Echo duration : " + str(duration))
     print("Distance: " + str(distance) + "m")
-    arg["connexion"].send_to_clients([distance])
+    arg["connection"].send_to_clients([distance])
 
 
 #GPIO setup :
@@ -48,27 +48,27 @@ GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
 
 SOCKETS = RB.sockets
 
-#Creating the connexion object
-CONNEXION = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
+#Creating the connection object
+CONNECTION = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
 print(RB.constants.ports.FL["us"])
 
 #We'll send bool
-CONNEXION.set_sending_datagram(['FLOAT'])
+CONNECTION.set_sending_datagram(['FLOAT'])
 
 #We'll receive booleans (request)
-CONNEXION.set_receiving_datagram(['BOOL'])
+CONNECTION.set_receiving_datagram(['BOOL'])
 
-#Opening the connexion
-CONNEXION.set_up_connection(10)
+#Opening the connection
+CONNECTION.set_up_connection(10)
 
 #Arguments object for the callback method
-#We pass the CONNEXION object so that the callback can respond to the request
+#We pass the CONNECTION object so that the callback can respond to the request
 ARGUMENTS = {
-    "connexion" : CONNEXION
+    "connection" : CONNECTION
 }
 
 #Waiting for requests and linking them to the callback method
-CONNEXION.listen_to_clients(measure_distance_cb, ARGUMENTS)
+CONNECTION.listen_to_clients(measure_distance_cb, ARGUMENTS)
 
 
-atexit.register(CONNEXION.close)
+atexit.register(CONNECTION.close)
