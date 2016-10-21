@@ -59,10 +59,10 @@ def oa_handling_cb(data, args):
         args["oa_brake"] = False
 
 def velocity_handling_cb(data, args):
-
+data[0]
     #while  args["velocity_state"]["busy"]:
     #    time.sleep(0.0001)
-    print("New velocity request received")
+    print("New velocity request received : "+str(data[0]))
     args["velocity_state"]["busy"] = True
     args["velocity_state"]["desiredVelocity"] = data[0]
     args["velocity_server"].send_to_clients([True])
@@ -142,4 +142,4 @@ while alive:
     print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     logger.debug('Required velocity : ' + str(desiredVelocity))
     logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
-    time.sleep(5)
+    time.sleep(1)

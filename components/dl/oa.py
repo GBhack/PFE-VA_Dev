@@ -17,7 +17,7 @@ import logging
 from robotBasics import constants as CONSTANTS
 from robotBasics import sockets as SOCKETS
 
-UPDATE_RATE = 2
+UPDATE_RATE = 5
 MINIMAL_DISTANCE = 0.075
 
 ####LOGGER :
@@ -67,7 +67,7 @@ print('Running ')
 while alive:
     print('Send request to uc : ')
     UC_CLIENT.send_data([True])
-    print('Request sent to uc, waiting...')
+    #print('Request sent to uc, waiting...')
     if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
         VE_CLIENT.send_data([True])
         print('OBSTACLE !!!')
