@@ -12,7 +12,7 @@ import atexit
 
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Client.Client(2100)
+TCP = SOCKETS.tcp.Client.Client(3110)
 
 atexit.register(TCP.close)
 
