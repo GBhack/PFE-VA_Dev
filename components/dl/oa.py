@@ -52,6 +52,8 @@ while True:
     UC_CLIENT.send_data([True])
     if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
         VE_CLIENT.send_data([True])
+        print('OBSTACLE !')
     else:
         VE_CLIENT.send_data([False])
+        print('No obstacle')
     time.sleep(UPDATE_RATE)

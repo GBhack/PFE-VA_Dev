@@ -118,3 +118,6 @@ while alive:
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
         VELOCITY_CLIENT.send_data([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
+    print('Required velocity : ' + str(desiredVelocity))
+    print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
+    time.sleep(0.1)
