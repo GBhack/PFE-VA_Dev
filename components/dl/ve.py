@@ -64,8 +64,8 @@ VELOCITY_CLIENT.set_sending_datagram(['FLOAT'])
 #We'll receive floats (distance in meters)
 VELOCITY_CLIENT.set_receiving_datagram(['FLOAT'])
 
-#Opening the connexion
-VELOCITY_CLIENT.set_up_connexion()
+#Opening the connection
+VELOCITY_CLIENT.set_up_connection()
 
 #### SERVER CONNECTION :
 
@@ -107,6 +107,8 @@ VELOCITY_ARGUMENTS = {
 #Waiting for requests and redirecting them to the callback methods
 VELOCITY_SERVER.listen_to_clients(velocity_handling_cb, VELOCITY_ARGUMENTS)
 OA_SERVER.listen_to_clients(oa_handling_cb, OA_ARGUMENTS)
+
+alive = True
 
 while alive:
     if VELOCITY_STATE["oa_brake"]:

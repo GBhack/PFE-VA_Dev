@@ -33,8 +33,8 @@ UC_CLIENT.set_sending_datagram(['BOOL'])
 #We'll receive floats (distance in meters)
 UC_CLIENT.set_receiving_datagram(['FLOAT'])
 
-#Opening the connexion
-UC_CLIENT.set_up_connexion()
+#Opening the connection
+UC_CLIENT.set_up_connection()
 
 
 #Creating the Velocity/Steering regulator module's client object
@@ -45,8 +45,8 @@ atexit.register(VE_CLIENT.close)
 #We'll send floats (distance in meters)
 VE_CLIENT.set_sending_datagram(['BOOL'])
 
-#Opening the connexion
-VE_CLIENT.set_up_connexion()
+#Opening the connection
+VE_CLIENT.set_up_connection()
 
 while True:
     UC_CLIENT.send_data([True])
