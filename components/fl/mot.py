@@ -28,6 +28,7 @@ MOTOR_RIGHT = RB.constants.gpiodef.ENGINES["right"]
 PWM.start(MOTOR_LEFT["PWM"], 0)
 PWM.start(MOTOR_RIGHT["PWM"], 0)
 
+
 #Declare motor enabling pins
 ########### NOTE ############
 # To go forward  : set forward  pin to 1 and backward pin to 0
@@ -86,8 +87,8 @@ def set_pwm_motor_right_cb(data, args):
         GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
     #Negative duty cycle = go backward
     else:
-        GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
-        GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
+        GPIO.output(MOTOR_RIGHT["forward"], GPIO.LOW)
+        GPIO.output(MOTOR_RIGHT["backward"], GPIO.HIGH)
     #Setting the duty cycle
     PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], abs(dutyCycle))
 

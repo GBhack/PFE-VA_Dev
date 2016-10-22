@@ -15,8 +15,8 @@ ENGINES = {
     },
     "right": {
         "PWM":        "P9_14", 
-        "forward":    "P9_12",
-        "backward":   "P9_13"
+        "forward":    "P9_13",
+        "backward":   "P9_12"
     }
 }
 

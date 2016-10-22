@@ -18,11 +18,8 @@ from robotBasics import sockets as SOCKETS
 
 
 def frontal_distance_cb(data, args):
-    print('callback')
     args["client"].send_data([True])
-    print('callback : sent')
     response = args["client"].receive_data()[0]
-    print("response :" + str(response))
     args["server"].send_to_clients([response])
 
 #### CLIENTS CONNECTION :
@@ -34,7 +31,7 @@ CONNECTION_SENSOR = SOCKETS.tcp.Client.Client(CONSTANTS.ports.FL["us"])
 CONNECTION_SENSOR.set_sending_datagram(['BOOL'])
 
 #We'll receive booleans (status of the operation)
-CONNECTION_SENSOR.set_receiving_datagram(['FLOAT'])
+CONNECTION_SENSOR.set_receiving_datagram(['BOOL'])
 
 #Opening the connection
 CONNECTION_SENSOR.set_up_connection()

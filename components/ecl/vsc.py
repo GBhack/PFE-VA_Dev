@@ -28,6 +28,7 @@ def velocity_control_cb(data, args):
         Velocity control callback method
         Apply requested velocity while making sure not to perform strong accelerations.
     """
+    print('Received : '+str(data[0]))
     deltaVelocity = data[0] - args["currentState"]["velocity"]
 
     #If we're accelerating, we make sure to do so increasingly (if we're braking, we don't care) :
@@ -47,6 +48,7 @@ def velocity_control_cb(data, args):
 
     #We apply the change to the program's velocity variable
     args["currentState"]["velocity"] += deltaVelocity
+    print('Applying modif :')
     #We apply the changes to the robot :
     apply_modifications(args)
 

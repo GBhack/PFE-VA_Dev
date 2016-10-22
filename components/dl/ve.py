@@ -47,26 +47,24 @@ VELOCITY_STATE = {
 
 def oa_handling_cb(data, args):
     if data[0]:
-        #while  args["velocity_state"]["busy"]:
-        #    time.sleep(0.0001)
+        while  args["velocity_state"]["busy"]:
+            time.sleep(0.0001)
         args["velocity_state"]["busy"] = True
         args["velocity_state"]["oa_brake"] = True
-        args["velocity_state"]["desiredVelocity"]
         args["velocity_client"].send_data([0])
         _ = args["velocity_client"].receive_data()
-        #args["velocity_state"]["busy"] = False
+        args["velocity_state"]["busy"] = False
     else:
-        args["oa_brake"] = False
+        args["velocity_state"]["oa_brake"] = False
 
 def velocity_handling_cb(data, args):
 
-    #while  args["velocity_state"]["busy"]:
-    #    time.sleep(0.0001)
-    print("New velocity request received : "+str(data[0]))
+    while  args["velocity_state"]["busy"]:
+        time.sleep(0.001)
     args["velocity_state"]["busy"] = True
-    args["velocity_state"]["desiredVelocity"] = data[0]
+    args["velocity_state"]["desiredVelocity"] = int(data[0])
     args["velocity_server"].send_to_clients([True])
-    #args["velocity_state"]["busy"] = False
+    args["velocity_state"]["busy"] = False
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -132,14 +130,15 @@ print('Running')
 
 while alive:
     if VELOCITY_STATE["oa_brake"]:
+        print("Brake")
         desiredVelocity = 0
     else:
-        desiredVelocity = VELOCITY_STATE["desiredVelocity"]
+        desiredVelocity = int(VELOCITY_STATE["desiredVelocity"])
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
         VELOCITY_CLIENT.send_data([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
     print('Required velocity : ' + str(desiredVelocity))
     print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
-    logger.debug('Required velocity : ' + str(desiredVelocity))
-    logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
-    time.sleep(1)
+    #logger.debug('Required velocity : ' + str(desiredVelocity))
+    #logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
+    time.sleep(0.25)

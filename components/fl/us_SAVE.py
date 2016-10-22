@@ -18,9 +18,35 @@ import time
 import robotBasics as RB
 import Adafruit_BBIO.GPIO as GPIO
 
-###########################################################################
-#                     Functions/Callbacks definition :                    #
-###########################################################################
+"""
+def measure_distance_cb(data, arg):
+    """
+        #Callback method
+        #Called when a tcp request is received
+        #Trigger an ultrasonic measure and sends back the echo time in seconds
+    """
+    startTime = 0
+    stopTime = 0
+
+    while startTime ==0 and stopTime == 0:
+
+        time.sleep(0.01)
+        initTime = time.time()
+
+        GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.HIGH)
+        GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
+
+        while not GPIO.input(RB.constants.gpiodef.SONAR["echo"]) and initTime-time.time() < 1:
+            startTime = time.time()
+
+        while GPIO.input(RB.constants.gpiodef.SONAR["echo"]) and initTime-time.time() < 1:
+            stopTime = time.time()
+
+    duration = stopTime - startTime
+    distance = round(duration * 343.2 / 2, 3)
+    #print("Distance: " + str(distance) + "m")
+    arg["connection"].send_to_clients([distance])
+"""
 
 def obstacle_detection_cb(data, arg):
     obstacleDetected = False
@@ -56,7 +82,7 @@ ARGUMENTS = {
 }
 
 #Waiting for requests and linking them to the callback method
-CONNECTION.listen_to_clients(obstacle_detection_cb, ARGUMENTS)
+CONNECTION.listen_to_clients(measure_distance_cb, ARGUMENTS)
 
 
 atexit.register(CONNECTION.close)

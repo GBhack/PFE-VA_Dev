@@ -17,8 +17,8 @@ import logging
 from robotBasics import constants as CONSTANTS
 from robotBasics import sockets as SOCKETS
 
-UPDATE_RATE = 5
-MINIMAL_DISTANCE = 0.075
+UPDATE_RATE = 0.1
+MINIMAL_DISTANCE = 0.08
 
 ####LOGGER :
 formatter = logging.Formatter("%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
@@ -40,12 +40,13 @@ logger.addHandler(handler)
 #### CLIENTS CONNECTION :
 
 #Creating the Get Frontal Distance module's client
-UC_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.ECL["uc"])
+#UC_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.ECL["uc"])
+UC_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.FL["us"])
 
 #We'll send booleans (request)
 UC_CLIENT.set_sending_datagram(['BOOL'])
 #We'll receive floats (distance in meters)
-UC_CLIENT.set_receiving_datagram(['FLOAT'])
+UC_CLIENT.set_receiving_datagram(['BOOL'])
 
 #Opening the connection
 UC_CLIENT.set_up_connection()
@@ -65,15 +66,18 @@ VE_CLIENT.set_up_connection()
 alive = True
 print('Running ')
 while alive:
-    print('Send request to uc : ')
+    obstacleDetected = False
     UC_CLIENT.send_data([True])
     #print('Request sent to uc, waiting...')
-    if UC_CLIENT.receive_data()[0] <= MINIMAL_DISTANCE:
-        VE_CLIENT.send_data([True])
-        print('OBSTACLE !!!')
-        logger.debug('OBSTACLE !')
-    else:
-        VE_CLIENT.send_data([False])
-        print('No obstacle')
-        logger.debug('No obstacle')
+
+    if UC_CLIENT.receive_data()[0]:
+        time.sleep(0.01)
+        UC_CLIENT.send_data([True])
+        if UC_CLIENT.receive_data()[0]:
+            obstacleDetected = True
+            print('obstacle !')
+        #logger.debug('OBSTACLE !')
+        #else:
+            #logger.debug('No obstacle')
+    VE_CLIENT.send_data([obstacleDetected])
     time.sleep(UPDATE_RATE)
