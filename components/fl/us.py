@@ -2,8 +2,9 @@
     us.py
     Functional Level module : Ultrasonic Sensor manager
     Waits for a TCP request on its own port
-    When gets a request, triggers an ultrasound on the
-    HC-SR04 and responds with the echo time in seconds
+    When gets a request, responds with the obstacle detection
+    state (read through the Atitiny)
+
 """
 
 
@@ -19,44 +20,60 @@ import robotBasics as RB
 import Adafruit_BBIO.GPIO as GPIO
 
 ###########################################################################
+#                           I/O Initialization :                          #
+###########################################################################
+
+#GPIO setup :
+GPIO.setup(RB.constants.gpiodef.SONAR["echo"], GPIO.IN)
+
+###########################################################################
 #                     Functions/Callbacks definition :                    #
 ###########################################################################
 
 def obstacle_detection_cb(data, arg):
+    """
+        Callback function for obstacle detection :
+        Triggered when a request is received.
+        Reads the obstacle presence state and responds
+        to the request.
+    """
+    #By default, we consider that there is no obstacle
     obstacleDetected = False
+
+    #If the Atitiny's obstacle presence pin is high (obstacle
+    #detected), changes obstacleDetected to True
     if GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
          obstacleDetected = True
+
+    #Responding the request with the obstacle presence status
     arg["connection"].send_to_clients([obstacleDetected])
 
-#GPIO setup :
-GPIO.setup(RB.constants.gpiodef.SONAR["trigger"], GPIO.OUT)
-GPIO.setup(RB.constants.gpiodef.SONAR["echo"], GPIO.IN)
-
-GPIO.output(RB.constants.gpiodef.SONAR["trigger"], GPIO.LOW)
+###########################################################################
+#                     SERVERS SET UP AND SETTINGS :                   #
+###########################################################################
 
 SOCKETS = RB.sockets
 
 #Creating the connection object
-CONNECTION = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
+SERVER = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
 print(RB.constants.ports.FL["us"])
 
 #We'll send bool
-CONNECTION.set_sending_datagram(['BOOL'])
+SERVER.set_sending_datagram(['BOOL'])
 
 #We'll receive booleans (request)
-CONNECTION.set_receiving_datagram(['BOOL'])
+SERVER.set_receiving_datagram(['BOOL'])
 
 #Opening the connection
-CONNECTION.set_up_connection(10)
+SERVER.set_up_connection(10)
 
 #Arguments object for the callback method
-#We pass the CONNECTION object so that the callback can respond to the request
+#We pass the SERVER object so that the callback can respond to the request
 ARGUMENTS = {
-    "connection" : CONNECTION
+    "connection" : SERVER
 }
 
 #Waiting for requests and linking them to the callback method
-CONNECTION.listen_to_clients(obstacle_detection_cb, ARGUMENTS)
+SERVER.listen_to_clients(obstacle_detection_cb, ARGUMENTS)
 
-
-atexit.register(CONNECTION.close)
+atexit.register(SERVER.close)
