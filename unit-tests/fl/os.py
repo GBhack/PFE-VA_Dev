@@ -17,15 +17,15 @@ import time
 from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.ADC as ADC
 
-THRESHOLD = 1.5
+THRESHOLD = 1.7
 
 def readSingleSensor(sensor):
-    return ADC.read(sensor) <= THRESHOLD
+    return ADC.read(sensor) > THRESHOLD
 
 def readSensorArray():
     array = [0, 0, 0, 0, 0, 0, 0]
     for i in range(7):
-        array[i]=readSingleSensor(GPIODEF.OS[i])
+        array[i]=int(readSingleSensor(GPIODEF.OS[i]))
     return array
 
 
