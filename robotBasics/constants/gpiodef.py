@@ -23,8 +23,8 @@ ENGINES = {
 #LEDs-related I/O :
 # !!!!!! A CHANGER  !!!!!!!!
 LEDS = {
-    "left": "P8_33",
-    "right": "P8_27",
+    "left": "P8_33",    #violet
+    "right": "P8_27",   #bleu
     "stop": "P8_29",
     "status": "P8_31"
 }
