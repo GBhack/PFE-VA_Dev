@@ -18,8 +18,8 @@ from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.GPIO as GPIO
 
 while True:
-    GPIO.setup(GPIODEF.SONAR['echo'], GPIO.IN)
-    if GPIO.input(GPIODEF.SONAR['echo']):
+    GPIO.setup(GPIODEF.SONAR['obstacle'], GPIO.IN)
+    if GPIO.input(GPIODEF.SONAR['obstacle']):
         print("Obstacle detected !")
     else:
         print("The path is clear")

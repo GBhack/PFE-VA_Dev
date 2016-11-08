@@ -9,33 +9,34 @@
 #Engines-related I/O :
 ENGINES = {
     "left": {
-        "PWM":        "P9_16", # NOIR
-        "forward":    "P9_17", # BLANC
-        "backward":   "P9_18"  # GRIS
+        "PWM":        "P9_16", # MARRON
+        "forward":    "P9_25", # BLANC
+        "backward":   "P9_23"  # VERT
     },
     "right": {
-        "PWM":        "P9_14", 
-        "forward":    "P9_13",
-        "backward":   "P9_21"
+        "PWM":        "P9_14", # MARRON
+        "forward":    "P9_29",
+        "backward":   "P9_31"
     }
 }
 
 #LEDs-related I/O :
 # !!!!!! A CHANGER  !!!!!!!!
 LEDS = {
-    "left": "P8_15",
-    "right": "P8_16",
-    "stop": "P8_14",
-    "status": "P8_17"
+    "left": "P8_33",
+    "right": "P8_27",
+    "stop": "P8_29",
+    "status": "P8_31"
 }
 
 #Sonar-related I/O :
 SONAR = {
-    "trigger": "P8_7",
-    "echo": "P8_8"
+    "trigger": "P8_8",
+    "echo": "P8_10",
+    "obstacle": "P8_13",
 }
 
 OS = ["AIN4", "AIN6", "AIN3", "AIN2", "AIN1", "AIN0", "AIN5"]
 
 #Reset pushbutton
-RESET = "P8_18"
+RESET = "P8_7"
