@@ -17,7 +17,7 @@ import time
 from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.ADC as ADC
 
-THRESHOLD = 1.7
+THRESHOLD = 1.2
 
 def readSingleSensor(sensor):
     return ADC.read(sensor) > THRESHOLD
