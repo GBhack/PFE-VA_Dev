@@ -10,8 +10,8 @@
 ENGINES = {
     "left": {
         "PWM":        "P9_16", # MARRON
-        "forward":    "P9_25", # BLANC
-        "backward":   "P9_23"  # VERT
+        "forward":    "P9_23", # BLANC
+        "backward":   "P9_25"  # VERT
     },
     "right": {
         "PWM":        "P9_14", # MARRON
