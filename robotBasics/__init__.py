@@ -7,4 +7,3 @@
 import robotBasics.sockets
 import robotBasics.constants
 import robotBasics.logger
-import robotBasics.GPIO
