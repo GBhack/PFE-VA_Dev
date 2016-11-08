@@ -38,3 +38,4 @@ while True:
     GPIO.output(GPIODEF.LEDS["right"], GPIO.LOW)
     GPIO.output(GPIODEF.LEDS["stop"], GPIO.LOW)
     GPIO.output(GPIODEF.LEDS["status"], GPIO.LOW)
+    time.sleep(0.5)
