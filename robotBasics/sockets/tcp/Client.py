@@ -20,12 +20,13 @@ class Client:
     """
         Client class
     """
-    def __init__(self, port):
+    def __init__(self, port, log):
         """
             Initialization
         """
         self.port = port
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.log = log
 
     def set_sending_datagram(self, datagram):
         """
@@ -48,8 +49,8 @@ class Client:
         """
             Connexion set-up method
         """
-        print("CLIENT")
-        socket.setdefaulttimeout(timeout)
+
+        socket.setdefaulttimeout(timeout)  #Setting the timeout for the connection
         try:
             self.connection.connect(('127.0.0.1', self.port))
             return True

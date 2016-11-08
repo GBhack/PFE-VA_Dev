@@ -6,6 +6,8 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
+from logging import DEBUG
+
 #Sockets-related constants
 SOCKETS = {
     "timeout": 2,
@@ -14,4 +16,8 @@ SOCKETS = {
 
 PHYSICAL = {
     "axle": 0.15
+}
+
+LOGGING = {
+    "level": DEBUG
 }

@@ -1,5 +1,0 @@
- import robotBasics as RB
->>> Server = RB.sockets.udp.Server
->>> server = Server.Server(12345)
->>> server.set_sending_datagram(['SMALL_INT'])
->>> server.send_to_clients([13])

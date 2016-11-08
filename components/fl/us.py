@@ -15,16 +15,20 @@
 import atexit
 import time
 
+
 #Specific imports :
-import robotBasics as RB
+from robotBasics import constants as CONSTANTS
+from robotBasics import sockets as SOCKETS
+from robotBasics.logger import logger as LOGGER
 import Adafruit_BBIO.GPIO as GPIO
+
 
 ###########################################################################
 #                           I/O Initialization :                          #
 ###########################################################################
 
 #GPIO setup :
-GPIO.setup(RB.constants.gpiodef.SONAR["echo"], GPIO.IN)
+GPIO.setup(CONSTANTS.gpiodef.SONAR["echo"], GPIO.IN)
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -42,21 +46,21 @@ def obstacle_detection_cb(data, arg):
 
     #If the Atitiny's obstacle presence pin is high (obstacle
     #detected), changes obstacleDetected to True
-    if GPIO.input(RB.constants.gpiodef.SONAR["echo"]):
-         obstacleDetected = True
+    if GPIO.input(CONSTANTS.gpiodef.SONAR["echo"]):
+        LOGGER.info('Obstacle detected.')
+        obstacleDetected = True
 
     #Responding the request with the obstacle presence status
     arg["connection"].send_to_clients([obstacleDetected])
+
 
 ###########################################################################
 #                     SERVERS SET UP AND SETTINGS :                   #
 ###########################################################################
 
-SOCKETS = RB.sockets
-
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["us"])
-print(RB.constants.ports.FL["us"])
+SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.FL["us"])
+print(CONSTANTS.ports.FL["us"])
 
 #We'll send bool
 SERVER.set_sending_datagram(['BOOL'])
