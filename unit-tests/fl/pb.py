@@ -1,5 +1,5 @@
 """
-    us.py
+    pb.py
     TEST SCRIPT !
     Reads and print the us status through the attiny45
 
@@ -17,10 +17,13 @@ import time
 from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.GPIO as GPIO
 
-GPIO.setup(GPIODEF.SONAR['obstacle'], GPIO.IN)
+GPIO.setup(GPIODEF.RESET, GPIO.IN)
+
+lastState = False
+
 while True:
-    if GPIO.input(GPIODEF.SONAR['obstacle']):
-        print("Obstacle detected !")
-    else:
-        print("The path is clear")
-    time.sleep(0.5)
+    if not GPIO.input(GPIODEF.RESET):
+        while not GPIO.input(GPIODEF.RESET):
+            pass
+        print("Button pushed !")
+    time.sleep(0.2)
