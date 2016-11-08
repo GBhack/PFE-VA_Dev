@@ -35,5 +35,7 @@ SONAR = {
     "echo": "P8_8"
 }
 
+OS = ["AIN4", "AIN6", "AIN3", "AIN2", "AIN1", "AIN0", "AIN5"]
+
 #Reset pushbutton
 RESET = "P8_18"
