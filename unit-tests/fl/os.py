@@ -16,9 +16,11 @@ import time
 #Specific imports :
 from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.ADC as ADC
- 
+
+
 ADC.setup()
 
 while True:
     value = ADC.read("P9_33")
+    print(value)
     time.sleep(0.5)
