@@ -1,0 +1,100 @@
+[2016-11-15 15:44:17,982 : set_pwm_cb - mot @ mot.py (DEBUG)] Setting the left motor to go forward with a PWM of 0
+[2016-11-15 15:44:17,982 : set_pwm_cb - mot @ mot.py (DEBUG)] Setting the right motor to go forward with a PWM of 10
+[2016-11-15 15:45:04,908 : set_pwm_cb - mot @ mot.py (DEBUG)] Setting the left motor to go forward with a PWM of 0
+[2016-11-15 15:45:04,909 : set_pwm_cb - mot @ mot.py (DEBUG)] Setting the right motor to go forward with a PWM of 10
+[2016-11-15 16:04:31,678 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1200
+[2016-11-15 16:04:31,679 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1210
+[2016-11-15 16:04:31,679 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['SMALL_INT_SIGNED'] for server socket on port 1200
+[2016-11-15 16:04:31,679 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['SMALL_INT_SIGNED'] for server socket on port 1210
+[2016-11-15 16:04:34,493 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1200
+[2016-11-15 16:04:34,493 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1200
+[2016-11-15 16:04:34,504 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1210
+[2016-11-15 16:04:34,504 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1210
+[2016-11-15 16:04:34,504 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1200
+[2016-11-15 16:04:34,505 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1210
+[2016-11-15 16:04:34,505 : set_pwm_cb - mot @ mot.py (DEBUG)] Setting the left motor to go forward with a PWM of 0
+[2016-11-15 16:04:34,506 : set_pwm_cb - mot @ mot.py (DEBUG)] Setting the right motor to go forward with a PWM of 10
+[2016-11-15 16:04:34,517 : close_single_socket - Server @ Server.py (INFO)] Connection on port 1200 closed by client. 0 clients remaining.
+[2016-11-15 16:04:34,518 : close_single_socket - Server @ Server.py (INFO)] Connection on port 1210 closed by client. 0 clients remaining.
+[2016-11-15 16:04:34,518 : close_single_socket - Server @ Server.py (INFO)] All clients disconnected on port 1200 closing the connection
+[2016-11-15 16:04:34,518 : close_single_socket - Server @ Server.py (INFO)] All clients disconnected on port 1210 closing the connection
+[2016-11-15 16:10:33,236 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:10:33,236 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:11:49,222 : set_up_connection - Server @ Server.py (INFO)] Interrupt received, quit waiting for  on port 1600
+[2016-11-15 16:11:49,223 : listen_to_clients - Server @ Server.py (WARNING)] No connected client to listen to on port 1600.
+[2016-11-15 16:11:49,986 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:11:49,986 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:11:52,174 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1600
+[2016-11-15 16:11:52,174 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1600
+[2016-11-15 16:11:52,174 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1600
+[2016-11-15 16:11:54,859 : close_single_socket - Server @ Server.py (INFO)] Connection on port 1600 closed by client. 0 clients remaining.
+[2016-11-15 16:11:54,859 : close_single_socket - Server @ Server.py (INFO)] All clients disconnected on port 1600 closing the connection
+[2016-11-15 16:13:03,441 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:13:03,442 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:13:06,093 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1600
+[2016-11-15 16:13:06,093 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1600
+[2016-11-15 16:13:06,093 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1600
+[2016-11-15 16:13:06,094 : obstacle_detection_cb - us @ us.py (INFO)] Obstacle detected.
+[2016-11-15 16:13:11,097 : obstacle_detection_cb - us @ us.py (INFO)] Obstacle detected.
+[2016-11-15 16:13:16,101 : obstacle_detection_cb - us @ us.py (INFO)] Obstacle detected.
+[2016-11-15 16:13:18,604 : obstacle_detection_cb - us @ us.py (INFO)] Obstacle detected.
+[2016-11-15 16:13:21,107 : obstacle_detection_cb - us @ us.py (INFO)] Obstacle detected.
+[2016-11-15 16:13:21,469 : close_single_socket - Server @ Server.py (INFO)] Connection on port 1600 closed by client. 0 clients remaining.
+[2016-11-15 16:13:21,469 : close_single_socket - Server @ Server.py (INFO)] All clients disconnected on port 1600 closing the connection
+[2016-11-15 16:15:26,389 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:15:26,390 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1600
+[2016-11-15 16:15:28,006 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1600
+[2016-11-15 16:15:28,006 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1600
+[2016-11-15 16:15:28,007 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1600
+[2016-11-15 16:15:30,510 : obstacle_detection_cb - us @ us.py (INFO)] Obstacle detected.
+[2016-11-15 16:29:10,289 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['MEDIUM_INT_UNSIGNED'] for server socket on port 1000
+[2016-11-15 16:29:10,291 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1000
+[2016-11-15 16:29:54,015 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['MEDIUM_INT_UNSIGNED'] for server socket on port 1000
+[2016-11-15 16:29:54,015 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1000
+[2016-11-15 16:30:02,286 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['MEDIUM_INT_UNSIGNED'] for server socket on port 123456
+[2016-11-15 16:30:02,286 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 123456
+[2016-11-15 16:30:07,311 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['MEDIUM_INT_UNSIGNED'] for server socket on port 12345
+[2016-11-15 16:30:07,312 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 12345
+[2016-11-15 16:30:21,248 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 12345
+[2016-11-15 16:30:21,248 : set_up_connection - Server @ Server.py (INFO)] Timeout : 1 clients connected on port 12345
+[2016-11-15 16:30:21,248 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 12345
+[2016-11-15 16:30:21,248 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 12345
+[2016-11-15 16:48:56,993 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['MEDIUM_INT_UNSIGNED'] for server socket on port 12345
+[2016-11-15 16:48:56,994 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 12345
+[2016-11-15 16:49:05,696 : set_up_connection - Server @ Server.py (INFO)] Interrupt received, quit waiting for  on port 12345
+[2016-11-15 16:49:05,696 : listen_to_clients - Server @ Server.py (WARNING)] No connected client to listen to on port 12345.
+[2016-11-15 16:49:08,588 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:49:08,588 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:49:08,593 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:49:08,593 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:49:08,593 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400
+[2016-11-15 16:52:08,437 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:52:08,438 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:52:10,451 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:52:10,451 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:52:10,451 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400
+[2016-11-15 16:52:40,263 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:52:40,263 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:52:42,473 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:52:42,474 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:52:42,474 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400
+[2016-11-15 16:53:33,082 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:53:33,082 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:53:35,172 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:53:35,172 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:53:35,172 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400
+[2016-11-15 16:54:02,531 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:54:02,531 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:54:02,538 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:54:02,538 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:54:02,538 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400
+[2016-11-15 16:55:01,884 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:55:01,884 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:55:04,073 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:55:04,073 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:55:04,073 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400
+[2016-11-15 16:55:43,001 : set_sending_datagram - Server @ Server.py (DEBUG)] Sending datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:55:43,001 : set_receiving_datagram - Server @ Server.py (DEBUG)] Receiving datagram set to : ['BOOL'] for server socket on port 1400
+[2016-11-15 16:55:44,340 : set_up_connection - Server @ Server.py (INFO)] Maximum amount of clients reached (1) on port 1400
+[2016-11-15 16:55:44,340 : set_up_connection - Server @ Server.py (DEBUG)] 1 clients successfuly connected on port 1400
+[2016-11-15 16:55:44,340 : listen_to_clients - Server @ Server.py (DEBUG)] Listening to clients on port 1400

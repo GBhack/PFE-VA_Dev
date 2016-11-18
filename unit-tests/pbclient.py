@@ -1,5 +1,5 @@
 """
-    client.py
+    qeclient.py
 """
 
 
@@ -7,14 +7,17 @@
 #-*- coding: utf-8 -*-
 
 import time
-import robotBasics as RB
 import atexit
+
+import robotBasics as RB
+from robotBasics import constants as CONSTANTS
+
 
 from robotBasics.logger import logger as LOGGER
 
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Client.Client(1600,LOGGER)
+TCP = SOCKETS.tcp.Client.Client(CONSTANTS.ports.FL["pb"], LOGGER)
 
 atexit.register(TCP.close)
 

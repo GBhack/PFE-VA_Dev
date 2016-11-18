@@ -22,7 +22,7 @@ class Server(object):
     """
 
 
-    def __init__(self, port, frequency=MISC.SOCKETS["frequency"]):
+    def __init__(self, port, log, frequency=MISC.SOCKETS["connectionTimeout"]):
         """
             Initialization
         """
@@ -30,17 +30,20 @@ class Server(object):
         self._frequency = frequency
         self._connections = []
         self._clientsListeningThreads = []
-        self.alive = True
+        self._log = log
+        self.alive = False
 
         self.waitForClient = True
 
     def set_sending_datagram(self, datagram):
         self._sendingDatagram = Message.Message(datagram)
+        self._log.debug('Sending datagram set to : %s for server socket on port %d', datagram, self._port)
 
     def set_receiving_datagram(self, datagram):
         self._receivingDatagram = Message.Message(datagram)
+        self._log.debug('Receiving datagram set to : %s for server socket on port %d', datagram, self._port)
 
-    def set_up_connection(self, timeout=MISC.SOCKETS["timeout"], multiClients=False, maxClients=2):
+    def set_up_connection(self, connectionTimeout=MISC.SOCKETS["connectionTimeout"], listeningTimeout=MISC.SOCKETS["listeningTimeout"],multiClients=False, maxClients=2):
         """
             Connexion set-up method
             Arguments :
@@ -48,7 +51,7 @@ class Server(object):
                 for something to happen before raising an error
                 - multiClients
         """
-        socket.setdefaulttimeout(timeout)
+        socket.setdefaulttimeout(listeningTimeout)
 
         newSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         newSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -64,47 +67,56 @@ class Server(object):
                 self._connections.append({"sock": newConnexion, "stopEvent":threading.Event()})
                 clientsConnected += 1
                 if clientsConnected >= maxClients or not multiClients:
-                    print('Maximum amount of clients reached (', clientsConnected, ')')
+                    self._log.info('Maximum amount of clients reached (%d) on port %d', clientsConnected, self._port)
                     self.waitForClient = False
-                if time.time() - socketCreationTime > timeout:
-                    print("Timeout : ", clientsConnected, " clients connected")
+                if time.time() - socketCreationTime > connectionTimeout:
+                    self._log.info("Timeout : %d clients connected on port %d", clientsConnected, self._port)
                     self.waitForClient = False
             except KeyboardInterrupt:
-                print("Interrupt received, stopping…")
+                self._log.info("Interrupt received, quit waiting for  on port %d", self._port)
                 self.close()
             except socket.timeout:
-                print("Timeout : ", clientsConnected, " clients connected")
+                self._log.info("Timeout : %d clients connected on port %d", clientsConnected, self._port)
                 self.waitForClient = False
 
         if clientsConnected > 0:
-            print("Success !")
+            self._log.debug("%d clients successfuly connected on port %d", clientsConnected, self._port)
+            self.alive = True
 
     def listen_to_clients(self, callback, args):
         """
             Listening to clients Method
         """
-        for connection in self._connections:
-            self._clientsListeningThreads.append(WaitForData(connection, self._receivingDatagram, callback, args, self._frequency, self.close_single_socket))
-            self._clientsListeningThreads[-1].start()
+        if self.alive:
+            self._log.debug("Listening to clients on port %d", self._port)
+            for connection in self._connections:
+                self._clientsListeningThreads.append(WaitForData(connection, self._receivingDatagram, callback, args, self._frequency, self.close_single_socket))
+                self._clientsListeningThreads[-1].start()
+        else:
+            self._log.warning("No connected client to listen to on port %d.", self._port)
 
     def send_to_clients(self, data):
         """
             Send to clients Method
         """
-        for connection in self._connections:
-            try:
-                connection["sock"].send(self._sendingDatagram.encode(data))
-            except (ConnectionResetError, BrokenPipeError):
-                self.close_single_socket(connection)
+        if self.alive:
+            for connection in self._connections:
+                try:
+                    connection["sock"].send(self._sendingDatagram.encode(data))
+                except (ConnectionResetError, BrokenPipeError):
+                    self.close_single_socket(connection)
+                    self._log.warning("Unable to send to client on port %d. Closing the socket.", self._port)
+        else:
+            self._log.warning("No connected client to send to on port %d.", self._port)
 
     def close_single_socket(self, connection):
         connection["stopEvent"].set()
         time.sleep(0.01)
         connection["sock"].close()
         self._connections.remove(connection)
-        print("Connection closed by client.", str(len(self._connections)), " client(s) remaining.")
+        self._log.info("Connection on port %d closed by client. %d clients remaining.", self._port, len(self._connections))
         if len(self._connections) <= 0:
-            print("All clients disconnected. Closing the server.")
+            self._log.info("All clients disconnected on port %d closing the connection", self._port)
             try:
                 connection["sock"].shutdown(socket.SHUT_RDWR)
             except:
@@ -122,7 +134,6 @@ class Server(object):
                 pass
             connection["sock"].close()
             self._connections.remove(connection)
-            print('Closing')
             self.alive = False
         #for thread in self._clientsListeningThreads:
         #    thread.join()

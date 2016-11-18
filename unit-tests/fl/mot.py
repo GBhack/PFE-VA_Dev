@@ -18,6 +18,25 @@ from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 
+
+
+####################################################
+#               Simulator setup                    #
+####################################################
+
+GPIO.pin_association(GPIODEF.ENGINES["left"]["PWM"], 'left motor\'s PWM')
+GPIO.pin_association(GPIODEF.ENGINES["right"]["PWM"], 'right motor\'s PWM')
+PWM.pin_association(GPIODEF.ENGINES["left"]["forward"], 'left motor\'s forward pin')
+PWM.pin_association(GPIODEF.ENGINES["right"]["forward"], 'right motor\'s forward pin')
+PWM.pin_association(GPIODEF.ENGINES["left"]["backward"], 'left motor\'s backward pin')
+PWM.pin_association(GPIODEF.ENGINES["right"]["backward"], 'right motor\'s backward pin')
+GPIO.setup_behavior('print')
+PWM.setup_behavior('print')
+
+####################################################
+#                     I/O setup                    #
+####################################################
+
 PWM.start(GPIODEF.ENGINES["left"]["PWM"], 0, 500)
 PWM.start(GPIODEF.ENGINES["right"]["PWM"], 0, 500)
 

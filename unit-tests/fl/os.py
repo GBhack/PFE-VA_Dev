@@ -15,12 +15,13 @@ import time
 
 #Specific imports :
 from robotBasics.constants import gpiodef as GPIODEF
+from robotBasics.constants.misc import OS as MISC
 import Adafruit_BBIO.ADC as ADC
 
 THRESHOLD = 1.2
 
 def readSingleSensor(sensor):
-    return ADC.read(sensor) > THRESHOLD
+    return ADC.read(sensor) > MISC["threshold"]
 
 def readSensorArray():
     array = [0, 0, 0, 0, 0, 0, 0]

@@ -10,7 +10,8 @@ from logging import DEBUG
 
 #Sockets-related constants
 SOCKETS = {
-    "timeout": 2,
+    "connectionTimeout": 5,
+    "listeningTimeout": 120,
     "frequency": 0.02
 }
 
@@ -20,4 +21,8 @@ PHYSICAL = {
 
 LOGGING = {
     "level": DEBUG
+}
+
+OS = {
+    "threshold": 1.2
 }

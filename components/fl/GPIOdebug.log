@@ -1,0 +1,315 @@
+[2016-11-15 14:18:04,562 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:18:04,564 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:18:04,564 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:18:04,564 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:18:04,565 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:18:04,565 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:18:04,565 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:18:04,565 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:18:04,566 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:18:04,566 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:19:34,699 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:19:34,699 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:19:34,700 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:19:34,700 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:19:34,701 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:19:34,701 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:19:34,702 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:19:34,702 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:19:34,703 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:19:34,703 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:20:23,658 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:20:23,660 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:20:23,660 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:20:23,661 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:20:23,661 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:20:23,661 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:20:23,662 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:20:23,662 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:20:23,662 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:20:23,663 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:20:26,890 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:20:26,891 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:20:26,891 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:20:26,892 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:20:26,892 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 14:20:26,892 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 14:28:25,395 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:28:25,396 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:28:25,396 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:28:25,396 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:28:25,397 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:28:25,397 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:28:25,398 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:28:25,398 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:28:25,398 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:28:25,399 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:28:47,742 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:28:47,742 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:28:47,742 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:30:00,004 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:30:00,005 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:30:00,005 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:30:00,005 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:30:00,006 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:30:00,006 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:30:00,006 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:30:00,007 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:30:00,007 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:30:00,007 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:32:07,169 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:32:07,170 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:32:07,170 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:32:09,109 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:32:09,109 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:32:09,109 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:32:09,110 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:32:09,110 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:32:09,110 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:32:09,110 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:32:09,110 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:32:09,111 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:32:09,111 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:32:11,754 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:32:11,754 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:32:11,754 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:32:11,755 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:32:11,755 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 14:32:11,756 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 14:32:35,783 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:32:35,783 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:32:35,784 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:32:35,784 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:32:35,784 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:32:35,785 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:32:35,785 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:32:35,785 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:32:35,786 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:32:35,786 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:32:44,831 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:32:44,831 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:32:44,831 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:34:34,267 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:34:34,268 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:34:34,268 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:34:34,269 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:34:34,269 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:34:34,269 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:34:34,270 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:34:34,270 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:34:34,271 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:34:34,271 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:35:49,506 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:35:49,506 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:35:49,506 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:35:50,950 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:35:50,951 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:35:50,951 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:35:50,951 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:35:50,952 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:35:50,952 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:35:50,952 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:35:50,952 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:35:50,953 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:35:50,953 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:35:59,447 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:35:59,447 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:35:59,447 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:35:59,448 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:35:59,449 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 14:35:59,449 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 14:37:50,198 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:37:50,198 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:37:50,199 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:37:50,199 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:37:50,199 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:37:50,200 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:37:50,200 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:37:50,200 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:37:50,200 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:37:50,201 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:37:52,558 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:37:52,559 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:37:52,559 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:37:52,560 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:37:52,560 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 14:37:52,560 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 14:38:14,239 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:38:14,240 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:38:14,240 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:38:14,240 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:38:14,240 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:38:14,241 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:38:14,241 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:38:14,241 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:38:14,241 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:38:14,241 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:39:39,635 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:39:39,635 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:39:39,636 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:39:40,630 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:39:40,631 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:39:40,631 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:39:40,632 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:39:40,632 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:39:40,633 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:39:40,633 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:39:40,633 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:39:40,634 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:39:40,634 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:40:42,114 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:40:42,114 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:40:42,115 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:40:42,115 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:40:42,115 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:40:42,116 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:40:42,116 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:40:42,116 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:40:42,117 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:40:42,117 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:40:44,740 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:40:44,740 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 14:40:44,740 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 14:40:44,741 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:40:44,741 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:40:44,741 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:40:56,273 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:40:56,274 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:40:56,274 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:40:56,274 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:40:56,274 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:40:56,275 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:40:56,275 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:40:56,275 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:40:56,275 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:40:56,275 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:41:03,893 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:41:03,893 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:41:03,894 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:42:17,734 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:42:17,734 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:42:17,734 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:42:17,735 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:42:17,735 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:42:17,735 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:42:17,735 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:42:17,735 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:42:17,736 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:42:17,736 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:42:19,782 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:42:19,783 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:42:19,783 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:42:19,784 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:42:19,784 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 14:42:19,784 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 14:42:57,083 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:42:57,083 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:42:57,083 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:42:57,083 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:42:57,084 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:42:57,084 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:42:57,084 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:42:57,084 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:42:57,084 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:42:57,085 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:43:07,552 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:43:07,552 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:43:07,552 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 14:49:40,034 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 14:49:40,035 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 14:49:40,035 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 14:49:40,036 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 14:49:40,036 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 14:49:40,036 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 14:49:40,037 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 14:49:40,037 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 14:49:40,038 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:49:40,038 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 14:49:45,618 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 14:49:45,618 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 14:49:45,618 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 15:41:04,106 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 15:41:04,107 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 15:41:04,108 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 15:41:04,109 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 15:41:04,109 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 15:41:04,109 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 15:41:04,109 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 15:41:04,109 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 15:41:04,109 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 15:41:04,109 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 15:42:17,147 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 15:42:17,147 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 15:42:17,149 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 15:42:17,149 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 15:42:17,149 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 15:42:17,149 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 15:42:17,150 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 15:42:17,150 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 15:42:17,150 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 15:42:17,150 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 15:42:18,258 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 15:42:18,258 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 15:42:18,258 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 15:42:18,259 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 15:42:18,259 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 15:42:18,259 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 15:44:15,854 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-15 15:44:15,855 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-15 15:44:15,855 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-15 15:44:15,855 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-15 15:44:15,855 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-15 15:44:15,855 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-15 15:44:15,856 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-15 15:44:15,856 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-15 15:44:15,856 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 15:44:15,856 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 15:44:17,981 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-15 15:44:17,981 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-15 15:44:17,982 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-15 15:44:17,982 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-15 15:44:17,982 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-15 15:44:17,982 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-15 15:45:01,637 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-15 15:45:01,638 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-15 15:45:01,638 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-15 15:45:01,638 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-15 15:45:01,639 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-15 15:45:01,639 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-15 15:45:01,639 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-15 15:45:01,639 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-15 15:45:01,639 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-15 15:45:01,640 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-15 15:45:04,908 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-15 15:45:04,908 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-15 15:45:04,908 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-15 15:45:04,909 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-15 15:45:04,909 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-15 15:45:04,909 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-15 16:04:31,676 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-15 16:04:31,676 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-15 16:04:31,677 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-15 16:04:31,677 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-15 16:04:31,678 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-15 16:04:31,678 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-15 16:04:31,678 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-15 16:04:31,678 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-15 16:04:31,678 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-15 16:04:31,678 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-15 16:04:34,505 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-15 16:04:34,505 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-15 16:04:34,505 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-15 16:04:34,506 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-15 16:04:34,506 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-15 16:04:34,506 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-15 16:10:33,235 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-15 16:11:49,986 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-15 16:13:03,441 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-15 16:15:26,388 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-15 16:49:08,588 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-15 16:52:08,437 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-15 16:52:40,263 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-15 16:53:33,081 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-15 16:54:02,531 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-15 16:55:01,883 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-15 16:55:43,000 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT

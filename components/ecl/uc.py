@@ -13,7 +13,7 @@ import time
 import atexit
 
 #Specific imports :
-from robotBasics import constants as CONSTANTS
+from robotBasics.constants import ports as PORTS
 from robotBasics import sockets as SOCKETS
 
 
@@ -25,7 +25,7 @@ def frontal_distance_cb(data, args):
 #### CLIENTS CONNECTION :
 
 #Creating the TCP instances
-CONNECTION_SENSOR = SOCKETS.tcp.Client.Client(CONSTANTS.ports.FL["us"])
+CONNECTION_SENSOR = SOCKETS.tcp.Client.Client(PORTS.FL["us"])
 
 #We'll send small signed integers (-100 -> 100% of thrust / steering radius)
 CONNECTION_SENSOR.set_sending_datagram(['BOOL'])
@@ -40,7 +40,7 @@ CONNECTION_SENSOR.set_up_connection()
 
 
 #Creating the TCP instance
-SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["uc"])
+SERVER = SOCKETS.tcp.Server.Server(PORTS.ECL["uc"])
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 

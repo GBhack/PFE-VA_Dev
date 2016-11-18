@@ -11,34 +11,54 @@
 #Standard imports :
 import atexit
 
-#Specific imports :
-import robotBasics as RB
+###Specific imports :
+##robotBasics:
+#Constants:
+from robotBasics.constants import gpiodef as GPIODEF
+from robotBasics.constants import ports as PORTS
+#Classes & Methods:
+from robotBasics import sockets as SOCKETS
+from robotBasics.logger import logger as LOGGER
+##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
+
+
+####################################################
+#               Simulator setup                    #
+####################################################
+
+PWM.pin_association(GPIODEF.ENGINES["left"]["PWM"], 'left motor\'s PWM')
+PWM.pin_association(GPIODEF.ENGINES["right"]["PWM"], 'right motor\'s PWM')
+GPIO.pin_association(GPIODEF.ENGINES["left"]["forward"], 'left motor\'s forward pin')
+GPIO.pin_association(GPIODEF.ENGINES["right"]["forward"], 'right motor\'s forward pin')
+GPIO.pin_association(GPIODEF.ENGINES["left"]["backward"], 'left motor\'s backward pin')
+GPIO.pin_association(GPIODEF.ENGINES["right"]["backward"], 'right motor\'s backward pin')
+GPIO.setup_behavior('print')
+PWM.setup_behavior('print')
 
 ###########################################################################
 #                           I/O Initialization :                          #
 ###########################################################################
 
-#Documentation : https://learn.adafruit.com/setting-up-io-python-library-on-beaglebone-black/pwm
-MOTOR_LEFT = RB.constants.gpiodef.ENGINES["left"]
-MOTOR_RIGHT = RB.constants.gpiodef.ENGINES["right"]
+MOTOR_LEFT = GPIODEF.ENGINES["left"]
+MOTOR_RIGHT = GPIODEF.ENGINES["right"]
 
 #Start PWM with a 0% duty cycle
 PWM.start(MOTOR_LEFT["PWM"], 0)
 PWM.start(MOTOR_RIGHT["PWM"], 0)
 
 
-#Declare motor enabling pins
-########### NOTE ############
-# To go forward  : set forward  pin to 1 and backward pin to 0
-# To go backward : set backward pin to 1 and forward  pin to 0
+#Declare motor enabling pins as outputs
 GPIO.setup(MOTOR_LEFT["forward"], GPIO.OUT)
 GPIO.setup(MOTOR_RIGHT["forward"], GPIO.OUT)
 GPIO.setup(MOTOR_LEFT["backward"], GPIO.OUT)
 GPIO.setup(MOTOR_RIGHT["backward"], GPIO.OUT)
 
-#Set emabeling pins to LOW
+#Set enabeling pins to LOW
+########### NOTE ############
+# To go forward  : set forward  pin to 1 and backward pin to 0
+# To go backward : set backward pin to 1 and forward  pin to 0
 GPIO.output(MOTOR_LEFT["forward"], GPIO.LOW)
 GPIO.output(MOTOR_RIGHT["forward"], GPIO.LOW)
 GPIO.output(MOTOR_LEFT["backward"], GPIO.LOW)
@@ -48,64 +68,53 @@ GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
 #                     Functions/Callbacks definition :                    #
 ###########################################################################
 
-def set_pwm_motor_left_cb(data, args):
+def set_pwm_cb(data, args):
     """
-        Callback function for left motor :
+        Callback function motor controlling:
         When instructions are updated through a request to the
         server, deduces and apply the corresponding motor configuration
     """
 
-    assert (data), "No data"
     dutyCycle = data[0]
-    assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
-    #Positive duty cycle = go forward
-    if dutyCycle >= 0:
-        GPIO.output(MOTOR_LEFT["backward"], GPIO.LOW)
-        GPIO.output(MOTOR_LEFT["forward"], GPIO.HIGH)
-    #Negative duty cycle = go backward
+    if dutyCycle >= -100 and dutyCycle <= 100:
+        message = 'Setting the '+args["name"]+' motor to go '
+        #Positive duty cycle = go forward
+        if dutyCycle >= 0:
+            message += 'forward '
+
+            GPIO.output(args["gpio"]["backward"], GPIO.LOW)
+            GPIO.output(args["gpio"]["forward"], GPIO.HIGH)
+        #Negative duty cycle = go backward
+        else:
+            message += 'backward '
+
+            GPIO.output(args["gpio"]["forward"], GPIO.LOW)
+            GPIO.output(args["gpio"]["backward"], GPIO.HIGH)
+
+        message += 'with a PWM of '+str(abs(dutyCycle))
+        #Setting the duty cycle
+        PWM.set_duty_cycle(args["gpio"]["PWM"], abs(dutyCycle))
+
+        #Inform the client that its request have been fulfilled.
+        args["connection"].send_to_clients([True])
+
+        LOGGER.debug(message)
     else:
-        GPIO.output(MOTOR_LEFT["forward"], GPIO.LOW)
-        GPIO.output(MOTOR_LEFT["backward"], GPIO.HIGH)
-    #Setting the duty cycle
-    PWM.set_duty_cycle(MOTOR_LEFT["PWM"], abs(dutyCycle))
-
-    #Inform the client that is request have been fulfilled.
-    args["connection"].send_to_clients([True])
-
-def set_pwm_motor_right_cb(data, args):
-    """
-        Callback function for right motor :
-        When instructions are updated through a request to the
-        server, deduces and apply the corresponding motor configuration
-    """
-    assert (data), "No data"
-    dutyCycle = data[0]
-    assert (dutyCycle >= -100 and dutyCycle <= 100), "PWM must be set between -100 and 100"
-    #Positive duty cycle = go forward
-    if dutyCycle >= 0:
-        GPIO.output(MOTOR_RIGHT["backward"], GPIO.LOW)
-        GPIO.output(MOTOR_RIGHT["forward"], GPIO.HIGH)
-    #Negative duty cycle = go backward
-    else:
-        GPIO.output(MOTOR_RIGHT["forward"], GPIO.LOW)
-        GPIO.output(MOTOR_RIGHT["backward"], GPIO.HIGH)
-    #Setting the duty cycle
-    PWM.set_duty_cycle(MOTOR_RIGHT["PWM"], abs(dutyCycle))
-
-    #Inform the client that is request have been fulfilled.
-    args["connection"].send_to_clients([True])
+        LOGGER.warning("PWM must be set between -100 and 100")
+        LOGGER.debug("Incoherent command received. Keeping "+args["name"]+" motor in previous state.")
+        #Inform the client that its request could not be fulfilled.
+        args["connection"].send_to_clients([False])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
 ###########################################################################
 
-SOCKETS = RB.sockets
-
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-CONNECTION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["mot"]["left"])
-CONNECTION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(RB.constants.ports.FL["mot"]["right"])
+CONNECTION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(PORTS.FL["mot"]["left"],LOGGER)
+CONNECTION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(PORTS.FL["mot"]["right"],LOGGER)
+
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CONNECTION_MOTOR_LEFT.close)
 atexit.register(CONNECTION_MOTOR_RIGHT.close)
@@ -125,13 +134,17 @@ CONNECTION_MOTOR_RIGHT.set_up_connection(600)
 #Arguments object for the callback method
 #We pass the CONNECTION object so that the callback can respond to the request
 ARGUMENTS_MOTOR_LEFT = {
-    "connection" : CONNECTION_MOTOR_LEFT
+    "connection" : CONNECTION_MOTOR_LEFT,
+    "gpio" : MOTOR_LEFT,
+    "name" : "left"
 }
 
 ARGUMENTS_MOTOR_RIGHT = {
-    "connection" : CONNECTION_MOTOR_RIGHT
+    "connection" : CONNECTION_MOTOR_RIGHT,
+    "gpio" : MOTOR_RIGHT,
+    "name" : "right"
 }
 
 #Waiting for requests and redirecting them to the callback method
-CONNECTION_MOTOR_LEFT.listen_to_clients(set_pwm_motor_left_cb, ARGUMENTS_MOTOR_LEFT)
-CONNECTION_MOTOR_RIGHT.listen_to_clients(set_pwm_motor_right_cb, ARGUMENTS_MOTOR_RIGHT)
+CONNECTION_MOTOR_LEFT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_LEFT)
+CONNECTION_MOTOR_RIGHT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_RIGHT)
