@@ -18,7 +18,7 @@ import time
 
 #Specific imports :
 from robotBasics.constants.gpiodef import RESET as RESET_GPIO
-from robotBasics.constants.ports import FL as FLPORTS
+from robotBasics.constants.ports import FL as FL_PORTS
 from robotBasics import sockets as SOCKETS
 from robotBasics.logger import logger as LOGGER
 import Adafruit_BBIO.GPIO as GPIO
@@ -59,7 +59,7 @@ def pb_update_cb(data, arg):
 ###########################################################################
 
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(FLPORTS["pb"], LOGGER)
+SERVER = SOCKETS.tcp.Server.Server(FL_PORTS["pb"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 

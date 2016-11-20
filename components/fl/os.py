@@ -16,8 +16,8 @@ import time
 
 
 #Specific imports :
-from robotBasics.constants import gpiodef as GPIODEF
-from robotBasics.constants import ports as PORTS
+from robotBasics.constants.gpiodef import OS as OS_GPIO
+from robotBasics.constants.ports import FL as FL_PORTS
 from robotBasics.constants.misc import OS as MISC
 from robotBasics import sockets as SOCKETS
 from robotBasics.logger import logger as LOGGER
@@ -41,6 +41,17 @@ ADC.setup()
 ###########################################################################
 
 def readSingleSensor(sensor):
+    """
+        Reads the analog value from a specific reflective sensor
+        and returns "True" if this value is higher than the threshold
+        (possible white line) and False in the other case (no white line)
+    
+    Arguments:
+        sensor {string} -- GPIO pin name
+    
+    Returns:
+        Boolean -- line detection status
+    """
     return ADC.read(sensor) > MISC["threshold"]
 
 def read_array_cb(data, arg):
@@ -49,25 +60,31 @@ def read_array_cb(data, arg):
         Triggered when a request is received.
         Responds with a 7 bit array describing the array of
         sensor's state (1 for a line detected, or 0)
+    
+    Arguments:
+        data {array} -- Decoded data directly from the received request
+        arg  -- Reference to a list of predifined arguments (to synchronize with the main thread)
     """
-    array = [0, 0, 0, 0, 0, 0, 0]
+    array = []   #Initialization
+
     for i in range(7):
-        array[i]=int(readSingleSensor(GPIODEF.OS[i]))
+        array.append(int(readSingleSensor(OS_GPIO[i])))
+
     #Responding the request with the button pushing status
     arg["connection"].send_to_clients([array])
 
 
 ###########################################################################
-#                     SERVERS SET UP AND SETTINGS :                   #
+#                     SERVERS SET UP AND SETTINGS :                       #
 ###########################################################################
 
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(PORTS.FL["os"], LOGGER)
+SERVER = SOCKETS.tcp.Server.Server(FL_PORTS["os"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
 #We'll send bool
-SERVER.set_sending_datagram([['BITS', [1,1,1,1,1,1,1]]])
+SERVER.set_sending_datagram([['BITS', [1, 1, 1, 1, 1, 1, 1]]])
 
 #We'll receive booleans (request)
 SERVER.set_receiving_datagram(['BOOL'])
