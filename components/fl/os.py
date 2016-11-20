@@ -6,21 +6,22 @@
     of the seven reflective sensors (1 for white line, or 0)
 """
 
-
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-#Standard imports :
+###Standard imports :
 import atexit
-import time
 
-
-#Specific imports :
+###Specific imports :
+##robotBasics:
+#Constants:
 from robotBasics.constants.gpiodef import OS as OS_GPIO
-from robotBasics.constants.ports import FL as FL_PORTS
+from robotBasics.constants.ports import FL as SERVER_PORTS
 from robotBasics.constants.misc import OS as MISC
+#Classes & Methods:
 from robotBasics import sockets as SOCKETS
 from robotBasics.logger import logger as LOGGER
+##Adafruit_BBIO:
 import Adafruit_BBIO.ADC as ADC
 
 ###########################################################################
@@ -40,7 +41,7 @@ ADC.setup()
 #                     Functions/Callbacks definition :                    #
 ###########################################################################
 
-def readSingleSensor(sensor):
+def read_single_sensor(sensor):
     """
         Reads the analog value from a specific reflective sensor
         and returns "True" if this value is higher than the threshold
@@ -68,7 +69,7 @@ def read_array_cb(data, arg):
     array = []   #Initialization
 
     for i in range(7):
-        array.append(int(readSingleSensor(OS_GPIO[i])))
+        array.append(int(read_single_sensor(OS_GPIO[i])))
 
     #Responding the request with the button pushing status
     arg["connection"].send_to_clients([array])
@@ -78,8 +79,10 @@ def read_array_cb(data, arg):
 #                     SERVERS SET UP AND SETTINGS :                       #
 ###########################################################################
 
+#### SERVER CONNECTION :
+
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(FL_PORTS["os"], LOGGER)
+SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["os"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 

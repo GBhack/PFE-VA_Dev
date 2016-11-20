@@ -26,3 +26,7 @@ LOGGING = {
 OS = {
     "threshold": 1.2
 }
+
+QEC = {
+    "update_freq": 0.25
+}

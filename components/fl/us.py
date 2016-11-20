@@ -7,20 +7,21 @@
 
 """
 
-
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-#Standard imports :
+###Standard imports :
 import atexit
-import time
 
-
-#Specific imports :
+###Specific imports :
+##robotBasics:
+#Constants:
 from robotBasics.constants.gpiodef import SONAR as SONAR_GPIO
-from robotBasics.constants.ports import FL as FL_PORTS
+from robotBasics.constants.ports import FL as SERVER_PORTS
+#Classes & Methods:
 from robotBasics import sockets as SOCKETS
 from robotBasics.logger import logger as LOGGER
+##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 
 ###########################################################################
@@ -65,8 +66,10 @@ def obstacle_detection_cb(data, arg):
 #                     SERVER SET UP AND SETTINGS :                   #
 ###########################################################################
 
+#### SERVER CONNECTION :
+
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(FL_PORTS["us"], LOGGER)
+SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["us"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 

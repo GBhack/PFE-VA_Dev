@@ -21,15 +21,16 @@ FL = {                  # FUNCTIONNAL LEVEL
 }
 
 ECL = {                 # EXECUTION CONTROL LEVEL
-    "gsc":  2000,           # General Sensors Controller (QE and OS)
+    "qec":  2000,           # General Sensors Controller (QE and OS)
+    "osc":  2100,
     "vsc":  {               # Velocity/Speed Controller
-        "velocity": 2100,
-        "radius":   2110
+        "velocity": 2200,
+        "radius":   2210
     },
-    "lc": 2200,             # LED Controller
-    "mc": 2300,             # Mode Controller (Play/Pause/Reset)
-    "ipc": 2400,            # Image Processing Controller
-    "uc": 2500              # Ultrasonic Controller
+    "lc": 2300,             # LED Controller
+    "mc": 2400,             # Mode Controller (Play/Pause/Reset)
+    "ipc": 2500,            # Image Processing Controller
+    "uc": 2600              # Ultrasonic Controller
 }
 
 DL = {                  # DECISION LEVEL

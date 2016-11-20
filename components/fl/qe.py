@@ -11,17 +11,18 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-#Standard imports :
+###Standard imports :
 import atexit
-import time
 
-
-#Specific imports :
-from robotBasics.constants.ports import FL as FL_PORTS
+###Specific imports :
+##robotBasics:
+#Constants:
+from robotBasics.constants.ports import FL as SERVER_PORTS
+#Classes & Methods:
 from robotBasics import sockets as SOCKETS
 from robotBasics.logger import logger as LOGGER
+##Adafruit_BBIO:
 from Adafruit_I2C import Adafruit_I2C
-
 
 #AtTiny  I2Cconnection
 ATCON = Adafruit_I2C(0x04,2)
@@ -51,8 +52,10 @@ def request_cb(data, arg):
 #                     SERVERS SET UP AND SETTINGS :                   #
 ###########################################################################
 
+#### SERVER CONNECTION :
+
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(FL_PORTS["qe"], LOGGER)
+SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["qe"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 

@@ -8,14 +8,14 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-#Standard imports :
+###Standard imports :
 import atexit
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
 from robotBasics.constants import gpiodef as GPIODEF
-from robotBasics.constants import ports as PORTS
+from robotBasics.constants.ports import FL as SERVER_PORTS
 #Classes & Methods:
 from robotBasics import sockets as SOCKETS
 from robotBasics.logger import logger as LOGGER
@@ -23,10 +23,9 @@ from robotBasics.logger import logger as LOGGER
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 
-
-####################################################
-#               Simulator setup                    #
-####################################################
+###########################################################################
+#                             Simulator setup                             #
+###########################################################################
 
 PWM.pin_association(GPIODEF.ENGINES["left"]["PWM"], 'left motor\'s PWM')
 PWM.pin_association(GPIODEF.ENGINES["right"]["PWM"], 'right motor\'s PWM')
@@ -112,8 +111,8 @@ def set_pwm_cb(data, args):
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-CONNECTION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(PORTS.FL["mot"]["left"],LOGGER)
-CONNECTION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(PORTS.FL["mot"]["right"],LOGGER)
+CONNECTION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(SERVER_PORTS["mot"]["left"], LOGGER)
+CONNECTION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(SERVER_PORTS["mot"]["right"], LOGGER)
 
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CONNECTION_MOTOR_LEFT.close)
