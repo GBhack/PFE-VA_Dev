@@ -3,4 +3,3 @@ __pychache__
 **/*.pyc
 **/*.sublime-project
 **/*.sublime-workspace
-/Adafruit_BBIO/
