@@ -26,24 +26,25 @@ import Adafruit_BBIO.GPIO as GPIO
 #                             Simulator setup                             #
 ###########################################################################
 
-GPIO.pin_association(LEDS["left"], 'left blinker')
-GPIO.pin_association(LEDS["right"], 'right blinker')
-GPIO.pin_association(LEDS["stop"], 'brake light')
+GPIO.pin_association(LEDS[0], 'left blinker')
+GPIO.pin_association(LEDS[1], 'right blinker')
+GPIO.pin_association(LEDS[2], 'brake light')
+GPIO.setup_behavior('print')
 
 ###########################################################################
 #                           I/O Initialization :                          #
 ###########################################################################
 
 #Declare motor enabling pins as outputs
-GPIO.setup(LEDS["left"], GPIO.OUT)
-GPIO.setup(LEDS["right"], GPIO.OUT)
-GPIO.setup(LEDS["stop"], GPIO.OUT)
+GPIO.setup(LEDS[0], GPIO.OUT)
+GPIO.setup(LEDS[1], GPIO.OUT)
+GPIO.setup(LEDS[2], GPIO.OUT)
 
 #Set enabeling pins to LOW
 ########### NOTE ############
-GPIO.output(LEDS["left"], GPIO.LOW)
-GPIO.output(LEDS["right"], GPIO.LOW)
-GPIO.output(LEDS["stop"], GPIO.LOW)
+GPIO.output(LEDS[0], GPIO.LOW)
+GPIO.output(LEDS[1], GPIO.LOW)
+GPIO.output(LEDS[2], GPIO.LOW)
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -56,7 +57,7 @@ def set_leds_cb(data, args):
         server, deduces and apply the corresponding motor configuration
     """
     for i, led in enumerate(LEDS):
-        if data[i]:
+        if data[0][i]:
             GPIO.output(led, GPIO.HIGH)
         else:
             GPIO.output(led, GPIO.LOW)
@@ -69,7 +70,7 @@ def set_leds_cb(data, args):
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-LEDS_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["leds"], LOGGER)
+LEDS_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["led"], LOGGER)
 
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(LEDS_SERVER.close)

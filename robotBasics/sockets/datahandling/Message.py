@@ -61,7 +61,6 @@ class Message(object):
         """
         #We create a byte array to store the result :
         _output = bytes()
-
         #For each packet composing the message :
         for index, packet in enumerate(self.packets):
             #If the packet contains user's data :

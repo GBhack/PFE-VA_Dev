@@ -9,10 +9,10 @@
 import time
 import robotBasics as RB
 import atexit
-
+from robotBasics.logger import logger as LOGGER
 SOCKETS = RB.sockets
 
-TCP = SOCKETS.tcp.Client.Client(3110)
+TCP = SOCKETS.tcp.Client.Client(3110, LOGGER)
 
 atexit.register(TCP.close)
 

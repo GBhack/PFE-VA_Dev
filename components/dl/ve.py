@@ -9,30 +9,18 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-#Standard imports :
-import time
+###Standard imports :
 import atexit
-import logging
+import time
 
-#Specific imports :
-from robotBasics import constants as CONSTANTS
+###Specific imports :
+##robotBasics:
+#Constants:
+from robotBasics.constants.ports import ECL as CLIENTS_PORTS
+from robotBasics.constants.ports import DL as SERVER_PORTS
+#Classes & Methods:
 from robotBasics import sockets as SOCKETS
-
-
-
-####LOGGER :
-formatter = logging.Formatter("%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
-
-handler = logging.FileHandler("ve.log", mode="a", encoding="utf-8")
-
-handler.setFormatter(formatter)
-
-handler.setLevel(logging.DEBUG)
-
-logger = logging.getLogger("ve.py")
-logger.setLevel(logging.DEBUG)
-logger.addHandler(handler)
-
+from robotBasics.logger import logger as LOGGER
 
 VELOCITY_STATE = {
     "busy": False,
@@ -73,7 +61,7 @@ def velocity_handling_cb(data, args):
 #### CLIENTS CONNECTION :
 
 #
-VELOCITY_CLIENT = SOCKETS.tcp.Client.Client(CONSTANTS.ports.ECL["vsc"]["velocity"])
+VELOCITY_CLIENT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["vsc"]["velocity"], LOGGER)
 
 #We'll send booleans (request)
 VELOCITY_CLIENT.set_sending_datagram(['SMALL_INT_SIGNED'])
@@ -86,7 +74,7 @@ VELOCITY_CLIENT.set_up_connection()
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-OA_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.DL["ve"]["oa"])
+OA_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["ve"]["oa"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(OA_SERVER.close)
 
@@ -99,7 +87,7 @@ OA_SERVER.set_up_connection(10)
 ## Velocity Server :
 
 #Creating the TCP instance
-VELOCITY_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.DL["ve"]["velocity"])
+VELOCITY_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["ve"]["velocity"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(VELOCITY_SERVER.close)
 
@@ -139,6 +127,4 @@ while alive:
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
     print('Required velocity : ' + str(desiredVelocity))
     print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
-    #logger.debug('Required velocity : ' + str(desiredVelocity))
-    #logger.debug('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     time.sleep(0.25)

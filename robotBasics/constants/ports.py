@@ -14,7 +14,7 @@ FL = {                  # FUNCTIONNAL LEVEL
         "left":   1200,
         "right":  1210
     },
-    "leds":   1300,         # LEDs
+    "led":   1300,         # LEDs
     "pb":  1400,            # PushButton
     "ip": 1500,             # Image Processing
     "us": 1600              # Ultrasonic Sensor
@@ -27,18 +27,17 @@ ECL = {                 # EXECUTION CONTROL LEVEL
         "velocity": 2200,
         "radius":   2210
     },
-    "lc": 2300,             # LED Controller
+    "ledc": 2300,             # LED Controller
     "mc": 2400,             # Mode Controller (Play/Pause/Reset)
     "ipc": 2500,            # Image Processing Controller
-    "uc": 2600              # Ultrasonic Controller
+    "usc": 2600             # Ultrasonic Controller
 }
 
 DL = {                  # DECISION LEVEL
     "pe":  3000,            # Path Executor
     "ve":  {                # Velocity Executor
         "oa": 3100,         # Obstacle Avoidance
-        "velocity": 3110,   
-        "radius":   3120
+        "velocity": 3110
     },          
     "pf":   3300,           # Path Following
     "vp":   3400,           # Velocity Planning

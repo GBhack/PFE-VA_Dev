@@ -9,15 +9,18 @@
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
-#Standard imports :
-import time
+###Standard imports :
 import atexit
+import time
 
-#Specific imports :
-import robotBasics as RB
-
-CONSTANTS = RB.constants
-SOCKETS = RB.sockets
+###Specific imports :
+##robotBasics:
+#Constants:
+from robotBasics.constants.ports import FL as CLIENTS_PORTS
+from robotBasics.constants.ports import ECL as SERVER_PORTS
+#Classes & Methods:
+from robotBasics import sockets as SOCKETS
+from robotBasics.logger import logger as LOGGER
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -105,42 +108,42 @@ def apply_modifications(args):
 
 #### CLIENTS CONNECTION :
 
-#Creating the TCP instances
-CONNECTION_MOTOR_LEFT = SOCKETS.tcp.Client.Client(RB.constants.ports.FL["mot"]["left"])
-CONNECTION_MOTOR_RIGHT = SOCKETS.tcp.Client.Client(RB.constants.ports.FL["mot"]["right"])
+#Creating the connection object
+CLIENT_LEFT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["mot"]["left"], LOGGER)
+CLIENT_RIGHT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["mot"]["right"], LOGGER)
 
-#We'll send small signed integers (-100 -> 100% of thrust / steering radius)
-CONNECTION_MOTOR_LEFT.set_sending_datagram(['SMALL_INT_SIGNED'])
-CONNECTION_MOTOR_RIGHT.set_sending_datagram(['SMALL_INT_SIGNED'])
+#We'll send small signed integers (-100 -> 100% of thrust)
+CLIENT_LEFT.set_sending_datagram(['SMALL_INT_SIGNED'])
+CLIENT_RIGHT.set_sending_datagram(['SMALL_INT_SIGNED'])
 
 #We'll receive booleans (status of the operation)
-CONNECTION_MOTOR_LEFT.set_receiving_datagram(['BOOL'])
-CONNECTION_MOTOR_RIGHT.set_receiving_datagram(['BOOL'])
+CLIENT_LEFT.set_receiving_datagram(['BOOL'])
+CLIENT_RIGHT.set_receiving_datagram(['BOOL'])
 
 #Opening the connection
-CONNECTION_MOTOR_LEFT.set_up_connection()
-CONNECTION_MOTOR_RIGHT.set_up_connection()
+CLIENT_LEFT.set_up_connection()
+CLIENT_RIGHT.set_up_connection()
 
 #### SERVER CONNECTION :
 
 ## Velocity Server :
 
-#Creating the TCP instance
-VELOCITY_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["velocity"])
+#Creating the connection object
+VELOCITY_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["vsc"]["velocity"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(VELOCITY_SERVER.close)
 
-#We'll receive and send small integers (velocity in percent of nominal velocity)
+#We'll receive and send small integers (% of max velocity)
 VELOCITY_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
 VELOCITY_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
 
 #Opening the connection
-VELOCITY_SERVER.set_up_connection(600)
+VELOCITY_SERVER.set_up_connection()
 
 ## Steering Server :
 
-#Creating the TCP instance
-STEERING_SERVER = SOCKETS.tcp.Server.Server(CONSTANTS.ports.ECL["vsc"]["radius"])
+#Creating the connection object
+STEERING_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["vsc"]["radius"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(STEERING_SERVER.close)
 
@@ -149,7 +152,7 @@ STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
 STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
 
 #Opening the connection
-STEERING_SERVER.set_up_connection(600)
+STEERING_SERVER.set_up_connection()
 
 ## Arguments :
 
@@ -164,16 +167,16 @@ CURRENT_STATE = {
 ARGUMENTS_VELOCITY = {
     "currentState" : CURRENT_STATE,                 #To "Mix" the 
     "velocityConnection": VELOCITY_SERVER,          #To respond to the request
-    "leftMotorConnection": CONNECTION_MOTOR_LEFT,
-    "rightMotorConnection": CONNECTION_MOTOR_RIGHT
+    "leftMotorConnection": CLIENT_LEFT,
+    "rightMotorConnection": CLIENT_RIGHT
 }
 
 #Argument to be passed to the steering callback method
 ARGUMENTS_STEERING = {
     "currentState" : CURRENT_STATE,
     "steeringConnection": STEERING_SERVER,
-    "leftMotorConnection": CONNECTION_MOTOR_LEFT,
-    "rightMotorConnection": CONNECTION_MOTOR_RIGHT
+    "leftMotorConnection": CLIENT_LEFT,
+    "rightMotorConnection": CLIENT_RIGHT
 }
 
 #Waiting for requests and redirecting them to the callback methods

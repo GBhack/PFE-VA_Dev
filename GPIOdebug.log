@@ -1,0 +1,259 @@
+[2016-11-21 14:35:14,845 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:39:07,928 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:41:27,711 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:43:45,098 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:44:38,874 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:47:59,692 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:48:44,152 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 14:50:07,838 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_13 (obstacle detection status) setup as INPUT
+[2016-11-21 15:15:07,461 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-21 15:15:07,463 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-21 15:15:07,463 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-21 15:15:07,464 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-21 15:15:07,464 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-21 15:15:07,464 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-21 15:15:07,465 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-21 15:15:07,465 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-21 15:15:07,465 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:15:07,466 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:16:46,794 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-21 15:16:46,796 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-21 15:16:46,796 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-21 15:16:46,797 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-21 15:16:46,797 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-21 15:16:46,797 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-21 15:16:46,798 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-21 15:16:46,798 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-21 15:16:46,798 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:16:46,799 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:28,686 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:28,687 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:28,687 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:28,688 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 5 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:28,689 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:28,690 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 5 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:35,270 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:35,270 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:35,271 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:35,272 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:35,273 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:35,274 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:44,795 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:44,795 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:44,796 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:44,800 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:44,802 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 15 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:44,803 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 15 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:46,619 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:46,620 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:46,620 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 20 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:46,619 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:46,622 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:46,622 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 20 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:48,460 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:48,460 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:48,461 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:48,461 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 25 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:48,462 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:48,464 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 25 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:49,880 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:49,881 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:49,881 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:49,884 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:49,885 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 30 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:49,886 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 30 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:51,053 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:51,053 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:51,054 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:51,055 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:51,055 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 35 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:51,056 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 35 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:53,060 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:53,061 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:53,061 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:53,063 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 45 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:53,063 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:53,064 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 45 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:17:54,249 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:54,250 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-21 15:17:54,251 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:54,251 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-21 15:17:54,252 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 50 on PIN P9_16 (left motor's PWM)
+[2016-11-21 15:17:54,252 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 50 on PIN P9_14 (right motor's PWM)
+[2016-11-21 15:35:19,962 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:35:19,962 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:35:19,963 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_29 (brake light) setup as OUTPUT
+[2016-11-21 15:35:19,963 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:35:19,963 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:35:19,964 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29 (brake light)'s state changed to LOW
+[2016-11-21 15:36:30,500 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:36:30,500 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:36:30,501 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_29 (brake light) setup as OUTPUT
+[2016-11-21 15:36:30,501 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:36:30,501 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:36:30,502 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29 (brake light)'s state changed to LOW
+[2016-11-21 15:44:25,520 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:44:25,521 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:44:25,521 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 15:44:25,522 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:44:25,522 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:44:25,522 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 15:45:54,849 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:45:54,850 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:45:54,851 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 15:45:54,851 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:45:54,851 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:45:54,851 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 15:48:53,007 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:48:53,008 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:48:53,009 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 15:48:53,009 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:48:53,009 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:48:53,010 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 15:49:55,299 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:49:55,299 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:49:55,300 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 15:49:55,300 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:49:55,300 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:49:55,301 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 15:57:00,397 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 15:57:00,398 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 15:57:00,398 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 15:57:00,399 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 15:57:00,399 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 15:57:00,399 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:01:37,884 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:01:37,885 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:01:37,885 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:01:37,885 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:01:37,886 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:01:37,886 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:04:07,865 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:04:07,865 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:04:07,866 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:04:07,866 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:04:07,866 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:04:07,867 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:05:07,875 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:05:07,875 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:05:07,876 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:05:07,876 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:05:07,876 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:05:07,877 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:06:08,217 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:06:08,218 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:06:08,218 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:06:08,219 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:06:08,219 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:06:08,219 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:07:10,860 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:07:10,861 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:07:10,865 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:07:10,865 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:07:10,865 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:07:10,866 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:08:38,479 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:08:38,479 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:08:38,480 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:08:38,480 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:08:38,480 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:08:38,481 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:08:42,718 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:10:18,594 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:10:18,594 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:10:18,595 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:10:18,595 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:10:18,595 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:10:18,596 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:10:20,023 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:10:20,024 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:10:20,025 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:10:20,025 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:20,356 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:13:20,357 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:13:20,357 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:13:20,358 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:20,358 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:20,359 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:24,756 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:13:24,757 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:24,758 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:24,758 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:25,760 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:13:25,761 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:25,762 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to HIGH
+[2016-11-21 16:13:25,763 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:29,775 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:13:29,776 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:29,776 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:29,777 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:30,277 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:30,277 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:30,278 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:30,279 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:31,782 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:31,783 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:31,783 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:31,784 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:32,786 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:32,787 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:13:32,788 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:32,788 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:33,288 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:33,289 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:33,289 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:33,290 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:33,790 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:13:33,791 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:33,792 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:33,792 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:34,292 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:34,293 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:34,294 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:34,295 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:34,795 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:34,796 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:34,853 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:34,854 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:35,297 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:35,297 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:35,298 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to HIGH
+[2016-11-21 16:13:35,298 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:13:35,799 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:35,800 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:35,800 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to HIGH
+[2016-11-21 16:13:35,801 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:36,301 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:36,302 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:13:36,303 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:36,303 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:36,803 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:13:36,804 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:13:36,805 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:36,805 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:13:37,807 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:13:37,808 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:13:37,809 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:13:37,810 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to HIGH
+[2016-11-21 16:22:45,371 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker) setup as OUTPUT
+[2016-11-21 16:22:45,372 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker) setup as OUTPUT
+[2016-11-21 16:22:45,375 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light) setup as OUTPUT
+[2016-11-21 16:22:45,376 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:22:45,376 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:22:45,376 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:22:49,742 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:22:49,743 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to LOW
+[2016-11-21 16:22:49,743 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:22:49,744 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:22:50,245 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to HIGH
+[2016-11-21 16:22:50,246 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:22:50,247 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:22:50,248 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:22:51,249 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:22:51,251 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:22:51,252 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to LOW
+[2016-11-21 16:22:51,253 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW
+[2016-11-21 16:22:51,751 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_33 (left blinker)'s state changed to LOW
+[2016-11-21 16:22:51,752 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_27 (right blinker)'s state changed to HIGH
+[2016-11-21 16:22:51,753 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_31 (brake light)'s state changed to HIGH
+[2016-11-21 16:22:51,753 : output - GPIO @ GPIO.py (DEBUG)] PIN P8_29's state changed to LOW

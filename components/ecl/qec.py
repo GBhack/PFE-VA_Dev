@@ -7,13 +7,12 @@
 
 """
 
-
 #!/usr/bin/python3.5
 #-*- coding: utf-8 -*-
 
 ###Standard imports :
 import atexit
-from time import time
+import time
 
 ###Specific imports :
 ##robotBasics:
@@ -39,9 +38,11 @@ def request_cb(data, arg):
     """
 
     if time - arg["last_update"] > MISC_CONST["update_freq"]:
-        
+        arg["client"].send_data([True])
+        arg["distance"] = 0.0055*arg["client"].receive_data()[0]
+
     #Responding the request with the obstacle presence status
-    arg["connection"].send_to_clients([int(ATCON.readU16(0))])
+    arg["server"].send_to_clients([arg["distance"]])
 
 
 ###########################################################################
@@ -55,7 +56,7 @@ SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["qec"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
-#We'll send medium integer unsigned (number of ticks)
+#We'll send floats (travelled distance in meters)
 SERVER.set_sending_datagram(['FLOAT'])
 
 #We'll receive booleans (request)
@@ -64,11 +65,28 @@ SERVER.set_receiving_datagram(['BOOL'])
 #Opening the connection
 SERVER.set_up_connection()
 
+### CLIENTS CONNECTION :
+
+#Creating the connection object
+CLIENT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["qe"], LOGGER)
+#Registering the close method to be executed at exit (clean deconnection)
+atexit.register(CLIENT.close)
+
+#We'll send booleans (request)
+CLIENT.set_sending_datagram(['BOOL'])
+#We'll receive medium integer unsigned (number of ticks)
+CLIENT.set_receiving_datagram(['MEDIUM_INT_UNSIGNED'])
+
+#Opening the connection
+CLIENT.set_up_connection()
+
 #Arguments object for the callback method
 #We pass the SERVER object so that the callback can respond to the request
 ARGUMENTS = {
-    "connection" : SERVER,
-    "last_update": 0
+    "server" : SERVER,
+    "client": CLIENT,
+    "last_update": 0,
+    "distance": 0
 }
 
 #Waiting for requests and linking them to the callback method

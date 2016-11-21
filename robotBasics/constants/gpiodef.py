@@ -25,8 +25,8 @@ ENGINES = {
 LEDS = [
     "P8_33",    #LEFT blinker
     "P8_27",    #RIGHT blinker
-    "P8_29",    #STOP light
-    "P8_31"     #STATUS led
+    "P8_31",    #STOP light
+    "P8_29"     #STATUS led
 ]
 
 #Sonar-related I/O :
