@@ -22,10 +22,10 @@ import Adafruit_BBIO.GPIO as GPIO
 #               Simulator setup                    #
 ####################################################
 
-GPIO.pin_association(GPIODEF.LEDS["left"], 'left blinker')
-GPIO.pin_association(GPIODEF.LEDS["right"], 'right blinker')
-GPIO.pin_association(GPIODEF.LEDS["stop"], 'stop light')
-GPIO.pin_association(GPIODEF.LEDS["status"], 'status LED')
+GPIO.pin_association(GPIODEF.LEDS[0], 'left blinker')
+GPIO.pin_association(GPIODEF.LEDS[1], 'right blinker')
+GPIO.pin_association(GPIODEF.LEDS[2], 'stop light')
+GPIO.pin_association(GPIODEF.LEDS[3], 'status LED')
 GPIO.setup_behavior('print')
 """
 
@@ -33,28 +33,28 @@ GPIO.setup_behavior('print')
 #                     I/O setup                    #
 ####################################################
 
-GPIO.setup(GPIODEF.LEDS["left"], GPIO.OUT)
-GPIO.setup(GPIODEF.LEDS["right"], GPIO.OUT)
-GPIO.setup(GPIODEF.LEDS["stop"], GPIO.OUT)
-GPIO.setup(GPIODEF.LEDS["status"], GPIO.OUT)
+GPIO.setup(GPIODEF.LEDS[0], GPIO.OUT)
+GPIO.setup(GPIODEF.LEDS[1], GPIO.OUT)
+GPIO.setup(GPIODEF.LEDS[2], GPIO.OUT)
+GPIO.setup(GPIODEF.LEDS[3], GPIO.OUT)
 
-GPIO.output(GPIODEF.LEDS["left"], GPIO.HIGH)
-GPIO.output(GPIODEF.LEDS["right"], GPIO.HIGH)
-GPIO.output(GPIODEF.LEDS["stop"], GPIO.HIGH)
-GPIO.output(GPIODEF.LEDS["status"], GPIO.HIGH)
+GPIO.output(GPIODEF.LEDS[0], GPIO.HIGH)
+GPIO.output(GPIODEF.LEDS[1], GPIO.HIGH)
+GPIO.output(GPIODEF.LEDS[2], GPIO.HIGH)
+GPIO.output(GPIODEF.LEDS[3], GPIO.HIGH)
 
 ####################################################
 #                   Main script                    #
 ####################################################
 
 while True:
-    GPIO.output(GPIODEF.LEDS["left"], GPIO.HIGH)
-    GPIO.output(GPIODEF.LEDS["right"], GPIO.HIGH)
-    GPIO.output(GPIODEF.LEDS["stop"], GPIO.HIGH)
-    GPIO.output(GPIODEF.LEDS["status"], GPIO.HIGH)
+    GPIO.output(GPIODEF.LEDS[0], GPIO.HIGH)
+    GPIO.output(GPIODEF.LEDS[1], GPIO.HIGH)
+    GPIO.output(GPIODEF.LEDS[2], GPIO.HIGH)
+    GPIO.output(GPIODEF.LEDS[3], GPIO.HIGH)
     time.sleep(0.5)
-    GPIO.output(GPIODEF.LEDS["left"], GPIO.LOW)
-    GPIO.output(GPIODEF.LEDS["right"], GPIO.LOW)
-    GPIO.output(GPIODEF.LEDS["stop"], GPIO.LOW)
-    GPIO.output(GPIODEF.LEDS["status"], GPIO.LOW)
+    GPIO.output(GPIODEF.LEDS[0], GPIO.LOW)
+    GPIO.output(GPIODEF.LEDS[1], GPIO.LOW)
+    GPIO.output(GPIODEF.LEDS[2], GPIO.LOW)
+    GPIO.output(GPIODEF.LEDS[3], GPIO.LOW)
     time.sleep(0.5)
