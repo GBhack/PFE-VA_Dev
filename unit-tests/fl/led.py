@@ -17,6 +17,7 @@ import time
 from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.GPIO as GPIO
 
+"""
 ####################################################
 #               Simulator setup                    #
 ####################################################
@@ -26,6 +27,7 @@ GPIO.pin_association(GPIODEF.LEDS["right"], 'right blinker')
 GPIO.pin_association(GPIODEF.LEDS["stop"], 'stop light')
 GPIO.pin_association(GPIODEF.LEDS["status"], 'status LED')
 GPIO.setup_behavior('print')
+"""
 
 ####################################################
 #                     I/O setup                    #

@@ -24,11 +24,13 @@ from robotBasics.logger import logger as LOGGER
 ##Adafruit_BBIO:
 import Adafruit_BBIO.ADC as ADC
 
+"""
 ###########################################################################
 #                           Simulator setup                               #
 ###########################################################################
 
 ADC.setup_behavior('print')
+"""
 
 ###########################################################################
 #                           I/O Initialization :                          #

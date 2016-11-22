@@ -22,6 +22,7 @@ from robotBasics.logger import logger as LOGGER
 ##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 
+"""
 ###########################################################################
 #                             Simulator setup                             #
 ###########################################################################
@@ -30,6 +31,7 @@ GPIO.pin_association(LEDS[0], 'left blinker')
 GPIO.pin_association(LEDS[1], 'right blinker')
 GPIO.pin_association(LEDS[2], 'brake light')
 GPIO.setup_behavior('print')
+"""
 
 ###########################################################################
 #                           I/O Initialization :                          #

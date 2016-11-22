@@ -27,11 +27,13 @@ from Adafruit_I2C import Adafruit_I2C
 #AtTiny  I2Cconnection
 ATCON = Adafruit_I2C(0x04,2)
 
+"""
 ###########################################################################
 #                           Simulator setup                               #
 ###########################################################################
 
 ATCON.setup_behavior('print')
+"""
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #

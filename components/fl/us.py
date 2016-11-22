@@ -24,12 +24,14 @@ from robotBasics.logger import logger as LOGGER
 ##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 
+"""
 ###########################################################################
 #                           Simulator setup                               #
 ###########################################################################
 
 GPIO.pin_association(SONAR_GPIO["obstacle"], 'obstacle detection status')
 GPIO.setup_behavior('print')
+"""
 
 ###########################################################################
 #                           I/O Initialization :                          #

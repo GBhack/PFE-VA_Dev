@@ -19,7 +19,7 @@ import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 
 
-
+"""
 ####################################################
 #               Simulator setup                    #
 ####################################################
@@ -32,6 +32,7 @@ PWM.pin_association(GPIODEF.ENGINES["left"]["backward"], 'left motor\'s backward
 PWM.pin_association(GPIODEF.ENGINES["right"]["backward"], 'right motor\'s backward pin')
 GPIO.setup_behavior('print')
 PWM.setup_behavior('print')
+"""
 
 ####################################################
 #                     I/O setup                    #

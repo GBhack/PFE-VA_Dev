@@ -26,12 +26,14 @@ from robotBasics.logger import logger as LOGGER
 ##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 
+"""
 ###########################################################################
 #                           Simulator setup                               #
 ###########################################################################
 
 GPIO.pin_association(RESET_GPIO, 'pushbutton\'s state')
 GPIO.setup_behavior('print')
+"""
 
 ###########################################################################
 #                           I/O Initialization :                          #
