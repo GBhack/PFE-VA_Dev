@@ -50,7 +50,7 @@ QE = {
     }
 }
 
-PB = {
+US = {
     "port": 49250,
     "datagrams": {
         "clientToServer": ['BOOL'],
@@ -65,5 +65,65 @@ LEDC = {
     "datagrams": {
         "clientToServer": [['BITS', [2, 1]]],
         "serverToClient": ["BOOL"]
+    }
+}
+
+PBC = {
+    "port": 49310,
+    "datagrams": {
+        "clientToServer": ['BOOL'],
+        "serverToClient": ['BOOL']
+    }
+}
+
+QE = {
+    "port": 49320,
+    "datagrams": {
+        "clientToServer": ['BOOL'],
+        "serverToClient": ['FLOAT']
+    }
+}
+
+USC = {
+    "port": 49330,
+    "datagrams": {
+        "clientToServer": ['BOOL'],
+        "serverToClient": ['BOOL']
+    }
+}
+
+VSC = {
+    "velocity": {
+        "port": 49340,
+        "datagrams": {
+            "clientToServer": ['SMALL_INT_SIGNED'],
+            "serverToClient": ['SMALL_INT_SIGNED']
+        }
+    },
+    "steering": {
+        "port": 49341,
+        "datagrams": {
+            "clientToServer": ['SMALL_INT_SIGNED'],
+            "serverToClient": ['SMALL_INT_SIGNED']
+        }
+    }
+}
+
+# Decision Level (DL)
+
+VE = {
+    "velocity": {
+        "port": 49400,
+        "datagrams": {
+            "clientToServer": ['SMALL_INT_SIGNED'],
+            "serverToClient": ['BOOL']
+        }
+    },
+    "oa": {
+        "port": 49401,
+        "datagrams": {
+            "clientToServer": ['BOOL'],
+            "serverToClient": ['BOOL']
+        }
     }
 }

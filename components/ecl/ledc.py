@@ -62,7 +62,7 @@ def request_cb(data, args):
         args["server"].send_to_clients([True])
 
 ###########################################################################
-#                     SERVERS SET UP AND SETTINGS :                   #
+#                   CONNECTIONS SET UP AND SETTINGS :                     #
 ###########################################################################
 
 #### CLIENTS CONNECTION :

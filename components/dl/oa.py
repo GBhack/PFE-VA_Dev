@@ -11,15 +11,36 @@
 ###Standard imports :
 import atexit
 import time
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.ports import DL as DL_PORTS
-from robotBasics.constants.ports import ECL as ECL_PORTS
+from robotBasics.constants.connectionSettings import VE as VE_CS
+from robotBasics.constants.connectionSettings import USC as USC_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+#Classes & Methods:
+from robotBasics.sockets.tcp.Client import Client as Client
+from robotBasics.logger import robotLogger
+
+###########################################################################
+#                           Environment Setup :                           #
+###########################################################################
+
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("DL > oa", ROBOT_ROOT+'logs/dl/')
 
 UPDATE_RATE = 0.1
 MINIMAL_DISTANCE = 0.08
@@ -31,30 +52,24 @@ MINIMAL_DISTANCE = 0.08
 #### CLIENTS CONNECTION :
 
 #Creating the Get Frontal Distance module's client
-UC_CLIENT = SOCKETS.tcp.Client.Client(ECL_PORTS["usc"], LOGGER)
-
-#We'll send booleans (request)
-UC_CLIENT.set_sending_datagram(['BOOL'])
-#We'll receive floats (distance in meters)
-UC_CLIENT.set_receiving_datagram(['BOOL'])
+UC_CLIENT = Client(USC_CS, LOGGER)
 
 #Opening the connection
-UC_CLIENT.set_up_connection()
-
+UC_CLIENT.connect()
 
 #Creating the Velocity/Steering regulator module's client object
-VE_CLIENT = SOCKETS.tcp.Client.Client(DL_PORTS["ve"]["oa"], LOGGER)
+VE_CLIENT = Client(VE_CS["oa"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(VE_CLIENT.close)
 
-#We'll send floats (distance in meters)
-VE_CLIENT.set_sending_datagram(['BOOL'])
-
 #Opening the connection
-VE_CLIENT.set_up_connection()
+VE_CLIENT.connect()
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 alive = True
 while alive:
-    UC_CLIENT.send_data([True])
-    VE_CLIENT.send_data([UC_CLIENT.receive_data()])
+    VE_CLIENT.send([UC_CLIENT.request()[0]])
     time.sleep(UPDATE_RATE)

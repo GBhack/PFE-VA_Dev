@@ -12,22 +12,36 @@
 ###Standard imports :
 import atexit
 import time
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.ports import ECL as CLIENTS_PORTS
-from robotBasics.constants.ports import DL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import VE as VE_CS
+from robotBasics.constants.connectionSettings import VSC as VSC_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.sockets.tcp.Client import Client as Client
+from robotBasics.logger import robotLogger
 
-VELOCITY_STATE = {
-    "busy": False,
-    "oa_brake": False,
-    "actualVelocity": 0,
-    "desiredVelocity": 0
-}
+###########################################################################
+#                           Environment Setup :                           #
+###########################################################################
+
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("DL > ve", ROBOT_ROOT+'logs/dl/')
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -61,42 +75,39 @@ def velocity_handling_cb(data, args):
 #### CLIENTS CONNECTION :
 
 #
-VELOCITY_CLIENT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["vsc"]["velocity"], LOGGER)
-
-#We'll send booleans (request)
-VELOCITY_CLIENT.set_sending_datagram(['SMALL_INT_SIGNED'])
-#We'll receive floats (distance in meters)
-VELOCITY_CLIENT.set_receiving_datagram(['SMALL_INT_SIGNED'])
+VELOCITY_CLIENT = Client(VSC_CS["velocity"], LOGGER)
 
 #Opening the connection
-VELOCITY_CLIENT.set_up_connection()
+VELOCITY_CLIENT.connect()
 
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-OA_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["ve"]["oa"], LOGGER)
+OA_SERVER = Server(VE_CS["oa"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(OA_SERVER.close)
 
-#We'll receive booleans (status of the operation)
-OA_SERVER.set_receiving_datagram(['BOOL'])
-
 #Opening the connection
-OA_SERVER.set_up_connection(10)
+OA_SERVER.connect()
 
 ## Velocity Server :
 
 #Creating the TCP instance
-VELOCITY_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["ve"]["velocity"], LOGGER)
+VELOCITY_SERVER = Server(VE_CS["velocity"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(VELOCITY_SERVER.close)
 
-#We'll receive and send small integers (velocity in percent of nominal velocity)
-VELOCITY_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
-VELOCITY_SERVER.set_sending_datagram(['BOOL'])
-
 #Opening the connection
-VELOCITY_SERVER.set_up_connection(600)
+VELOCITY_SERVER.connect()
+
+#### CALLBACKS' ARGUMENTS SETUP:
+
+VELOCITY_STATE = {
+    "busy": False,
+    "oa_brake": False,
+    "actualVelocity": 0,
+    "desiredVelocity": 0
+}
 
 OA_ARGUMENTS = {
     "velocity_state": VELOCITY_STATE,
@@ -108,13 +119,15 @@ VELOCITY_ARGUMENTS = {
     "velocity_server": VELOCITY_SERVER
 }
 
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
+
 #Waiting for requests and redirecting them to the callback methods
 VELOCITY_SERVER.listen_to_clients(velocity_handling_cb, VELOCITY_ARGUMENTS)
 OA_SERVER.listen_to_clients(oa_handling_cb, OA_ARGUMENTS)
 
 alive = True
-
-print('Running')
 
 while alive:
     if VELOCITY_STATE["oa_brake"]:

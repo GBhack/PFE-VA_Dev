@@ -12,16 +12,40 @@
 ###Standard imports :
 import atexit
 import time
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.ports import FL as CLIENTS_PORTS
-from robotBasics.constants.ports import ECL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import US as US_CS
+from robotBasics.constants.connectionSettings import USC as USC_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.sockets.tcp.Client import Client as Client
+from robotBasics.logger import robotLogger
 
+###########################################################################
+#                           Environment Setup :                           #
+###########################################################################
+
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("ECL > usc", ROBOT_ROOT+'logs/ecl/')
+
+###########################################################################
+#                     Functions/Callbacks definition :                    #
+###########################################################################
 
 def request_cb(data, args):
     """
@@ -30,51 +54,42 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
+    args["server"].send_to_clients([args["client"].request()[0]])
 
-    
-    args["client"].send_data([True])
-    time.sleep(0.05)
-    args["server"].send_to_clients([args["client"].receive_data()[0]])
+###########################################################################
+#                   CONNECTIONS SET UP AND SETTINGS :                     #
+###########################################################################
 
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["us"], LOGGER)
+CLIENT = Client(US_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CLIENT.close)
 
-#We'll send booleans (request)
-CLIENT.set_sending_datagram(['BOOL'])
-
-#We'll receive booleans (obstacle detection status)
-CLIENT.set_receiving_datagram(['BOOL'])
-
 #Opening the connection
-CLIENT.set_up_connection()
-
+CLIENT.connect()
 
 #### SERVER CONNECTION :
 
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["usc"], LOGGER)
+SERVER = Server(USC_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
-#We'll receive booleans (request)
-SERVER.set_receiving_datagram(['BOOL'])
-
-#We'll send booleans (obstacle detection status)
-SERVER.set_sending_datagram(['BOOL'])
-
 #Opening the connection
-SERVER.set_up_connection(600)
+SERVER.connect()
 
+#### CALLBACKS' ARGUMENT SETUP:
 
-#Argument to be passed to the steering callback method
 ARGUMENTS = {
     "server": SERVER,
     "client": CLIENT
 }
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and redirecting them to the callback methods
 SERVER.listen_to_clients(request_cb, ARGUMENTS)

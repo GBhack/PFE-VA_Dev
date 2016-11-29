@@ -12,17 +12,36 @@
 ###Standard imports :
 import atexit
 import time
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
 from robotBasics.constants.connectionSettings import MOT as MOT_CS
-from robotBasics.constants.ports import ECL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import VSC as VSC_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.sockets.tcp.Client import Client as Client
 from robotBasics.logger import robotLogger
 
-LOGGER = robotLogger("ECL > vsc")
+###########################################################################
+#                           Environment Setup :                           #
+###########################################################################
+
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("ECL > vsc", ROBOT_ROOT+'logs/ecl/')
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -33,7 +52,6 @@ def velocity_control_cb(data, args):
         Velocity control callback method
         Apply requested velocity while making sure not to perform strong accelerations.
     """
-    print('Received : '+str(data[0]))
     deltaVelocity = data[0] - args["currentState"]["velocity"]
 
     #If we're accelerating, we make sure to do so increasingly (if we're braking, we don't care) :
@@ -53,10 +71,8 @@ def velocity_control_cb(data, args):
 
     #We apply the change to the program's velocity variable
     args["currentState"]["velocity"] += deltaVelocity
-    print('Applying modif :')
     #We apply the changes to the robot :
     apply_modifications(args)
-
 
     #We send the velocity actually applied to the client :
     args["velocityConnection"].send_to_clients([args["currentState"]["velocity"]])
@@ -97,8 +113,8 @@ def apply_modifications(args):
 
     #We apply the changes to the robot :
     try:
-        args["leftMotorConnection"].send_data([leftVelocity])
-        args["rightMotorConnection"].send_data([rightVelocity])
+        args["leftMotorConnection"].send([leftVelocity])
+        args["rightMotorConnection"].send([rightVelocity])
     except:
             print('erreur lors de l\'envoi')
     args["currentState"]["busy"] = False
@@ -111,8 +127,8 @@ def apply_modifications(args):
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT_LEFT = SOCKETS.tcp.Client.Client(MOT_CS, LOGGER)
-CLIENT_RIGHT = SOCKETS.tcp.Client.Client(MOT_CS, LOGGER)
+CLIENT_LEFT = Client(MOT_CS, LOGGER)
+CLIENT_RIGHT = Client(MOT_CS, LOGGER)
 
 #Opening the connection
 CLIENT_LEFT.connect()
@@ -123,32 +139,24 @@ CLIENT_RIGHT.connect()
 ## Velocity Server :
 
 #Creating the connection object
-VELOCITY_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["vsc"]["velocity"], LOGGER)
+VELOCITY_SERVER = Server(VSC_CS["velocity"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(VELOCITY_SERVER.close)
 
-#We'll receive and send small integers (% of max velocity)
-VELOCITY_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
-VELOCITY_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
-
 #Opening the connection
-VELOCITY_SERVER.set_up_connection()
+VELOCITY_SERVER.connect()
 
 ## Steering Server :
 
 #Creating the connection object
-STEERING_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["vsc"]["radius"], LOGGER)
+STEERING_SERVER = Server(VSC_CS["steering"], LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(STEERING_SERVER.close)
 
-#We'll receive and send small integers (% of max steering)
-STEERING_SERVER.set_receiving_datagram(['SMALL_INT_SIGNED'])
-STEERING_SERVER.set_sending_datagram(['SMALL_INT_SIGNED'])
-
 #Opening the connection
-STEERING_SERVER.set_up_connection()
+STEERING_SERVER.connect()
 
-## Arguments :
+#### CALLBACKS' ARGUMENTS SETUP:
 
 #Shared robot's state :
 CURRENT_STATE = {
@@ -172,6 +180,11 @@ ARGUMENTS_STEERING = {
     "leftMotorConnection": CLIENT_LEFT,
     "rightMotorConnection": CLIENT_RIGHT
 }
+
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and redirecting them to the callback methods
 VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)

@@ -13,16 +13,37 @@
 ###Standard imports :
 import atexit
 import time
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.ports import FL as CLIENTS_PORTS
-from robotBasics.constants.ports import ECL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import QE as QE_CS
+from robotBasics.constants.connectionSettings import QEC as QEC_CS
 from robotBasics.constants.misc import QEC as MISC_CONST
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.sockets.tcp.Client import Client as Client
+from robotBasics.logger import robotLogger
+
+###########################################################################
+#                           Environment Setup :                           #
+###########################################################################
+
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("ECL > qec", ROBOT_ROOT+'logs/ecl/')
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -38,56 +59,48 @@ def request_cb(data, arg):
     """
 
     if time - arg["last_update"] > MISC_CONST["update_freq"]:
-        arg["client"].send_data([True])
-        arg["distance"] = 0.0055*arg["client"].receive_data()[0]
+        arg["distance"] = 0.0055*arg["client"].request()[0]
 
     #Responding the request with the obstacle presence status
     arg["server"].send_to_clients([arg["distance"]])
 
 
 ###########################################################################
-#                      SERVERS SET UP AND SETTINGS :                      #
+#                   CONNECTIONS SET UP AND SETTINGS :                     #
 ###########################################################################
 
 #### SERVER CONNECTION :
 
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["qec"], LOGGER)
+SERVER = Server(QEC_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
-#We'll send floats (travelled distance in meters)
-SERVER.set_sending_datagram(['FLOAT'])
-
-#We'll receive booleans (request)
-SERVER.set_receiving_datagram(['BOOL'])
-
 #Opening the connection
-SERVER.set_up_connection()
+SERVER.connect()
 
 ### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["qe"], LOGGER)
+CLIENT = Client(QE_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CLIENT.close)
 
-#We'll send booleans (request)
-CLIENT.set_sending_datagram(['BOOL'])
-#We'll receive medium integer unsigned (number of ticks)
-CLIENT.set_receiving_datagram(['MEDIUM_INT_UNSIGNED'])
-
 #Opening the connection
-CLIENT.set_up_connection()
+CLIENT.connect()
 
-#Arguments object for the callback method
-#We pass the SERVER object so that the callback can respond to the request
+#### CALLBACKS' ARGUMENT SETUP:
+
 ARGUMENTS = {
     "server" : SERVER,
     "client": CLIENT,
     "last_update": 0,
     "distance": 0
 }
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
