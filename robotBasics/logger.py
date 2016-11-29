@@ -5,20 +5,35 @@
 import logging
 from logging.handlers import RotatingFileHandler
 
-formatter = logging.Formatter("[%(asctime)s : %(funcName)s - %(module)s @ %(filename)s (%(levelname)s)] %(message)s")
+class trimmingFormatter(logging.Formatter):
+    def format(self, record):
+        record.msg = record.msg.strip()
+        record.msg = ' '.join(record.msg.split())
+        return super(trimmingFormatter, self).format(record)
 
-handler_errors = logging.handlers.RotatingFileHandler("../errors.log", mode="a", maxBytes= 100000 , backupCount= 100 , encoding="utf-8")
-handler_debug  = logging.handlers.RotatingFileHandler("../debug.log", mode="a", maxBytes= 100000 , backupCount= 100 , encoding="utf-8")
+def robotLogger(caller, location = ''):
+    formatter = trimmingFormatter("[%(asctime)s : "+caller+" > %(module)s @ %(filename)s :  %(funcName)s (%(levelname)s)] %(message)s")
 
-handler_errors.setFormatter(formatter)
-handler_debug.setFormatter(formatter)
+    handler_errors = logging.handlers.RotatingFileHandler(location+"logs/errors.log",
+        mode="a", maxBytes = 100000, backupCount = 100, encoding="utf-8")
+    handler_debug  = logging.handlers.RotatingFileHandler(location+"logs/debug.log",
+        mode="a", maxBytes = 100000, backupCount = 100, encoding="utf-8")
+    handler_console = logging.StreamHandler()
 
-handler_errors.setLevel(logging.WARNING)
-handler_debug.setLevel(logging.DEBUG)
+    handler_errors.setFormatter(formatter)
+    handler_debug.setFormatter(formatter)
+    handler_console.setFormatter(formatter)
 
-logger = logging.getLogger("robot")
+    handler_errors.setLevel(logging.WARNING)
+    handler_debug.setLevel(logging.DEBUG)
+    handler_console.setLevel(logging.INFO)
 
-logger.setLevel(logging.DEBUG)
+    logger = logging.getLogger("robot")
 
-logger.addHandler(handler_errors)
-logger.addHandler(handler_debug)
+    logger.setLevel(logging.DEBUG)
+
+    logger.addHandler(handler_errors)
+    logger.addHandler(handler_debug)
+    logger.addHandler(handler_console)
+
+    return logger

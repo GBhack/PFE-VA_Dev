@@ -313,3 +313,209 @@
 [2016-11-15 16:54:02,531 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
 [2016-11-15 16:55:01,883 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
 [2016-11-15 16:55:43,000 : setup - GPIO @ GPIO.py (DEBUG)] PIN P8_7 (pushbutton's state) setup as INPUT
+[2016-11-23 15:44:17,921 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-23 15:44:17,921 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-23 15:44:17,922 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-23 15:44:17,922 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-23 15:44:17,922 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-23 15:44:17,922 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-23 15:44:17,922 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-23 15:44:17,922 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-23 15:44:17,923 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-23 15:44:17,923 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-23 15:45:09,051 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:45:09,052 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:45:09,052 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:45:09,052 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:45:09,053 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:45:09,053 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:45:09,053 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:45:09,053 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:45:09,053 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:45:09,053 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:45:59,980 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:45:59,980 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:45:59,981 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:45:59,981 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:45:59,981 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:45:59,981 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:45:59,981 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:45:59,982 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:45:59,982 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:45:59,982 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:46:35,490 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:46:35,490 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:46:35,493 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:46:35,494 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:46:35,494 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:46:35,494 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:46:35,494 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:46:35,494 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:46:35,494 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:46:35,494 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:46:37,222 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:46:37,223 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:46:37,223 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:46:37,224 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:46:37,224 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:46:37,224 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:48:06,366 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:48:06,366 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:48:06,366 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:48:06,366 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:48:06,367 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:48:06,367 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:48:06,367 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:48:06,367 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:48:06,367 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:06,367 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:08,345 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:08,345 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:48:08,346 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:48:08,346 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:08,347 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:48:08,347 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:48:38,932 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:48:38,932 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:48:38,933 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:48:38,933 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:48:38,933 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:48:38,933 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:48:38,933 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:48:38,933 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:48:38,933 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:38,933 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:40,906 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:40,907 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:48:40,907 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:48:40,907 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:48:40,908 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:48:40,908 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:50:11,757 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:50:11,758 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:50:11,758 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:50:11,758 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:50:11,759 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:50:11,759 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:50:11,759 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:50:11,759 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:50:11,759 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:11,759 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:11,769 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:11,769 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:11,769 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:50:11,770 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:50:11,770 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:50:11,771 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:50:29,149 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:50:29,150 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:50:29,150 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:50:29,150 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:50:29,151 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:50:29,151 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:50:29,151 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:50:29,151 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:50:29,151 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:29,152 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:31,018 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:31,018 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:50:31,019 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:50:31,019 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:50:31,019 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:50:31,020 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:51:05,748 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:51:05,748 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:51:05,748 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:51:05,749 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:51:05,749 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:51:05,749 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:51:05,749 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:51:05,749 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:51:05,750 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:51:05,750 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:51:06,317 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:51:06,317 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:51:06,317 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:51:06,318 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:51:06,318 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:51:06,321 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:52:43,975 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:52:43,977 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:52:43,978 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:52:43,978 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:52:43,978 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:52:43,978 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:52:43,978 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:52:43,978 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:52:43,978 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:52:43,979 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:52:45,980 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:52:45,980 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:52:45,981 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:52:45,981 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:52:45,981 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:52:45,982 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:53:02,325 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:53:02,326 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:53:02,326 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:53:02,326 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:53:02,326 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:53:02,327 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:53:02,327 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:53:02,327 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:53:02,327 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:02,327 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:03,876 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:03,876 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:53:03,876 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:53:03,877 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:03,878 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:53:03,878 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:53:41,639 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:53:41,639 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:53:41,640 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:53:41,640 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:53:41,640 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:53:41,640 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:53:41,640 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:53:41,641 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:53:41,641 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:41,641 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:42,767 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:42,767 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:53:42,768 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:53:42,769 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:53:42,769 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:53:42,769 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:54:02,806 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:54:02,808 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:54:02,808 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:54:02,808 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:54:02,808 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:54:02,808 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:54:02,808 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:54:02,809 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:54:02,809 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:02,809 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:03,975 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:03,975 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:03,975 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:54:03,976 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:54:03,976 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:54:03,977 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)
+[2016-11-23 15:54:55,161 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 (left motor's PWM) with a duty cycle of 0
+[2016-11-23 15:54:55,163 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 (right motor's PWM) with a duty cycle of 0
+[2016-11-23 15:54:55,163 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin) setup as OUTPUT
+[2016-11-23 15:54:55,163 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin) setup as OUTPUT
+[2016-11-23 15:54:55,163 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin) setup as OUTPUT
+[2016-11-23 15:54:55,164 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin) setup as OUTPUT
+[2016-11-23 15:54:55,164 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to LOW
+[2016-11-23 15:54:55,164 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to LOW
+[2016-11-23 15:54:55,164 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:55,164 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:56,849 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25 (left motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:56,850 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23 (left motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:54:56,850 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31 (right motor's backward pin)'s state changed to LOW
+[2016-11-23 15:54:56,850 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16 (left motor's PWM)
+[2016-11-23 15:54:56,851 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29 (right motor's forward pin)'s state changed to HIGH
+[2016-11-23 15:54:56,851 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14 (right motor's PWM)

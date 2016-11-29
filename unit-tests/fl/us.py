@@ -16,13 +16,14 @@ import time
 from robotBasics.constants import gpiodef as GPIODEF
 import Adafruit_BBIO.GPIO as GPIO
 
+"""
 ####################################################
 #               Simulator setup                    #
 ####################################################
 
 GPIO.pin_association(GPIODEF.SONAR['obstacle'], 'obstacle detection')
 GPIO.setup_behavior('print')
-
+"""
 
 GPIO.setup(GPIODEF.SONAR['obstacle'], GPIO.IN)
 while True:

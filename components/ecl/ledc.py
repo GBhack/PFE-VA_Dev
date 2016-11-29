@@ -11,16 +11,41 @@
 
 ###Standard imports :
 import atexit
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.ports import FL as CLIENTS_PORTS
-from robotBasics.constants.ports import ECL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import LED as LED_CS
+from robotBasics.constants.connectionSettings import LEDC as LEDC_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.sockets.tcp.Client import Client as Client
+from robotBasics.logger import robotLogger
 
+
+###########################################################################
+#                           Environment Setup :                           #
+###########################################################################
+
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("ECL > ledc", ROBOT_ROOT+'logs/ecl/')
+
+###########################################################################
+#                     Functions/Callbacks definition :                    #
+###########################################################################
 
 def request_cb(data, args):
     """
@@ -29,48 +54,38 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
-    print("hey")
-    print(data)
     if args["LEDs_state"][data[0][0]] != bool(data[0][1]):
         args["LEDs_state"][data[0][0]] = bool(data[0][1])
-        args["client"].send_data([args["LEDs_state"]])
+        args["client"].send([args["LEDs_state"]])
         args["server"].send_to_clients([args["client"].receive_data()[0]])
     else:
         args["server"].send_to_clients([True])
 
+###########################################################################
+#                     SERVERS SET UP AND SETTINGS :                   #
+###########################################################################
+
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["led"], LOGGER)
+CLIENT = Client(LED_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CLIENT.close)
 
-#We'll send booleans (request)
-CLIENT.set_sending_datagram([['BITS', [1, 1, 1, 1]]])
-
-#We'll receive booleans (operation status)
-CLIENT.set_receiving_datagram(['BOOL'])
-
 #Opening the connection
-CLIENT.set_up_connection()
-
+CLIENT.connect()
 
 #### SERVER CONNECTION :
 
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["ledc"], LOGGER)
+SERVER = Server(LEDC_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
-#We'll receive three bits (LED ID on 2 bits + state on 1 bit)
-SERVER.set_receiving_datagram([['BITS', [2, 1]]])
-
-#We'll send booleans (operation status)
-SERVER.set_sending_datagram(['BOOL'])
-
 #Opening the connection
-SERVER.set_up_connection()
+SERVER.connect()
 
+#### CALLBACKS' ARGUMENT SETUP:
 
 #Argument to be passed to the steering callback method
 ARGUMENTS = {
@@ -78,6 +93,10 @@ ARGUMENTS = {
     "client": CLIENT,
     "LEDs_state": [False, False, False, False]
 }
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and redirecting them to the callback methods
 SERVER.listen_to_clients(request_cb, ARGUMENTS)

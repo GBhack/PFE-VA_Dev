@@ -16,11 +16,13 @@ import time
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.ports import FL as CLIENTS_PORTS
+from robotBasics.constants.connectionSettings import MOT as MOT_CS
 from robotBasics.constants.ports import ECL as SERVER_PORTS
 #Classes & Methods:
 from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.logger import robotLogger
+
+LOGGER = robotLogger("ECL > vsc")
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -109,20 +111,12 @@ def apply_modifications(args):
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT_LEFT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["mot"]["left"], LOGGER)
-CLIENT_RIGHT = SOCKETS.tcp.Client.Client(CLIENTS_PORTS["mot"]["right"], LOGGER)
-
-#We'll send small signed integers (-100 -> 100% of thrust)
-CLIENT_LEFT.set_sending_datagram(['SMALL_INT_SIGNED'])
-CLIENT_RIGHT.set_sending_datagram(['SMALL_INT_SIGNED'])
-
-#We'll receive booleans (status of the operation)
-CLIENT_LEFT.set_receiving_datagram(['BOOL'])
-CLIENT_RIGHT.set_receiving_datagram(['BOOL'])
+CLIENT_LEFT = SOCKETS.tcp.Client.Client(MOT_CS, LOGGER)
+CLIENT_RIGHT = SOCKETS.tcp.Client.Client(MOT_CS, LOGGER)
 
 #Opening the connection
-CLIENT_LEFT.set_up_connection()
-CLIENT_RIGHT.set_up_connection()
+CLIENT_LEFT.connect()
+CLIENT_RIGHT.connect()
 
 #### SERVER CONNECTION :
 

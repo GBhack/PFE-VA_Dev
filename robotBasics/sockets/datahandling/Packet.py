@@ -23,6 +23,7 @@ class Packet(object):
         """
             Initialization
         """
+        self.description = description
 
         #Only those types can be set at initialization :
         _knowTypes = ['INT', 'FLOAT', 'BOOL', 'BYTE', 'BITS', 'FILLER']
@@ -75,6 +76,8 @@ class Packet(object):
 
         initializationMethod[self.type]()
 
+    def __str__(self):
+        return self.description
 
     def _init_integer(self):
         """

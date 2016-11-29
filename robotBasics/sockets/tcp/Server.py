@@ -1,7 +1,7 @@
 """
     Server.py
     Defines the Server Class
-    Handle the "master" part of a connection
+    Handles the "master" part of a connection
 """
 
 #!/usr/bin/python3.5
@@ -14,156 +14,229 @@ import threading
 
 #Specific imports :
 from ..datahandling import Message
-from ...constants import misc as MISC
+from ...constants.misc import SOCKETS as MISC_CONST
 
 class Server(object):
     """
-        Class Server
+        Server Class
     """
 
-
-    def __init__(self, port, log, frequency=MISC.SOCKETS["connectionTimeout"]):
+    def __init__(self, connectionSettings, log):
         """
             Initialization
         """
-        self._port = port
-        self._frequency = frequency
-        self._connections = []
-        self._clientsListeningThreads = []
+
+        message = ''
+
         self._log = log
-        self.alive = False
 
-        self.waitForClient = True
+        #################################################
+        #               Settings reading :              #
+        #################################################
+        
+        #PORT :
+        assert "port" in connectionSettings,\
+            "Missing \"port\" entry in the connection-settings dictionary"
+        assert connectionSettings["port"] > 49152 and connectionSettings["port"] < 65535,\
+            "Chosen port is out of range, please chose a port number between 49152 and 65535"
+        assert isinstance(connectionSettings["port"], int),\
+            "the port number MUST be an integer"
+        self._port = connectionSettings["port"]
 
-    def set_sending_datagram(self, datagram):
-        self._sendingDatagram = Message.Message(datagram)
-        self._log.debug('Sending datagram set to : %s for server socket on port %d', datagram, self._port)
+        #CONNECTION TIMEOUT :
+        if "connectionTimeout" in connectionSettings:
+            assert connectionSettings["connectionTimeout"] > 0,\
+                "connection timeout parameter MUST be positive"
+            assert isinstance(connectionSettings["connectionTimeout"], int),\
+                "connection timeout parameter MUST be an integer"
+            self._connectionTimeOut = connectionSettings["connectionTimeout"]
+        else:
+            message += '\nno connection-timeout provided, setting defaut.'
+            self._connectionTimeOut = MISC_CONST["connectionTimeout"]
 
-    def set_receiving_datagram(self, datagram):
-        self._receivingDatagram = Message.Message(datagram)
-        self._log.debug('Receiving datagram set to : %s for server socket on port %d', datagram, self._port)
+        #LISTENING TIMEOUT :
+        if "listeningTimeOut" in connectionSettings:
+            assert connectionSettings["listeningTimeOut"] > 0,\
+                "listening timeout parameter MUST be positive"
+            assert isinstance(connectionSettings["listeningTimeOut"], int),\
+                "listening timeout parameter MUST be an integer"
+            self._listeningTimeOut = connectionSettings["listeningTimeOut"]
+        else:
+            message += '\nno listening-timeout provided, setting defaut.'
+            self._listeningTimeOut = MISC_CONST["listeningTimeOut"]
 
-    def set_up_connection(self, connectionTimeout=MISC.SOCKETS["connectionTimeout"], listeningTimeout=MISC.SOCKETS["listeningTimeout"],multiClients=False, maxClients=2):
+        #NUMBER OF CLIENTS :
+        if "numberOfClients" in connectionSettings:
+            assert connectionSettings["numberOfClients"] > 0,\
+                "number of clients MUST be positive"
+            assert isinstance(connectionSettings["numberOfClients"], int),\
+                "number of clients MUST be an integer"
+            self._numberOfClients = connectionSettings["numberOfClients"]
+        else:
+            message += '\nno number of clients provided, setting defaut (1).'
+            self._numberOfClients = 1
+
+        #DATAGRAMS :
+        self._datagrams = {}
+        datagramsSet = 0
+        assert "datagrams" in connectionSettings,\
+            "Missing \"datagrams\" entry in the connection-settings dictionary"
+        if "serverToClient" in connectionSettings["datagrams"]:
+            self._datagrams["sending"] = \
+                Message.Message(connectionSettings["datagrams"]["serverToClient"])
+            self._log.debug('Sending datagram set to : %s for client socket on port %d',\
+                self._datagrams["sending"], self._port)
+            datagramsSet += 1
+        if "clientToServer" in connectionSettings["datagrams"]:
+            self._datagrams["receiving"] = \
+                Message.Message(connectionSettings["datagrams"]["clientToServer"])
+            self._log.debug('Receiving datagram set to : %s for client socket on port %d',\
+                self._datagrams["receiving"], self._port)
+            datagramsSet += 1
+        assert datagramsSet > 0,\
+            "At least one datagram should be set for the connection."
+
+        socket.setdefaulttimeout(self._connectionTimeOut)
+
+        self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+        self._connections = []
+        self.connected = False
+
+    def connect(self):
         """
-            Connexion set-up method
-            Arguments :
-                - timeout : the amount of time the server waits
-                for something to happen before raising an error
-                - multiClients
+            Connection method
         """
-        socket.setdefaulttimeout(listeningTimeout)
+        initTime = time.time()
 
-        newSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        newSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        newSocket.bind(('', self._port))
-        newSocket.listen(1)
+        timeOut = False
 
         clientsConnected = 0
-        socketCreationTime = time.time()
+        waitingForClients = True
 
-        while self.waitForClient:
+        self._socket.bind(('', self._port))
+        self._socket.listen(1)
+
+        while waitingForClients:
             try:
-                newConnexion, _ = newSocket.accept()
-                self._connections.append({"sock": newConnexion, "stopEvent":threading.Event()})
+                newConnection, _ = self._socket.accept()
+                newConnection = {
+                    "connection": newConnection,
+                    "alive": True
+                }
+                self._connections.append(newConnection)
                 clientsConnected += 1
-                if clientsConnected >= maxClients or not multiClients:
-                    self._log.info('Maximum amount of clients reached (%d) on port %d', clientsConnected, self._port)
-                    self.waitForClient = False
-                if time.time() - socketCreationTime > connectionTimeout:
-                    self._log.info("Timeout : %d clients connected on port %d", clientsConnected, self._port)
-                    self.waitForClient = False
-            except KeyboardInterrupt:
-                self._log.info("Interrupt received, quit waiting for  on port %d", self._port)
-                self.close()
             except socket.timeout:
-                self._log.info("Timeout : %d clients connected on port %d", clientsConnected, self._port)
-                self.waitForClient = False
+                timeOut = True
+
+            if time.time() - initTime > self._connectionTimeOut * self._numberOfClients or timeOut:
+                waitingForClients = False
+                self._log.warning("Server accepting timed out on port %d: %d client(s) connected",\
+                    self._port, clientsConnected)
+            if clientsConnected >= self._numberOfClients:
+                waitingForClients = False
+                self._log.info("Maximum number of clients reached (%d) on port %d.",\
+                    clientsConnected, self._port)
 
         if clientsConnected > 0:
-            self._log.debug("%d clients successfuly connected on port %d", clientsConnected, self._port)
-            self.alive = True
+            self.connected = True
+        else:
+            self._log.warning("No client connected on port %d.",\
+                self._port)
+
+        socket.setdefaulttimeout(self._listeningTimeOut)
 
     def listen_to_clients(self, callback, args):
         """
-            Listening to clients Method
+            Data receiving method
         """
-        if self.alive:
-            self._log.debug("Listening to clients on port %d", self._port)
-            for connection in self._connections:
-                self._clientsListeningThreads.append(WaitForData(connection, self._receivingDatagram, callback, args, self._frequency, self.close_single_socket))
-                self._clientsListeningThreads[-1].start()
-        else:
-            self._log.warning("No connected client to listen to on port %d.", self._port)
 
-    def send_to_clients(self, data):
-        """
-            Send to clients Method
-        """
-        if self.alive:
-            for connection in self._connections:
-                try:
-                    connection["sock"].send(self._sendingDatagram.encode(data))
-                except (ConnectionResetError, BrokenPipeError):
-                    self.close_single_socket(connection)
-                    self._log.warning("Unable to send to client on port %d. Closing the socket.", self._port)
-        else:
-            self._log.warning("No connected client to send to on port %d.", self._port)
+        listeningThread = []
 
-    def close_single_socket(self, connection):
-        connection["stopEvent"].set()
-        time.sleep(0.01)
-        connection["sock"].close()
-        self._connections.remove(connection)
-        self._log.info("Connection on port %d closed by client. %d clients remaining.", self._port, len(self._connections))
-        if len(self._connections) <= 0:
-            self._log.info("All clients disconnected on port %d closing the connection", self._port)
-            try:
-                connection["sock"].shutdown(socket.SHUT_RDWR)
-            except:
-                pass
-            self.alive = False
+        for client in self._connections:
+            threadSettings = {
+                "connection": client,
+                "datagram": self._datagrams["receiving"],
+                "callback": callback,
+                "args": args,
+                "closingMethod": self.close
+            }
+            
+            listeningThread.append(WaitForData(threadSettings))
+            listeningThread[-1].start()
+
+        for thread in listeningThread:
+            thread.join()
+
+    def send(self, data):
+        """
+            Data sending method
+        """
+        if "sending" in self._datagrams:
+            if len(self._connections) <= 0:
+                self.connected = False
+            if self.connected:
+                for connection in self._connections:
+                    try:
+                        connection["connection"].send(self._datagrams["sending"].encode(data))
+                    except:
+                        connection["alive"] = False
+                        self.close()
+                        self._log.error("An error occured : could not send data to \
+                            port %d", self._port)
+            else:
+                self._log.warning("Could not send to port %d (the socket must be \
+                    connected in order to send data).", self._port)
+        else:
+            self._log.warning("Could not send to port %d (the clientToServer datagram \
+                must be set).", self._port)
 
     def close(self):
-        self.waitForClient = False
+        """
+            Connection closing method
+        """
         for connection in self._connections:
-            connection["stopEvent"].set()
-            time.sleep(0.01)
-            try:
-                connection["sock"].shutdown(socket.SHUT_RDWR)
-            except:
-                pass
-            connection["sock"].close()
-            self._connections.remove(connection)
-            self.alive = False
-        #for thread in self._clientsListeningThreads:
-        #    thread.join()
+            if not connection["alive"]:
+                connection["connection"].shutdown(socket.SHUT_RDWR)
+                connection["connection"].close()
+                self._connections.remove(connection)
+                self._log.info("Closed client connection on port %d.", self._port)
+        if len(self._connections) == 0:
+            self.connected = False
+    def __str__(self):
+        return "SERVER instance"
+
+
 
 class WaitForData(threading.Thread):
     """
         WaitForData Class (threading)
     """
 
-    def __init__(self, connection, datagram, callback, args, frequency, closeMethod):
+    def __init__(self, threadSettings):
         """
             Initialization
         """
         threading.Thread.__init__(self)
-        self.connection = connection
-        self._datagram = datagram
-        self._messageSize = datagram.size
-        self.callback = callback
-        self._args = args
-        self._frequency = frequency
-        self._closeMethod = closeMethod        
+        self.threadSettings = threadSettings 
 
     def run(self):
         """
             Running (when start is called)
         """
-        while not self.connection["stopEvent"].is_set():
+        while self.threadSettings["connection"]["alive"]:
             try:
-                data = self.connection["sock"].recv(self._messageSize)
+                data = self.threadSettings["connection"]["connection"]\
+                    .recv(self.threadSettings["datagram"].size)
                 if data:
-                    self.callback(self._datagram.decode(data), self._args)
+                    self.threadSettings["callback"](self.threadSettings["datagram"].decode(data),\
+                        self.threadSettings["args"])
+                else:
+                    self.threadSettings["connection"]["alive"] = False
             except ConnectionResetError:
-                self._closeMethod(self.connection)
+                self.threadSettings["connection"]["alive"] = False
+            except socket.timeout:
+                self.threadSettings["connection"]["alive"] = False
+
+        self.threadSettings["closingMethod"]()

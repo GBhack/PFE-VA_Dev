@@ -1,0 +1,30 @@
+[2016-11-23 15:45:57,220 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_16 with a duty cycle of 0
+[2016-11-23 15:45:57,220 : start - PWM @ PWM.py (DEBUG)] PWM started on PIN P9_14 with a duty cycle of 0
+[2016-11-23 15:45:57,221 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_23 setup as OUTPUT
+[2016-11-23 15:45:57,221 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to LOW
+[2016-11-23 15:45:57,221 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_25 setup as OUTPUT
+[2016-11-23 15:45:57,221 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_25's state changed to LOW
+[2016-11-23 15:45:57,221 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_29 setup as OUTPUT
+[2016-11-23 15:45:57,222 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to LOW
+[2016-11-23 15:45:57,222 : setup - GPIO @ GPIO.py (DEBUG)] PIN P9_31 setup as OUTPUT
+[2016-11-23 15:45:57,222 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_31's state changed to LOW
+[2016-11-23 15:45:57,222 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_23's state changed to HIGH
+[2016-11-23 15:45:57,222 : output - GPIO @ GPIO.py (DEBUG)] PIN P9_29's state changed to HIGH
+[2016-11-23 15:45:57,223 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_16
+[2016-11-23 15:45:57,223 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 10 on PIN P9_14
+[2016-11-23 15:45:57,423 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 20 on PIN P9_16
+[2016-11-23 15:45:57,424 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 20 on PIN P9_14
+[2016-11-23 15:45:57,624 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 30 on PIN P9_16
+[2016-11-23 15:45:57,624 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 30 on PIN P9_14
+[2016-11-23 15:45:57,825 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 40 on PIN P9_16
+[2016-11-23 15:45:57,825 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 40 on PIN P9_14
+[2016-11-23 15:45:58,026 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 50 on PIN P9_16
+[2016-11-23 15:45:58,026 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 50 on PIN P9_14
+[2016-11-23 15:45:58,227 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 70 on PIN P9_16
+[2016-11-23 15:45:58,227 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 70 on PIN P9_14
+[2016-11-23 15:46:03,229 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 50 on PIN P9_16
+[2016-11-23 15:46:03,230 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 50 on PIN P9_14
+[2016-11-23 15:46:03,430 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 20 on PIN P9_16
+[2016-11-23 15:46:03,430 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 20 on PIN P9_14
+[2016-11-23 15:46:03,631 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_16
+[2016-11-23 15:46:03,631 : set_duty_cycle - PWM @ PWM.py (DEBUG)] PWM changed to 0 on PIN P9_14

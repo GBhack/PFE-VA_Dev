@@ -10,28 +10,43 @@
 
 ###Standard imports :
 import atexit
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
 from robotBasics.constants.gpiodef import LEDS as LEDS
-from robotBasics.constants.ports import FL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import LED as LED_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.logger import robotLogger
 ##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 
-"""
 ###########################################################################
-#                             Simulator setup                             #
+#                           Environment Setup :                           #
 ###########################################################################
 
-GPIO.pin_association(LEDS[0], 'left blinker')
-GPIO.pin_association(LEDS[1], 'right blinker')
-GPIO.pin_association(LEDS[2], 'brake light')
-GPIO.setup_behavior('print')
-"""
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    #Simulator setup
+    GPIO.pin_association(LEDS[0], 'left blinker')
+    GPIO.pin_association(LEDS[1], 'right blinker')
+    GPIO.pin_association(LEDS[2], 'brake light')
+    GPIO.setup_behavior('print')
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("FL > led", ROBOT_ROOT+'logs/fl/')
 
 ###########################################################################
 #                           I/O Initialization :                          #
@@ -72,25 +87,23 @@ def set_leds_cb(data, args):
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-LEDS_SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["led"], LOGGER)
+LEDS_SERVER = Server(LED_CS, LOGGER)
 
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(LEDS_SERVER.close)
 
-#We'll send booleans (success of the operation)
-LEDS_SERVER.set_sending_datagram(['BOOL'])
-
-#We'll receive an array of bits (LEDs state description)
-LEDS_SERVER.set_receiving_datagram([['BITS', [1, 1, 1, 1]]])
-
 #Opening the connection
-LEDS_SERVER.set_up_connection(600)
+LEDS_SERVER.connect()
 
-#Arguments object for the callback method
-#We pass the CONNECTION object so that the callback can respond to the request
+#### CALLBACKS' ARGUMENT SETUP:
+
 ARGUMENTS = {
     "connection": LEDS_SERVER
 }
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and redirecting them to the callback method
 LEDS_SERVER.listen_to_clients(set_leds_cb, ARGUMENTS)

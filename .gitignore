@@ -3,3 +3,5 @@ __pychache__
 **/*.pyc
 **/*.sublime-project
 **/*.sublime-workspace
+**/*.log
+**/*.log.*

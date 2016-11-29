@@ -67,3 +67,91 @@
 [2016-11-15 16:55:44,339 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['BOOL'] for client socket on port 1400
 [2016-11-15 16:55:44,339 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1400
 [2016-11-15 16:55:44,341 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1400.
+[2016-11-23 15:46:37,205 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:46:37,208 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:46:37,209 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:46:37,209 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:46:37,209 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:46:37,209 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:46:37,210 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:46:37,220 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:48:08,329 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:48:08,330 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:48:08,332 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:48:08,332 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:48:08,332 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:48:08,332 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:48:08,333 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:48:08,343 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:48:40,890 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:48:40,891 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:48:40,893 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:48:40,893 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:48:40,893 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:48:40,893 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:48:40,894 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:48:40,904 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:50:10,071 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:50:10,072 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:50:10,074 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:50:10,074 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:50:10,074 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:50:10,074 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:50:11,766 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:50:11,767 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:50:31,001 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:50:31,003 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:50:31,004 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:50:31,005 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:50:31,005 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:50:31,005 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:50:31,005 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:50:31,016 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:51:06,300 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:51:06,302 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:51:06,303 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:51:06,303 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:51:06,303 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:51:06,304 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:51:06,304 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:51:06,314 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:52:45,964 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:52:45,965 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:52:45,966 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:52:45,967 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:52:45,967 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:52:45,967 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:52:45,967 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:52:45,978 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:53:03,859 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:53:03,861 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:53:03,862 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:53:03,862 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:53:03,863 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:53:03,863 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:53:03,863 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:53:03,874 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:53:42,748 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:53:42,749 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:53:42,751 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:53:42,751 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:53:42,751 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:53:42,751 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:53:42,752 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:53:42,762 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:54:03,958 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:54:03,960 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:54:03,961 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:54:03,961 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:54:03,962 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:54:03,962 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:54:03,962 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:54:03,973 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-23 15:54:56,833 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:54:56,835 : __init__ - Client @ Client.py (DEBUG)] test
+[2016-11-23 15:54:56,836 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1200
+[2016-11-23 15:54:56,836 : set_sending_datagram - Client @ Client.py (DEBUG)] Sending datagram set to : ['SMALL_INT_SIGNED'] for client socket on port 1210
+[2016-11-23 15:54:56,836 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1200
+[2016-11-23 15:54:56,836 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
+[2016-11-23 15:54:56,837 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
+[2016-11-23 15:54:56,847 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.

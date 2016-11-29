@@ -10,33 +10,48 @@
 
 ###Standard imports :
 import atexit
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
 from robotBasics.constants import gpiodef as GPIODEF
-from robotBasics.constants.ports import FL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import MOT as MOT_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.logger import robotLogger
 ##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 
-"""
 ###########################################################################
-#                             Simulator setup                             #
+#                           Environment Setup :                           #
 ###########################################################################
 
-PWM.pin_association(GPIODEF.ENGINES["left"]["PWM"], 'left motor\'s PWM')
-PWM.pin_association(GPIODEF.ENGINES["right"]["PWM"], 'right motor\'s PWM')
-GPIO.pin_association(GPIODEF.ENGINES["left"]["forward"], 'left motor\'s forward pin')
-GPIO.pin_association(GPIODEF.ENGINES["right"]["forward"], 'right motor\'s forward pin')
-GPIO.pin_association(GPIODEF.ENGINES["left"]["backward"], 'left motor\'s backward pin')
-GPIO.pin_association(GPIODEF.ENGINES["right"]["backward"], 'right motor\'s backward pin')
-GPIO.setup_behavior('print')
-PWM.setup_behavior('print')
-"""
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    #Simulator setup
+    PWM.pin_association(GPIODEF.ENGINES["left"]["PWM"], 'left motor\'s PWM')
+    PWM.pin_association(GPIODEF.ENGINES["right"]["PWM"], 'right motor\'s PWM')
+    GPIO.pin_association(GPIODEF.ENGINES["left"]["forward"], 'left motor\'s forward pin')
+    GPIO.pin_association(GPIODEF.ENGINES["right"]["forward"], 'right motor\'s forward pin')
+    GPIO.pin_association(GPIODEF.ENGINES["left"]["backward"], 'left motor\'s backward pin')
+    GPIO.pin_association(GPIODEF.ENGINES["right"]["backward"], 'right motor\'s backward pin')
+    GPIO.setup_behavior('print')
+    PWM.setup_behavior('print')
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("FL > mot", ROBOT_ROOT+'logs/fl/')
 
 ###########################################################################
 #                           I/O Initialization :                          #
@@ -113,27 +128,19 @@ def set_pwm_cb(data, args):
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
-CONNECTION_MOTOR_LEFT = SOCKETS.tcp.Server.Server(SERVER_PORTS["mot"]["left"], LOGGER)
-CONNECTION_MOTOR_RIGHT = SOCKETS.tcp.Server.Server(SERVER_PORTS["mot"]["right"], LOGGER)
+CONNECTION_MOTOR_LEFT = Server(MOT_CS["LEFT"], LOGGER)
+CONNECTION_MOTOR_RIGHT = Server(MOT_CS["RIGHT"], LOGGER)
 
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CONNECTION_MOTOR_LEFT.close)
 atexit.register(CONNECTION_MOTOR_RIGHT.close)
 
-#We'll send booleans (status of the operation)
-CONNECTION_MOTOR_LEFT.set_sending_datagram(['BOOL'])
-CONNECTION_MOTOR_RIGHT.set_sending_datagram(['BOOL'])
-
-#We'll receive small signed integers (-100 -> 100% of thrust)
-CONNECTION_MOTOR_LEFT.set_receiving_datagram(['SMALL_INT_SIGNED'])
-CONNECTION_MOTOR_RIGHT.set_receiving_datagram(['SMALL_INT_SIGNED'])
-
 #Opening the connection
-CONNECTION_MOTOR_LEFT.set_up_connection(600)
-CONNECTION_MOTOR_RIGHT.set_up_connection(600)
+CONNECTION_MOTOR_LEFT.connect()
+CONNECTION_MOTOR_RIGHT.connect()
 
-#Arguments object for the callback method
-#We pass the CONNECTION object so that the callback can respond to the request
+#### CALLBACKS' ARGUMENT SETUP:
+
 ARGUMENTS_MOTOR_LEFT = {
     "connection" : CONNECTION_MOTOR_LEFT,
     "gpio" : MOTOR_LEFT,
@@ -145,6 +152,10 @@ ARGUMENTS_MOTOR_RIGHT = {
     "gpio" : MOTOR_RIGHT,
     "name" : "right"
 }
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and redirecting them to the callback method
 CONNECTION_MOTOR_LEFT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_LEFT)

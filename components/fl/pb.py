@@ -14,26 +14,41 @@
 ###Standard imports :
 import atexit
 import time
+from os import path
 
 ###Specific imports :
 ##robotBasics:
 #Constants:
 from robotBasics.constants.gpiodef import RESET as RESET_GPIO
-from robotBasics.constants.ports import FL as SERVER_PORTS
+from robotBasics.constants.connectionSettings import PB as PB_CS
 #Classes & Methods:
-from robotBasics import sockets as SOCKETS
-from robotBasics.logger import logger as LOGGER
+from robotBasics.sockets.tcp.Server import Server as Server
+from robotBasics.logger import robotLogger
 ##Adafruit_BBIO:
 import Adafruit_BBIO.GPIO as GPIO
 
-"""
 ###########################################################################
-#                           Simulator setup                               #
+#                           Environment Setup :                           #
 ###########################################################################
 
-GPIO.pin_association(RESET_GPIO, 'pushbutton\'s state')
-GPIO.setup_behavior('print')
-"""
+#If we are on an actual robot :
+if path.isdir("/home/robot"):
+    ROBOT_ROOT = '/home/robot'
+elif path.isfile(path.expanduser('~/.robotConf')):
+    #If we're not on an actual robot, check if we have
+    #a working environment set for robot debugging:
+    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    #Simulator setup
+    GPIO.pin_association(RESET_GPIO, 'pushbutton\'s state')
+    GPIO.setup_behavior('print')
+else:
+    ROBOT_ROOT = ''
+    print('It seems like you are NOT working on an actual robot. \
+You should set up a debugging environment before running any code (see documentation)')
+
+#Logging Initialization :
+LOGGER = robotLogger("FL > pb", ROBOT_ROOT+'logs/fl/')
 
 ###########################################################################
 #                           I/O Initialization :                          #
@@ -66,25 +81,23 @@ def pb_update_cb(data, arg):
 #### SERVER CONNECTION :
 
 #Creating the connection object
-SERVER = SOCKETS.tcp.Server.Server(SERVER_PORTS["pb"], LOGGER)
+SERVER = Server(PB_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
-#We'll send bool
-SERVER.set_sending_datagram(['BOOL'])
-
-#We'll receive booleans (request)
-SERVER.set_receiving_datagram(['BOOL'])
-
 #Opening the connection
-SERVER.set_up_connection()
+SERVER.connect()
 
-#Arguments object for the callback method
-#We pass the SERVER object so that the callback can respond to the request
+#### CALLBACKS' ARGUMENT SETUP:
+
 ARGUMENTS = {
     "connection" : SERVER,
     "state" : False
 }
+
+###########################################################################
+#                               RUNNING :                                 #
+###########################################################################
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(pb_update_cb, ARGUMENTS)

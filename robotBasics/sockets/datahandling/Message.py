@@ -50,6 +50,15 @@ class Message(object):
             self.packets.append(Packet.Packet(['FILLER', _fillingSize]))
             self.size = _nextPowerOfTwo
 
+    def __str__(self):
+        result = "["
+        for i, packet in enumerate(self.packets):
+            result += str(packet)
+            if i < len(self.packets) - 1:
+                result += ", "
+        result += "]"
+        return result
+
     def encode(self, dataset):
         """
             Message encoding (to bytes)

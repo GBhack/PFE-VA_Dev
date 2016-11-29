@@ -54,17 +54,7 @@ VE_CLIENT.set_sending_datagram(['BOOL'])
 VE_CLIENT.set_up_connection()
 
 alive = True
-print('Running ')
 while alive:
-    obstacleDetected = False
     UC_CLIENT.send_data([True])
-    #print('Request sent to uc, waiting...')
-    time.sleep(0.01)
-    if UC_CLIENT.receive_data():
-        time.sleep(0.01)
-        UC_CLIENT.send_data([True])
-        if UC_CLIENT.receive_data():
-            obstacleDetected = True
-            #print('obstacle !')
-    VE_CLIENT.send_data([obstacleDetected])
+    VE_CLIENT.send_data([UC_CLIENT.receive_data()])
     time.sleep(UPDATE_RATE)
