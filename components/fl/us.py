@@ -12,6 +12,7 @@
 
 ###Standard imports :
 import atexit
+from os import path
 
 ###Specific imports :
 ##robotBasics:

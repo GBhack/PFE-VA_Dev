@@ -127,8 +127,8 @@ def apply_modifications(args):
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT_LEFT = Client(MOT_CS, LOGGER)
-CLIENT_RIGHT = Client(MOT_CS, LOGGER)
+CLIENT_LEFT = Client(MOT_CS["LEFT"], LOGGER)
+CLIENT_RIGHT = Client(MOT_CS["RIGHT"], LOGGER)
 
 #Opening the connection
 CLIENT_LEFT.connect()
