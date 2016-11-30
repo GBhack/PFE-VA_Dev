@@ -76,7 +76,7 @@ def obstacle_detection_cb(data, arg):
         obstacleDetected = True
 
     #Responding the request with the obstacle presence status
-    arg["connection"].send_to_clients([obstacleDetected])
+    arg["connection"].send([obstacleDetected])
 
 
 ###########################################################################
