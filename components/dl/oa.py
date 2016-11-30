@@ -70,6 +70,6 @@ VE_CLIENT.connect()
 ###########################################################################
 
 alive = True
-while alive:
+while VE_CLIENT.connected and UC_CLIENT.connected:
     VE_CLIENT.send([UC_CLIENT.request()])
     time.sleep(UPDATE_RATE)
