@@ -55,7 +55,9 @@ def request_cb(data, args):
         the request with the updated status.
     """
     print('Request received from OA !!')
-    args["server"].send([args["client"].request()])
+    uc_data = args["client"].request()
+    print('Result from uc : ', uc_data)
+    args["server"].send([uc_data])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #
