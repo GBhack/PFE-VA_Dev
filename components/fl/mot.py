@@ -114,14 +114,14 @@ def set_pwm_cb(data, args):
         PWM.set_duty_cycle(args["gpio"]["PWM"], abs(dutyCycle))
 
         #Inform the client that its request have been fulfilled.
-        args["connection"].send_to_clients([True])
+        args["connection"].send([True])
 
         LOGGER.debug(message)
     else:
         LOGGER.warning("PWM must be set between -100 and 100")
         LOGGER.debug("Incoherent command received. Keeping "+args["name"]+" motor in previous state.")
         #Inform the client that its request could not be fulfilled.
-        args["connection"].send_to_clients([False])
+        args["connection"].send([False])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
