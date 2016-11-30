@@ -21,11 +21,6 @@ from robotBasics.constants.connectionSettings import QE as QE_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-from Adafruit_I2C import Adafruit_I2C
-
-#AtTiny  I2Cconnection
-ATCON = Adafruit_I2C(0x04,2)
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -34,10 +29,20 @@ ATCON = Adafruit_I2C(0x04,2)
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
     ROBOT_ROOT = '/home/robot/'
+
+    from Adafruit_I2C import Adafruit_I2C
+
+    #AtTiny  I2Cconnection
+    ATCON = Adafruit_I2C(0x04, 2)
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    from Adafruit_I2C_SIM import Adafruit_I2C
+
+    #AtTiny  I2Cconnection
+    ATCON = Adafruit_I2C(0x04, 2)
 
     #Simulator setup
     ATCON.setup_behavior('print')

@@ -20,8 +20,7 @@ from robotBasics.constants.connectionSettings import LED as LED_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-import Adafruit_BBIO.GPIO as GPIO
+
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -30,10 +29,16 @@ import Adafruit_BBIO.GPIO as GPIO
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
     ROBOT_ROOT = '/home/robot/'
+
+    ##Adafruit_BBIO:
+    import Adafruit_BBIO.GPIO as GPIO
+
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    import Adafruit_BBIO_SIM.GPIO as GPIO
 
     #Simulator setup
     GPIO.pin_association(LEDS[0], 'left blinker')
