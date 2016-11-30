@@ -62,6 +62,16 @@ US = {
     }
 }
 
+IP = {
+    "port": 49260,
+    "datagrams": {
+        "clientToServer": ['BOOL'],
+        "serverToClient": [['BITS', [1, 1]]]
+                #First bit  : Traffic light detected
+                #Second bit : 0 = Red, 1 = Green
+    }
+}
+
 #Execution Control Level (ECL):
 
 LEDC = {
