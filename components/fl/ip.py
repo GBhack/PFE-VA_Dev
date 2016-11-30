@@ -18,7 +18,7 @@ LOOKFOR = 0 #0 = RED, 1 = GREEN
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
