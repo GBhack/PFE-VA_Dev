@@ -11,7 +11,7 @@ from logging import DEBUG
 #Sockets-related constants
 SOCKETS = {
     "connectionTimeout": 5,
-    "listeningTimeout": 120,
+    "listeningTimeOut": 120,
     "frequency": 0.02
 }
 
