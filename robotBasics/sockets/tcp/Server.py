@@ -114,7 +114,7 @@ class Server(object):
 
         clientsConnected = 0
         waitingForClients = True
-
+        print('Port : ', self._port)
         self._socket.bind(('', self._port))
         self._socket.listen(1)
 
