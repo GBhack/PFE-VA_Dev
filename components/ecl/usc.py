@@ -54,7 +54,7 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
-    args["server"].send([args["client"].request())
+    args["server"].send([args["client"].request()])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #
