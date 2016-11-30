@@ -71,5 +71,5 @@ VE_CLIENT.connect()
 
 alive = True
 while alive:
-    VE_CLIENT.send([UC_CLIENT.request())
+    VE_CLIENT.send([UC_CLIENT.request()])
     time.sleep(UPDATE_RATE)
