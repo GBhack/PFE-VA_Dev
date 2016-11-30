@@ -30,3 +30,7 @@ OS = {
 QEC = {
     "update_freq": 0.25
 }
+
+IP = {
+	"max_retry" : 5
+}
