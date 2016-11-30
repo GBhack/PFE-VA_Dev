@@ -71,5 +71,7 @@ VE_CLIENT.connect()
 
 alive = True
 while VE_CLIENT.connected and UC_CLIENT.connected:
+    result = UC_CLIENT.request()
+    print('Request result : ', result)
     VE_CLIENT.send([UC_CLIENT.request()])
     time.sleep(UPDATE_RATE)

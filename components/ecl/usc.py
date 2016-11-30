@@ -94,4 +94,4 @@ ARGUMENTS = {
 #Waiting for requests and redirecting them to the callback methods
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
 
-print('Ended listening to clients')
+print('Ended listening to clientsx')
