@@ -2,7 +2,7 @@ from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
 
 OS = {
-    "port": 49220,
+    "port": 49210,
     "datagrams": {
         "clientToServer": ['BOOL'],
         "serverToClient": ['BOOL']

@@ -9,7 +9,7 @@ sleep 0.1
 #python3 fl/os.py &
 #sleep 0.1
 python3 fl/mot.py &
-sleep 0.1
+sleep 0.2
 #python3 fl/led.py &
 #Psleep 0.1
 #python3 ecl/uc.py &
