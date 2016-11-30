@@ -101,6 +101,7 @@ class Client(object):
 
         while tryingToConnect:
             try:
+                print('Client PORT : ', self._port)
                 self._connection.connect(('127.0.0.1', self._port))
                 self.connected = True
             except ConnectionRefusedError:
