@@ -53,8 +53,8 @@ def oa_handling_cb(data, args):
             time.sleep(0.0001)
         args["velocity_state"]["busy"] = True
         args["velocity_state"]["oa_brake"] = True
-        args["velocity_client"].send_data([0])
-        _ = args["velocity_client"].receive_data()
+        args["velocity_client"].send([0])
+        _ = args["velocity_client"].receive()
         args["velocity_state"]["busy"] = False
     else:
         args["velocity_state"]["oa_brake"] = False
@@ -136,8 +136,8 @@ while alive:
     else:
         desiredVelocity = int(VELOCITY_STATE["desiredVelocity"])
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
-        VELOCITY_CLIENT.send_data([desiredVelocity])
-        VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive_data()
+        VELOCITY_CLIENT.send([desiredVelocity])
+        VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive()
     print('Required velocity : ' + str(desiredVelocity))
     print('Actual velocity : ' + str(VELOCITY_STATE["actualVelocity"]))
     time.sleep(0.25)

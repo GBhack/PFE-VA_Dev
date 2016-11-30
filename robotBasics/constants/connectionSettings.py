@@ -1,3 +1,7 @@
+"""
+    Connection Settings constants for inter-modules communication
+"""
+
 #Functionnal Level (FL) :
 
 LED = {
