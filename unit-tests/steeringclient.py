@@ -11,6 +11,7 @@ import robotBasics as RB
 import atexit
 from robotBasics.sockets.tcp.Client import Client as Client
 from robotBasics.constants.connectionSettings import VSC as VSC_CS
+from robotBasics.logger import robotLogger
 SOCKETS = RB.sockets
 
 LOGGER = robotLogger("unit-test > steeringclient", '')
