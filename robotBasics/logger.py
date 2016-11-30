@@ -14,9 +14,9 @@ class trimmingFormatter(logging.Formatter):
 def robotLogger(caller, location = ''):
     formatter = trimmingFormatter("[%(asctime)s : "+caller+" > %(module)s @ %(filename)s :  %(funcName)s (%(levelname)s)] %(message)s")
 
-    handler_errors = logging.handlers.RotatingFileHandler(location+"logs/errors.log",
+    handler_errors = logging.handlers.RotatingFileHandler(location+"errors.log",
         mode="a", maxBytes = 100000, backupCount = 100, encoding="utf-8")
-    handler_debug  = logging.handlers.RotatingFileHandler(location+"logs/debug.log",
+    handler_debug  = logging.handlers.RotatingFileHandler(location+"debug.log",
         mode="a", maxBytes = 100000, backupCount = 100, encoding="utf-8")
     handler_console = logging.StreamHandler()
 
