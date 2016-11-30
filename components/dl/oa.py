@@ -70,7 +70,7 @@ VE_CLIENT.connect()
 ###########################################################################
 
 alive = True
-while VE_CLIENT.connected and UC_CLIENT.connected:
+while VE_CLIENT.connected and USC_CLIENT.connected:
     result = USC_CLIENT.request()
     print('Request result : ', result)
     VE_CLIENT.send([result])
