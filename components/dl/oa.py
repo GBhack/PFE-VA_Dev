@@ -52,10 +52,10 @@ MINIMAL_DISTANCE = 0.08
 #### CLIENTS CONNECTION :
 
 #Creating the Get Frontal Distance module's client
-UC_CLIENT = Client(USC_CS, LOGGER)
+USC_CLIENT = Client(USC_CS, LOGGER)
 
 #Opening the connection
-UC_CLIENT.connect()
+USC_CLIENT.connect()
 
 #Creating the Velocity/Steering regulator module's client object
 VE_CLIENT = Client(VE_CS["oa"], LOGGER)
@@ -71,7 +71,7 @@ VE_CLIENT.connect()
 
 alive = True
 while VE_CLIENT.connected and UC_CLIENT.connected:
-    result = UC_CLIENT.request()
+    result = USC_CLIENT.request()
     print('Request result : ', result)
-    VE_CLIENT.send([UC_CLIENT.request()])
+    VE_CLIENT.send([result])
     time.sleep(UPDATE_RATE)

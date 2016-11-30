@@ -54,6 +54,7 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
+    print('Request received from OA !!')
     args["server"].send([args["client"].request()])
 
 ###########################################################################
@@ -94,4 +95,4 @@ ARGUMENTS = {
 #Waiting for requests and redirecting them to the callback methods
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
 
-print('Ended listening to clientsx')
+print('Ended listening to clients')
