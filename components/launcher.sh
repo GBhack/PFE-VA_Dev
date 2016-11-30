@@ -12,8 +12,8 @@ python3 fl/mot.py &
 sleep 0.2
 #python3 fl/led.py &
 #Psleep 0.1
-#python3 ecl/uc.py &
-#sleep 0.5
+python3 ecl/usc.py &
+sleep 0.5
 python3 ecl/vsc.py &
 sleep 0.1
 #python3 ecl/qec.py &
