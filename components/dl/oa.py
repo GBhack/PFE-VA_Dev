@@ -71,7 +71,5 @@ VE_CLIENT.connect()
 
 alive = True
 while VE_CLIENT.connected and USC_CLIENT.connected:
-    result = USC_CLIENT.request()[0]
-    print('Request result : ', result)
-    VE_CLIENT.send([result])
+    VE_CLIENT.send([USC_CLIENT.request()[0]])
     time.sleep(UPDATE_RATE)

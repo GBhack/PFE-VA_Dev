@@ -54,10 +54,7 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
-    print('Request received from OA !!')
-    uc_data = args["client"].request()[0]
-    print('Result from uc : ', uc_data)
-    args["server"].send([uc_data])
+    args["server"].send([args["client"].request()[0]])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #

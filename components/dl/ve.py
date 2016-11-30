@@ -64,6 +64,7 @@ def velocity_handling_cb(data, args):
     while  args["velocity_state"]["busy"]:
         time.sleep(0.001)
     args["velocity_state"]["busy"] = True
+    print('Velocity received : ', int(data[0]))
     args["velocity_state"]["desiredVelocity"] = int(data[0])
     args["velocity_server"].send_to_clients([True])
     args["velocity_state"]["busy"] = False
