@@ -129,7 +129,7 @@ OA_SERVER.listen_to_clients(oa_handling_cb, OA_ARGUMENTS)
 
 alive = True
 
-while alive:
+while VELOCITY_SERVER.connected:
     if VELOCITY_STATE["oa_brake"]:
         print("Brake")
         desiredVelocity = 0
