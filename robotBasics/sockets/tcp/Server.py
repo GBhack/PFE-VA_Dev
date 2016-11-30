@@ -96,6 +96,7 @@ class Server(object):
         assert datagramsSet > 0,\
             "At least one datagram should be set for the connection."
 
+        print('Setting connection timeout to : ', self._connectionTimeOut)
         socket.setdefaulttimeout(self._connectionTimeOut)
 
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -145,6 +146,7 @@ class Server(object):
             self._log.warning("No client connected on port %d.",\
                 self._port)
 
+        print('Setting listening timeout to : ', self._listeningTimeOut)
         socket.setdefaulttimeout(self._listeningTimeOut)
 
     def listen_to_clients(self, callback, args):
