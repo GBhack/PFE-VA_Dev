@@ -70,7 +70,7 @@ def pb_update_cb(data, arg):
         request and then reset the button's status
     """
     #Responding the request with the button pushing status
-    arg["connection"].send_to_clients([arg["state"]])
+    arg["connection"].send_to_client([arg["state"]])
     #Reseting the button pushing status
     arg["state"] = False
 

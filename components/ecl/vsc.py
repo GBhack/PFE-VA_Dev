@@ -75,7 +75,7 @@ def velocity_control_cb(data, args):
     apply_modifications(args)
 
     #We send the velocity actually applied to the client :
-    args["velocityConnection"].send_to_clients([args["currentState"]["velocity"]])
+    args["velocityConnection"].send([args["currentState"]["velocity"]])
 
 def steering_control_cb(data, args):
     """
@@ -88,7 +88,7 @@ def steering_control_cb(data, args):
     apply_modifications(args)
 
     #We send the velocity actually applied to the client :
-    args["steeringConnection"].send_to_clients([data[0]])
+    args["steeringConnection"].send([data[0]])
 
 def apply_modifications(args):
     #Wait for the semaphore to be cleared (so we don't apply two modifications at the same time)

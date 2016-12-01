@@ -92,7 +92,7 @@ def read_array_cb(data, arg):
         array.append(int(read_single_sensor(OS_GPIO[i])))
 
     #Responding the request with the button pushing status
-    arg["connection"].send_to_clients([array])
+    arg["connection"].send([array])
 
 
 ###########################################################################

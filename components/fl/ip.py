@@ -75,7 +75,7 @@ ARGUMENTS = {
 SERVER.listen_to_clients(light_send_state, ARGUMENTS)
 
 def light_send_state(data, arg):
-    arg["connection"].send_to_clients(checking_exectutor())
+    arg["connection"].send(checking_exectutor())
 
 CAP = cv2.VideoCapture(1)
 _ = CAP.set(3, 320)

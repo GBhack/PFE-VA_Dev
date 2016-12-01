@@ -57,7 +57,7 @@ def request_cb(data, args):
     if args["client"].request()[0]:
         args["running"] = not args["running"]
 
-    args["server"].send_to_clients([args["running"]])
+    args["server"].send([args["running"]])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #

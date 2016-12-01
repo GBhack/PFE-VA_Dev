@@ -78,7 +78,7 @@ def set_leds_cb(data, args):
             GPIO.output(led, GPIO.LOW)
         else:
             GPIO.output(led, GPIO.HIGH)
-        args["connection"].send_to_clients([True])
+        args["connection"].send([True])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #

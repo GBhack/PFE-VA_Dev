@@ -62,7 +62,7 @@ def request_cb(data, arg):
         arg["distance"] = 0.0055*arg["client"].request()[0]
 
     #Responding the request with the obstacle presence status
-    arg["server"].send_to_clients([arg["distance"]])
+    arg["server"].send([arg["distance"]])
 
 
 ###########################################################################

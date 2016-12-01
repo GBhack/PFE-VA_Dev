@@ -66,7 +66,7 @@ def request_cb(data, arg):
         I2C and responds to the request with the result.
     """
     #Responding the request with the obstacle presence status
-    arg["connection"].send_to_clients([int(ATCON.readU16(0))])
+    arg["connection"].send([int(ATCON.readU16(0))])
 
 
 ###########################################################################
