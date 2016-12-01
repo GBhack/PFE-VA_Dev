@@ -84,6 +84,8 @@ def steering_control_cb(data, args):
     """
     #We apply the change to the program's velocity variable
     args["currentState"]["steeringRatio"] = data[0]
+
+    print('Received steering : ', data[0])
     #We apply the changes to the robot :
     apply_modifications(args)
 
