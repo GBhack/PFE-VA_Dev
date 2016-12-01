@@ -16,7 +16,7 @@ from os import path
 ##robotBasics:
 #Constants:
 from robotBasics.constants.misc import LEDS_PINS as LEDS_PINS
-from robotBasics.constants.gpiodef import LEDS_GPIO as LEDS_GPIO
+from robotBasics.constants.gpiodef import LEDS as LEDS_GPIO
 from robotBasics.constants.connectionSettings import LED as LED_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
