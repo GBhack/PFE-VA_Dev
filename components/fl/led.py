@@ -107,3 +107,4 @@ ARGUMENTS = {
 
 #Waiting for requests and redirecting them to the callback method
 LEDS_SERVER.listen_to_clients(set_leds_cb, ARGUMENTS)
+LEDS_SERVER.join_clients()

@@ -94,3 +94,4 @@ ARGUMENTS = {
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
+SERVER.join_clients()

@@ -103,6 +103,9 @@ class Server(object):
         self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self._connections = []
+
+        self._listeningThread = []
+
         self.connected = False
 
     def connect(self):
@@ -154,7 +157,7 @@ class Server(object):
             Data receiving method
         """
         print('Callback : ', callback.__name__)
-        listeningThread = []
+       
 
         for client in self._connections:
             threadSettings = {
@@ -165,10 +168,11 @@ class Server(object):
                 "closingMethod": self.close
             }
             
-            listeningThread.append(WaitForData(threadSettings))
-            listeningThread[-1].start()
+            self._listeningThread.append(WaitForData(threadSettings))
+            self._listeningThread[-1].start()
 
-        for thread in listeningThread:
+    def join_clients(self):
+        for thread in self._listeningThread:
             thread.join()
 
     def send(self, data):

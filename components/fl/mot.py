@@ -162,3 +162,5 @@ ARGUMENTS_MOTOR_RIGHT = {
 #Waiting for requests and redirecting them to the callback method
 CONNECTION_MOTOR_LEFT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_LEFT)
 CONNECTION_MOTOR_RIGHT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_RIGHT)
+CONNECTION_MOTOR_LEFT.join_clients()
+CONNECTION_MOTOR_RIGHT.join_clients()

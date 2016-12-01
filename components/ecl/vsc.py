@@ -196,5 +196,7 @@ while not VELOCITY_SERVER.connected or not STEERING_SERVER.connected:
 VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)
 STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
 
+VELOCITY_SERVER.join_clients()
+STEERING_SERVER.join_clients()
 
 stopped = False
