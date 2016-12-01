@@ -82,6 +82,7 @@ def steering_control_cb(data, args):
         Steering control callback method
         Apply requested steering
     """
+    print('REQUEST RECEIVED !!!!')
     #We apply the change to the program's velocity variable
     args["currentState"]["steeringRatio"] = data[0]
 

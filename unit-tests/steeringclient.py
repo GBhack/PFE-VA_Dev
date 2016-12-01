@@ -8,7 +8,6 @@
 
 import time
 import robotBasics as RB
-import atexit
 from robotBasics.sockets.tcp.Client import Client as Client
 from robotBasics.constants.connectionSettings import VSC as VSC_CS
 from robotBasics.logger import robotLogger
@@ -26,7 +25,9 @@ if TCP.connect():
         value = int(input("Steering ?"))
         if value <= 100 and value >= -100:
             try:
+                print('Sending')
                 TCP.send([int(value)])
+                print('sent')
             except:
                 print('erreur lors de l\'envoi')
             time.sleep(0.1)
