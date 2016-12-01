@@ -75,9 +75,9 @@ def set_leds_cb(data, args):
     """
     for i, led in enumerate(LEDS_PINS):
         if data[0][i]:
-            GPIO.output(led, GPIO.HIGH)
-        else:
             GPIO.output(led, GPIO.LOW)
+        else:
+            GPIO.output(led, GPIO.HIGH)
         args["connection"].send_to_clients([True])
 
 ###########################################################################
