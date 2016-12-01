@@ -189,6 +189,9 @@ ARGUMENTS_STEERING = {
 #                               RUNNING :                                 #
 ###########################################################################
 
+while not VELOCITY_SERVER.connected or not STEERING_SERVER.connected:
+    time.sleep(0.05)
+
 #Waiting for requests and redirecting them to the callback methods
 VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)
 STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
