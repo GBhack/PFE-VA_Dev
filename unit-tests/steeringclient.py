@@ -17,8 +17,6 @@ LOGGER = robotLogger("unit-test > steeringclient", '')
 
 TCP = Client(VSC_CS["steering"], LOGGER)
 
-atexit.register(TCP.close)
-
 if TCP.connect():
     while 1:
 
