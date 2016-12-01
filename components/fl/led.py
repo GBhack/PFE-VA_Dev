@@ -57,11 +57,11 @@ LOGGER = robotLogger("FL > led", ROBOT_ROOT+'logs/fl/')
 #                           I/O Initialization :                          #
 ###########################################################################
 
-for LED in LEDS_GPIO:
+for name, pin in LEDS_GPIO.items():
     #Declare motor enabling pins as outputs
-    GPIO.setup(LED, GPIO.OUT)
+    GPIO.setup(pin, GPIO.OUT)
     #Set enabeling pins to LOW
-    GPIO.output(LED, GPIO.LOW)
+    GPIO.output(pin, GPIO.LOW)
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
