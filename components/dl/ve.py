@@ -19,6 +19,8 @@ from os import path
 #Constants:
 from robotBasics.constants.connectionSettings import VE as VE_CS
 from robotBasics.constants.connectionSettings import VSC as VSC_CS
+from robotBasics.constants.connectionSettings import LEDC as LEDC_CS
+from robotBasics.constants.misc import LEDS_ID as LEDS_ID
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.sockets.tcp.Client import Client as Client
@@ -69,18 +71,25 @@ def velocity_handling_cb(data, args):
     args["velocity_server"].send([True])
     args["velocity_state"]["busy"] = False
 
+def brake_light_switch(state, client):
+    client.send([LEDS_ID["STOP"], state])
+
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
 ###########################################################################
 
 #### CLIENTS CONNECTION :
 
-#
+
 VELOCITY_CLIENT = Client(VSC_CS["velocity"], LOGGER)
 
 #Opening the connection
 VELOCITY_CLIENT.connect()
 
+LEDS_CLIENT = Client(LEDC_CS, LOGGER)
+
+#Opening the connection
+LEDS_CLIENT.connect()
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
@@ -137,6 +146,8 @@ while VELOCITY_SERVER.connected:
     else:
         desiredVelocity = int(VELOCITY_STATE["desiredVelocity"])
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
+        brake_light_switch(desiredVelocity < VELOCITY_STATE["actualVelocity"] or \
+            desiredVelocity == 0, LEDS_CLIENT)
         VELOCITY_CLIENT.send([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive()
     print('Required velocity : ' + str(desiredVelocity))

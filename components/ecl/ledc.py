@@ -18,6 +18,7 @@ from os import path
 #Constants:
 from robotBasics.constants.connectionSettings import LED as LED_CS
 from robotBasics.constants.connectionSettings import LEDC as LEDC_CS
+from robotBasics.constants.misc import LEDS_STATE as LEDS_STATE
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.sockets.tcp.Client import Client as Client
@@ -57,9 +58,9 @@ def request_cb(data, args):
     if args["LEDs_state"][data[0][0]] != bool(data[0][1]):
         args["LEDs_state"][data[0][0]] = bool(data[0][1])
         args["client"].send([args["LEDs_state"]])
-        args["server"].send_to_clients([args["client"].receive_data()[0]])
+        args["server"].send([args["client"].receive_data()[0]])
     else:
-        args["server"].send_to_clients([True])
+        args["server"].send([True])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #
@@ -91,7 +92,7 @@ SERVER.connect()
 ARGUMENTS = {
     "server": SERVER,
     "client": CLIENT,
-    "LEDs_state": [False, False, False, False]
+    "LEDs_state": LEDS_STATE
 }
 
 ###########################################################################

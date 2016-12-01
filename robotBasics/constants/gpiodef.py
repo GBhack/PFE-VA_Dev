@@ -21,13 +21,13 @@ ENGINES = {
 }
 
 #LEDs-related I/O :
-# !!!!!! A CHANGER  !!!!!!!!
-LEDS = [
-    "P8_33",    #LEFT blinker
-    "P8_27",    #RIGHT blinker
-    "P8_31",    #STOP light
-    "P8_29"     #STATUS led
-]
+# CHANGE THE VALUES HERE !!
+LEDS = {
+    "LEFT" : "P8_33",
+    "RIGHT" : "P8_27",
+    "STOP" : "P8_31",
+    "STATUS" : "P8_29"
+}
 
 #Sonar-related I/O :
 SONAR = {

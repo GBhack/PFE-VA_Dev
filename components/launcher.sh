@@ -10,7 +10,7 @@ sleep 0.1
 #sleep 0.1
 python3 fl/mot.py &
 sleep 0.2
-#python3 fl/led.py &
+python3 fl/led.py &
 #Psleep 0.1
 python3 ecl/usc.py &
 sleep 0.5
@@ -20,7 +20,7 @@ sleep 0.1
 #sleep 0.1
 #python3 ecl/pbc.py &
 #sleep 0.1
-#python3 ecl/ledc.py &
+python3 ecl/ledc.py &
 
 sleep 0.1
 python3 dl/ve.py &
