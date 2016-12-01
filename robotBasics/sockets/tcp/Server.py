@@ -153,7 +153,7 @@ class Server(object):
         """
             Data receiving method
         """
-
+        print('Callback : ', callback.__name__)
         listeningThread = []
 
         for client in self._connections:
