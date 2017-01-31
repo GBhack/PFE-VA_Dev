@@ -32,7 +32,7 @@ TCP.set_up_connexion(20, True, 2)
 
 while TCP.alive:
     TCP.listen_to_clients(print_message, test)
-    TCP.send_to_clients([0.123451])
+    TCP.send([0.123451])
     time.sleep(1)
 
 TCP.close()

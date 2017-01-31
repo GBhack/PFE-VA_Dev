@@ -19,6 +19,8 @@ from os import path
 #Constants:
 from robotBasics.constants.connectionSettings import VE as VE_CS
 from robotBasics.constants.connectionSettings import VSC as VSC_CS
+from robotBasics.constants.connectionSettings import LEDC as LEDC_CS
+from robotBasics.constants.misc import LEDS_ID as LEDS_ID
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.sockets.tcp.Client import Client as Client
@@ -30,7 +32,7 @@ from robotBasics.logger import robotLogger
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
@@ -64,9 +66,13 @@ def velocity_handling_cb(data, args):
     while  args["velocity_state"]["busy"]:
         time.sleep(0.001)
     args["velocity_state"]["busy"] = True
+    print('Velocity received : ', int(data[0]))
     args["velocity_state"]["desiredVelocity"] = int(data[0])
-    args["velocity_server"].send_to_clients([True])
+    args["velocity_server"].send([True])
     args["velocity_state"]["busy"] = False
+
+def brake_light_switch(state, client):
+    client.send([LEDS_ID["STOP"], state])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -74,12 +80,16 @@ def velocity_handling_cb(data, args):
 
 #### CLIENTS CONNECTION :
 
-#
+
 VELOCITY_CLIENT = Client(VSC_CS["velocity"], LOGGER)
 
 #Opening the connection
 VELOCITY_CLIENT.connect()
 
+LEDS_CLIENT = Client(LEDC_CS, LOGGER)
+
+#Opening the connection
+LEDS_CLIENT.connect()
 #### SERVER CONNECTION :
 
 #Creating the TCP instances
@@ -129,13 +139,15 @@ OA_SERVER.listen_to_clients(oa_handling_cb, OA_ARGUMENTS)
 
 alive = True
 
-while alive:
+while VELOCITY_SERVER.connected:
     if VELOCITY_STATE["oa_brake"]:
         print("Brake")
         desiredVelocity = 0
     else:
         desiredVelocity = int(VELOCITY_STATE["desiredVelocity"])
     if VELOCITY_STATE["actualVelocity"] != desiredVelocity:
+        brake_light_switch(desiredVelocity < VELOCITY_STATE["actualVelocity"] or \
+            desiredVelocity == 0, LEDS_CLIENT)
         VELOCITY_CLIENT.send([desiredVelocity])
         VELOCITY_STATE["actualVelocity"] = VELOCITY_CLIENT.receive()
     print('Required velocity : ' + str(desiredVelocity))

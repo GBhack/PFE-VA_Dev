@@ -32,7 +32,7 @@ from robotBasics.logger import robotLogger
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
@@ -62,7 +62,7 @@ def request_cb(data, arg):
         arg["distance"] = 0.0055*arg["client"].request()[0]
 
     #Responding the request with the obstacle presence status
-    arg["server"].send_to_clients([arg["distance"]])
+    arg["server"].send([arg["distance"]])
 
 
 ###########################################################################
@@ -104,3 +104,4 @@ ARGUMENTS = {
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
+SERVER.join_clients()

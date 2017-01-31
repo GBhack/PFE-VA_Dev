@@ -30,7 +30,7 @@ from robotBasics.logger import robotLogger
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
@@ -54,7 +54,7 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
-    args["server"].send_to_clients([args["client"].request()[0]])
+    args["server"].send([args["client"].request()[0]])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #
@@ -93,3 +93,6 @@ ARGUMENTS = {
 
 #Waiting for requests and redirecting them to the callback methods
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
+SERVER.join_clients()
+
+print('Ended listening to clients')

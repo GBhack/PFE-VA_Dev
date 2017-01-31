@@ -49,6 +49,7 @@ class Packet(object):
             #We isolate the type from the detail :
             self.type = description[0]
             self._detail = description[1]
+            self.description = '['+self.type+']'
         #Else :
         except AssertionError:
             #If the definition and the signing method are given, we store them :

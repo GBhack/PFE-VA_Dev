@@ -29,7 +29,7 @@ from robotBasics.logger import robotLogger
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
@@ -52,10 +52,10 @@ MINIMAL_DISTANCE = 0.08
 #### CLIENTS CONNECTION :
 
 #Creating the Get Frontal Distance module's client
-UC_CLIENT = Client(USC_CS, LOGGER)
+USC_CLIENT = Client(USC_CS, LOGGER)
 
 #Opening the connection
-UC_CLIENT.connect()
+USC_CLIENT.connect()
 
 #Creating the Velocity/Steering regulator module's client object
 VE_CLIENT = Client(VE_CS["oa"], LOGGER)
@@ -70,6 +70,6 @@ VE_CLIENT.connect()
 ###########################################################################
 
 alive = True
-while alive:
-    VE_CLIENT.send([UC_CLIENT.request()[0]])
+while VE_CLIENT.connected and USC_CLIENT.connected:
+    VE_CLIENT.send([USC_CLIENT.request()[0]])
     time.sleep(UPDATE_RATE)

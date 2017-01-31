@@ -20,9 +20,6 @@ from robotBasics.constants.connectionSettings import MOT as MOT_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-import Adafruit_BBIO.GPIO as GPIO
-import Adafruit_BBIO.PWM as PWM
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -30,11 +27,16 @@ import Adafruit_BBIO.PWM as PWM
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
+    import Adafruit_BBIO.GPIO as GPIO
+    import Adafruit_BBIO.PWM as PWM
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    import Adafruit_BBIO_SIM.GPIO as GPIO
+    import Adafruit_BBIO.PWM as PWM
 
     #Simulator setup
     PWM.pin_association(GPIODEF.ENGINES["left"]["PWM"], 'left motor\'s PWM')
@@ -112,14 +114,14 @@ def set_pwm_cb(data, args):
         PWM.set_duty_cycle(args["gpio"]["PWM"], abs(dutyCycle))
 
         #Inform the client that its request have been fulfilled.
-        args["connection"].send_to_clients([True])
+        args["connection"].send([True])
 
         LOGGER.debug(message)
     else:
         LOGGER.warning("PWM must be set between -100 and 100")
         LOGGER.debug("Incoherent command received. Keeping "+args["name"]+" motor in previous state.")
         #Inform the client that its request could not be fulfilled.
-        args["connection"].send_to_clients([False])
+        args["connection"].send([False])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -160,3 +162,5 @@ ARGUMENTS_MOTOR_RIGHT = {
 #Waiting for requests and redirecting them to the callback method
 CONNECTION_MOTOR_LEFT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_LEFT)
 CONNECTION_MOTOR_RIGHT.listen_to_clients(set_pwm_cb, ARGUMENTS_MOTOR_RIGHT)
+CONNECTION_MOTOR_LEFT.join_clients()
+CONNECTION_MOTOR_RIGHT.join_clients()

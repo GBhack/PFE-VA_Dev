@@ -21,11 +21,6 @@ from robotBasics.constants.connectionSettings import QE as QE_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-from Adafruit_I2C import Adafruit_I2C
-
-#AtTiny  I2Cconnection
-ATCON = Adafruit_I2C(0x04,2)
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -33,11 +28,21 @@ ATCON = Adafruit_I2C(0x04,2)
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
+
+    from Adafruit_I2C import Adafruit_I2C
+
+    #AtTiny  I2Cconnection
+    ATCON = Adafruit_I2C(0x04, 2)
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    from Adafruit_I2C_SIM import Adafruit_I2C
+
+    #AtTiny  I2Cconnection
+    ATCON = Adafruit_I2C(0x04, 2)
 
     #Simulator setup
     ATCON.setup_behavior('print')
@@ -61,7 +66,7 @@ def request_cb(data, arg):
         I2C and responds to the request with the result.
     """
     #Responding the request with the obstacle presence status
-    arg["connection"].send_to_clients([int(ATCON.readU16(0))])
+    arg["connection"].send([int(ATCON.readU16(0))])
 
 
 ###########################################################################
@@ -89,3 +94,4 @@ ARGUMENTS = {
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(request_cb, ARGUMENTS)
+SERVER.join_clients()

@@ -21,6 +21,6 @@ SOCKETS = RB.sockets
 
 UDP = SOCKETS.udp.Server.Server(12345)
 
-UDP.send_to_clients(TEST)
+UDP.send(TEST)
 
 UDP.close()

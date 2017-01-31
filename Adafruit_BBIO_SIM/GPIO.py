@@ -55,6 +55,11 @@ class GPIO:
         return random.randrange(0, 2, 1)
 
     def pin_association(pin, name):
+        """Associates a pin with a "human friendly" name
+        Arguments:
+            pin {string} -- Pin name (eg: P8_22)
+            name {string} -- Name to associate with the pin
+        """
         PIN_ASSOC[pin] = name
 
     def setup_behavior(mode):

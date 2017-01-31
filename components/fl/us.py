@@ -12,6 +12,7 @@
 
 ###Standard imports :
 import atexit
+from os import path
 
 ###Specific imports :
 ##robotBasics:
@@ -21,8 +22,6 @@ from robotBasics.constants.connectionSettings import US as US_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-import Adafruit_BBIO.GPIO as GPIO
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -30,11 +29,15 @@ import Adafruit_BBIO.GPIO as GPIO
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
+
+    import Adafruit_BBIO.GPIO as GPIO
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    import Adafruit_BBIO_SIM.GPIO as GPIO
 
     #Simulator setup
     GPIO.pin_association(SONAR_GPIO["obstacle"], 'obstacle detection status')
@@ -75,7 +78,7 @@ def obstacle_detection_cb(data, arg):
         obstacleDetected = True
 
     #Responding the request with the obstacle presence status
-    arg["connection"].send_to_clients([obstacleDetected])
+    arg["connection"].send([obstacleDetected])
 
 
 ###########################################################################
@@ -104,3 +107,4 @@ ARGUMENTS = {
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(obstacle_detection_cb, ARGUMENTS)
+SERVER.join_clients()

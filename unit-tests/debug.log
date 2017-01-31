@@ -155,3 +155,10 @@
 [2016-11-23 15:54:56,836 : set_receiving_datagram - Client @ Client.py (DEBUG)] Receiving datagram set to : ['BOOL'] for client socket on port 1210
 [2016-11-23 15:54:56,837 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1200.
 [2016-11-23 15:54:56,847 : set_up_connection - Client @ Client.py (DEBUG)] Connection successful on port 1210.
+[2016-11-30 18:43:56,578 : test > Server @ Server.py :  __init__ (DEBUG)] Sending datagram set to : [BOOL] for client socket on port 49220
+[2016-11-30 18:43:56,580 : test > Server @ Server.py :  __init__ (DEBUG)] Receiving datagram set to : [BOOL] for client socket on port 49220
+[2016-11-30 18:43:57,312 : test > Client @ Client.py :  __init__ (DEBUG)] Receiving datagram set to : [BOOL] for client socket on port 49220
+[2016-11-30 18:43:57,312 : test > Client @ Client.py :  __init__ (DEBUG)] Sending datagram set to : [BOOL] for client socket on port 49220
+[2016-11-30 18:43:57,313 : test > Client @ Client.py :  __init__ (DEBUG)] Sending datagram for client socket on port 49220 is compatible with request method usage.
+[2016-11-30 18:43:57,313 : test > Client @ Client.py :  connect (DEBUG)] Connection successful on port 49220.
+[2016-11-30 18:43:57,313 : test > Server @ Server.py :  connect (INFO)] Maximum number of clients reached (1) on port 49220.

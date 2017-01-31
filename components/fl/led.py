@@ -15,13 +15,13 @@ from os import path
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.gpiodef import LEDS as LEDS
+from robotBasics.constants.misc import LEDS_PINS as LEDS_PINS
+from robotBasics.constants.gpiodef import LEDS as LEDS_GPIO
 from robotBasics.constants.connectionSettings import LED as LED_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-import Adafruit_BBIO.GPIO as GPIO
+
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -29,16 +29,21 @@ import Adafruit_BBIO.GPIO as GPIO
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
+
+    ##Adafruit_BBIO:
+    import Adafruit_BBIO.GPIO as GPIO
+
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
 
+    import Adafruit_BBIO_SIM.GPIO as GPIO
+
     #Simulator setup
-    GPIO.pin_association(LEDS[0], 'left blinker')
-    GPIO.pin_association(LEDS[1], 'right blinker')
-    GPIO.pin_association(LEDS[2], 'brake light')
+    for name, pin in LEDS_GPIO.items():
+        GPIO.pin_association(pin, name+' blinker')
     GPIO.setup_behavior('print')
 else:
     ROBOT_ROOT = ''
@@ -52,16 +57,11 @@ LOGGER = robotLogger("FL > led", ROBOT_ROOT+'logs/fl/')
 #                           I/O Initialization :                          #
 ###########################################################################
 
-#Declare motor enabling pins as outputs
-GPIO.setup(LEDS[0], GPIO.OUT)
-GPIO.setup(LEDS[1], GPIO.OUT)
-GPIO.setup(LEDS[2], GPIO.OUT)
-
-#Set enabeling pins to LOW
-########### NOTE ############
-GPIO.output(LEDS[0], GPIO.LOW)
-GPIO.output(LEDS[1], GPIO.LOW)
-GPIO.output(LEDS[2], GPIO.LOW)
+for name, pin in LEDS_GPIO.items():
+    #Declare motor enabling pins as outputs
+    GPIO.setup(pin, GPIO.OUT)
+    #Set enabeling pins to LOW
+    GPIO.output(pin, GPIO.LOW)
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -73,12 +73,12 @@ def set_leds_cb(data, args):
         When instructions are updated through a request to the
         server, deduces and apply the corresponding motor configuration
     """
-    for i, led in enumerate(LEDS):
+    for i, led in enumerate(LEDS_PINS):
         if data[0][i]:
-            GPIO.output(led, GPIO.HIGH)
-        else:
             GPIO.output(led, GPIO.LOW)
-        args["connection"].send_to_clients([True])
+        else:
+            GPIO.output(led, GPIO.HIGH)
+        args["connection"].send([True])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
@@ -107,3 +107,4 @@ ARGUMENTS = {
 
 #Waiting for requests and redirecting them to the callback method
 LEDS_SERVER.listen_to_clients(set_leds_cb, ARGUMENTS)
+LEDS_SERVER.join_clients()

@@ -31,11 +31,14 @@ import Adafruit_BBIO.ADC as ADC
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
+    import Adafruit_BBIO.ADC as ADC
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
     ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+
+    import Adafruit_BBIO_SIM.ADC as ADC
 
     #Simulator setup
     ADC.setup_behavior('print')
@@ -89,7 +92,7 @@ def read_array_cb(data, arg):
         array.append(int(read_single_sensor(OS_GPIO[i])))
 
     #Responding the request with the button pushing status
-    arg["connection"].send_to_clients([array])
+    arg["connection"].send([array])
 
 
 ###########################################################################
@@ -118,3 +121,4 @@ ARGUMENTS = {
 
 #Waiting for requests and linking them to the callback method
 SERVER.listen_to_clients(read_array_cb, ARGUMENTS)
+SERVER.join_clients()

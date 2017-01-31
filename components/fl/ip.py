@@ -18,7 +18,7 @@ LOOKFOR = 0 #0 = RED, 1 = GREEN
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
@@ -75,7 +75,7 @@ ARGUMENTS = {
 SERVER.listen_to_clients(light_send_state, ARGUMENTS)
 
 def light_send_state(data, arg):
-    arg["connection"].send_to_clients(checking_exectutor())
+    arg["connection"].send(checking_exectutor())
 
 CAP = cv2.VideoCapture(1)
 _ = CAP.set(3, 320)

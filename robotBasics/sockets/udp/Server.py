@@ -48,7 +48,7 @@ class Server(object):
         """
         return self._creationTime
 
-    def send_to_clients(self, data):
+    def send(self, data):
         """
             Send to clients Method
         """

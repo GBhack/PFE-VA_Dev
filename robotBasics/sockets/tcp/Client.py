@@ -13,6 +13,7 @@ import time
 
 #Specific imports :
 from ..datahandling import Message
+from ...constants.misc import SOCKETS as MISC_CONST
 
 class Client(object):
     """
@@ -50,7 +51,7 @@ class Client(object):
             self._connectionTimeOut = connectionSettings["connectionTimeout"]
         else:
             message += '\nno connection-timeout provided, setting defaut.'
-            self._connectionTimeOut = 2 #####################################REMPLACER PAR MISC CONSTANTE
+            self._connectionTimeOut = MISC_CONST["connectionTimeout"]
 
         #LISTENING TIMEOUT :
         if "listeningTimeOut" in connectionSettings:
@@ -61,7 +62,7 @@ class Client(object):
             self._listeningTimeOut = connectionSettings["listeningTimeOut"]
         else:
             message += '\nno listening-timeout provided, setting defaut.'
-            self._listeningTimeOut = 5 #####################################REMPLACER PAR MISC CONSTANTE
+            self._listeningTimeOut = MISC_CONST["listeningTimeOut"]
 
         #DATAGRAMS :
         self._datagrams = {}
@@ -101,6 +102,7 @@ class Client(object):
 
         while tryingToConnect:
             try:
+                print('Client PORT : ', self._port)
                 self._connection.connect(('127.0.0.1', self._port))
                 self.connected = True
             except ConnectionRefusedError:

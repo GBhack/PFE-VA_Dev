@@ -96,12 +96,16 @@ class Server(object):
         assert datagramsSet > 0,\
             "At least one datagram should be set for the connection."
 
+        print('Setting connection timeout to : ', self._connectionTimeOut)
         socket.setdefaulttimeout(self._connectionTimeOut)
 
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self._connections = []
+
+        self._listeningThread = []
+
         self.connected = False
 
     def connect(self):
@@ -114,7 +118,7 @@ class Server(object):
 
         clientsConnected = 0
         waitingForClients = True
-
+        print('Port : ', self._port)
         self._socket.bind(('', self._port))
         self._socket.listen(1)
 
@@ -145,14 +149,15 @@ class Server(object):
             self._log.warning("No client connected on port %d.",\
                 self._port)
 
+        print('Setting listening timeout to : ', self._listeningTimeOut)
         socket.setdefaulttimeout(self._listeningTimeOut)
 
     def listen_to_clients(self, callback, args):
         """
             Data receiving method
         """
-
-        listeningThread = []
+        print('Callback : ', callback.__name__)
+       
 
         for client in self._connections:
             threadSettings = {
@@ -163,10 +168,11 @@ class Server(object):
                 "closingMethod": self.close
             }
             
-            listeningThread.append(WaitForData(threadSettings))
-            listeningThread[-1].start()
+            self._listeningThread.append(WaitForData(threadSettings))
+            self._listeningThread[-1].start()
 
-        for thread in listeningThread:
+    def join_clients(self):
+        for thread in self._listeningThread:
             thread.join()
 
     def send(self, data):

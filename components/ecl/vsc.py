@@ -30,7 +30,7 @@ from robotBasics.logger import robotLogger
 
 #If we are on an actual robot :
 if path.isdir("/home/robot"):
-    ROBOT_ROOT = '/home/robot'
+    ROBOT_ROOT = '/home/robot/'
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
@@ -75,20 +75,23 @@ def velocity_control_cb(data, args):
     apply_modifications(args)
 
     #We send the velocity actually applied to the client :
-    args["velocityConnection"].send_to_clients([args["currentState"]["velocity"]])
+    args["velocityConnection"].send([args["currentState"]["velocity"]])
 
 def steering_control_cb(data, args):
     """
         Steering control callback method
         Apply requested steering
     """
+    print('REQUEST RECEIVED !!!!')
     #We apply the change to the program's velocity variable
     args["currentState"]["steeringRatio"] = data[0]
+
+    print('Received steering : ', data[0])
     #We apply the changes to the robot :
     apply_modifications(args)
 
     #We send the velocity actually applied to the client :
-    args["steeringConnection"].send_to_clients([data[0]])
+    args["steeringConnection"].send([data[0]])
 
 def apply_modifications(args):
     #Wait for the semaphore to be cleared (so we don't apply two modifications at the same time)
@@ -127,8 +130,8 @@ def apply_modifications(args):
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT_LEFT = Client(MOT_CS, LOGGER)
-CLIENT_RIGHT = Client(MOT_CS, LOGGER)
+CLIENT_LEFT = Client(MOT_CS["LEFT"], LOGGER)
+CLIENT_RIGHT = Client(MOT_CS["RIGHT"], LOGGER)
 
 #Opening the connection
 CLIENT_LEFT.connect()
@@ -186,9 +189,14 @@ ARGUMENTS_STEERING = {
 #                               RUNNING :                                 #
 ###########################################################################
 
+while not VELOCITY_SERVER.connected or not STEERING_SERVER.connected:
+    time.sleep(0.05)
+
 #Waiting for requests and redirecting them to the callback methods
 VELOCITY_SERVER.listen_to_clients(velocity_control_cb, ARGUMENTS_VELOCITY)
 STEERING_SERVER.listen_to_clients(steering_control_cb, ARGUMENTS_STEERING)
 
+VELOCITY_SERVER.join_clients()
+STEERING_SERVER.join_clients()
 
 stopped = False
