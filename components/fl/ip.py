@@ -123,10 +123,9 @@ def check_light_color(LOOKFOR):
     upper = np.array(BOUNDARIES[LOOKFOR][0])
 
     # If pixel HSV values are between boundaries, then mask pixel = 1 else 0
-    #
     MASK = cv2.inRange(_HSV, lower, upper)
 
-    ERODED = cv2.erode(MASK, KERNEL, iterations=ERODE) #Erosion : remove noise
+    ERODED = cv2.erode(MASK, KERNEL, iterations=ERODE) #Erosion : remove noise, "little"
     ERODED_AND_DILATED = cv2.dilate(ERODED, KERNEL, iterations=DILATE) #Dilatation : enlarge the interesting area
 
     HSVcol = cv2.bitwise_and(_HSV, _HSV, mask=ERODED_AND_DILATED) # Apply mask to HSV frame
@@ -152,7 +151,7 @@ def check_light_color(LOOKFOR):
         return 1
     else:
         return 0
-        
+
 def exit():
     CAP.release()
     cv2.destroyAllWindows()
