@@ -15,8 +15,8 @@ from os import path
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.misc import LEDS_PINS as LEDS_PINS
 from robotBasics.constants.gpiodef import LEDS as LEDS_GPIO
+from robotBasics.constants.gpiodef import LEDS_PINS as LEDS_PINS
 from robotBasics.constants.connectionSettings import LED as LED_CS
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
@@ -37,7 +37,9 @@ if path.isdir("/home/robot"):
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
-    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+    CONFIG_FILE = open(path.expanduser('~/.robotConf'), 'r')
+    ROBOT_ROOT = CONFIG_FILE.read().strip()
+    CONFIG_FILE.close()
 
     import Adafruit_BBIO_SIM.GPIO as GPIO
 
@@ -57,11 +59,11 @@ LOGGER = robotLogger("FL > led", ROBOT_ROOT+'logs/fl/')
 #                           I/O Initialization :                          #
 ###########################################################################
 
-for name, pin in LEDS_GPIO.items():
+for LED in LEDS_PINS:
     #Declare motor enabling pins as outputs
-    GPIO.setup(pin, GPIO.OUT)
-    #Set enabeling pins to LOW
-    GPIO.output(pin, GPIO.LOW)
+    GPIO.setup(LED, GPIO.OUT)
+    #Set pins to HIGH (LEDs off)
+    GPIO.output(LED, GPIO.HIGH)
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -78,7 +80,7 @@ def set_leds_cb(data, args):
             GPIO.output(led, GPIO.LOW)
         else:
             GPIO.output(led, GPIO.HIGH)
-        args["connection"].send([True])
+    args["connection"].send([True])
 
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #

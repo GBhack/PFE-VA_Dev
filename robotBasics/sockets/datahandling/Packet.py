@@ -179,8 +179,6 @@ class Packet(object):
         """
             Encoding method for bits type
         """
-        print('Data : %s', data)
-        print('Detail : %s', self._detail)
         assert len(data) == len(self._detail)
         _output = 0
         _bitsCount = 0

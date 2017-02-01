@@ -11,6 +11,7 @@
 
 ###Standard imports :
 import atexit
+import time
 from os import path
 
 ###Specific imports :
@@ -22,10 +23,7 @@ from robotBasics.constants.misc import OS as MISC
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.logger import robotLogger
-##Adafruit_BBIO:
-import Adafruit_BBIO.ADC as ADC
-
-###########################################################################
+######################################################
 #                           Environment Setup :                           #
 ###########################################################################
 
@@ -33,10 +31,26 @@ import Adafruit_BBIO.ADC as ADC
 if path.isdir("/home/robot"):
     ROBOT_ROOT = '/home/robot/'
     import Adafruit_BBIO.ADC as ADC
+    loadAdc = True
+    i = 0
+    while loadAdc:
+        try:
+            ADC.setup()
+            loadAdc = False
+        except:
+            loadAdc = True
+        if i >= 10:
+            loadAdc = False
+        i += 1
+        time.sleep(0.1)
+
+#####################
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
-    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+    CONFIG_FILE = open(path.expanduser('~/.robotConf'), 'r')
+    ROBOT_ROOT = CONFIG_FILE.read().strip()
+    CONFIG_FILE.close()
 
     import Adafruit_BBIO_SIM.ADC as ADC
 
@@ -55,7 +69,7 @@ LOGGER = robotLogger("FL > os", ROBOT_ROOT+'logs/fl/')
 ###########################################################################
 
 #GPIO setup :
-ADC.setup()
+#ADC.setup()
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -73,7 +87,7 @@ def read_single_sensor(sensor):
     Returns:
         Boolean -- line detection status
     """
-    return ADC.read(sensor) > MISC["threshold"]
+    return ADC.read(sensor) < MISC["threshold"]
 
 def read_array_cb(data, arg):
     """

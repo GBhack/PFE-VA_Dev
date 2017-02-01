@@ -23,11 +23,19 @@ ENGINES = {
 #LEDs-related I/O :
 # CHANGE THE VALUES HERE !!
 LEDS = {
-    "LEFT" : "P8_33",
-    "RIGHT" : "P8_27",
-    "STOP" : "P8_31",
-    "STATUS" : "P8_29"
+    "LEFT" : [0, "P8_33"],
+    "RIGHT" : [1, "P8_27"],
+    "STOP" : [2, "P8_31"],
+    "STATUS" : [3, "P8_29"]
 }
+
+LEDS_PINS = [0]*len(LEDS)
+LEDS_ID = {}
+LEDS_STATE = [False]*len(LEDS)
+
+for NAME, DETAIL in LEDS.items():
+    LEDS_PINS[DETAIL[0]] = DETAIL[1]
+    LEDS_ID[NAME] = DETAIL[0]
 
 #Sonar-related I/O :
 SONAR = {
@@ -36,7 +44,7 @@ SONAR = {
     "obstacle": "P8_13",
 }
 
-OS = ["AIN4", "AIN6", "AIN3", "AIN2", "AIN1", "AIN0", "AIN5"]
+OS = ["AIN4", "AIN6", "AIN2", "AIN0", "AIN1","AIN3", "AIN5"]
 
 #Reset pushbutton
 RESET = "P8_7"

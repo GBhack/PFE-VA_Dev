@@ -21,7 +21,9 @@ import Adafruit_BBIO.ADC as ADC
 THRESHOLD = 1.2
 
 def readSingleSensor(sensor):
-    return ADC.read(sensor) > MISC["threshold"]
+    val = ADC.read(sensor) < MISC["threshold"]
+    print(sensor+' : '+ str(val))
+    return ADC.read(sensor) < MISC["threshold"]
 
 def readSensorArray():
     array = [0, 0, 0, 0, 0, 0, 0]

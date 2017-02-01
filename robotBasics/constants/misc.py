@@ -35,15 +35,3 @@ QEC = {
 IP = {
 	"max_retry" : 5
 }
-
-LEDS_STATE = []
-LEDS_PINS = []
-LEDS_ID = {}
-
-i = 0
-
-for NAME, PIN in LEDS_GPIO.items():
-    LEDS_PINS.append(PIN)
-    LEDS_STATE.append(False)
-    LEDS_ID[NAME] = i
-    i += 1

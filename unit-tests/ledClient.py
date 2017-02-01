@@ -1,8 +1,7 @@
 """
-    pbc.py
-    PushButton Controller (Mode Controller)
-    Keeps track of the "mode" (ie running/pause)
-    through the pushbutton.
+    ledc.py
+    LEDs Controller
+    Manage the LED's state
 """
 
 
@@ -17,12 +16,14 @@ from os import path
 ###Specific imports :
 ##robotBasics:
 #Constants:
-from robotBasics.constants.connectionSettings import PB as PB_CS
-from robotBasics.constants.connectionSettings import PBC as PBC_CS
+from robotBasics.constants.connectionSettings import LED as LED_CS
+from robotBasics.constants.connectionSettings import LEDC as LEDC_CS
+from robotBasics.constants.gpiodef import LEDS_STATE as LEDS_STATE
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.sockets.tcp.Client import Client as Client
 from robotBasics.logger import robotLogger
+
 
 ###########################################################################
 #                           Environment Setup :                           #
@@ -43,7 +44,7 @@ else:
 You should set up a debugging environment before running any code (see documentation)')
 
 #Logging Initialization :
-LOGGER = robotLogger("ECL > pbc", ROBOT_ROOT+'logs/ecl/')
+LOGGER = robotLogger("ECL > ledc", ROBOT_ROOT+'logs/ecl/')
 
 ###########################################################################
 #                     Functions/Callbacks definition :                    #
@@ -56,10 +57,15 @@ def request_cb(data, args):
         Update the obstacle detection status and responds to
         the request with the updated status.
     """
-    if args["client"].request()[0]:
-        args["running"] = not args["running"]
-
-    args["server"].send([args["running"]])
+    print('RANK : ')
+    print(data[0][0])
+    if args["LEDs_state"][data[0][0]] != bool(data[0][1]):
+        args["LEDs_state"][data[0][0]] = bool(data[0][1])
+        args["client"].send([args["LEDs_state"]])
+        args["server"].send([args["client"].receive()[0]])
+    else:
+        args["server"].send([True])
+    print(args["LEDs_state"])
 
 ###########################################################################
 #                   CONNECTIONS SET UP AND SETTINGS :                     #
@@ -68,18 +74,17 @@ def request_cb(data, args):
 #### CLIENTS CONNECTION :
 
 #Creating the connection object
-CLIENT = Client(PB_CS, LOGGER)
+CLIENT = Client(LED_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(CLIENT.close)
 
 #Opening the connection
 CLIENT.connect()
 
-
 #### SERVER CONNECTION :
 
 #Creating the connection object
-SERVER = Server(PBC_CS, LOGGER)
+SERVER = Server(LEDC_CS, LOGGER)
 #Registering the close method to be executed at exit (clean deconnection)
 atexit.register(SERVER.close)
 
@@ -88,10 +93,11 @@ SERVER.connect()
 
 #### CALLBACKS' ARGUMENT SETUP:
 
+#Argument to be passed to the steering callback method
 ARGUMENTS = {
     "server": SERVER,
     "client": CLIENT,
-    "running": False
+    "LEDs_state": LEDS_STATE
 }
 
 ###########################################################################

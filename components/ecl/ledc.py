@@ -18,7 +18,7 @@ from os import path
 #Constants:
 from robotBasics.constants.connectionSettings import LED as LED_CS
 from robotBasics.constants.connectionSettings import LEDC as LEDC_CS
-from robotBasics.constants.misc import LEDS_STATE as LEDS_STATE
+from robotBasics.constants.gpiodef import LEDS_STATE as LEDS_STATE
 #Classes & Methods:
 from robotBasics.sockets.tcp.Server import Server as Server
 from robotBasics.sockets.tcp.Client import Client as Client
@@ -35,7 +35,9 @@ if path.isdir("/home/robot"):
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
-    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+    CONFIG_FILE = open(path.expanduser('~/.robotConf'), 'r')
+    ROBOT_ROOT = CONFIG_FILE.read().strip()
+    CONFIG_FILE.close()
 else:
     ROBOT_ROOT = ''
     print('It seems like you are NOT working on an actual robot. \
@@ -58,7 +60,7 @@ def request_cb(data, args):
     if args["LEDs_state"][data[0][0]] != bool(data[0][1]):
         args["LEDs_state"][data[0][0]] = bool(data[0][1])
         args["client"].send([args["LEDs_state"]])
-        args["server"].send([args["client"].receive_data()[0]])
+        args["server"].send([args["client"].receive()[0]])
     else:
         args["server"].send([True])
 

@@ -36,7 +36,9 @@ if path.isdir("/home/robot"):
 elif path.isfile(path.expanduser('~/.robotConf')):
     #If we're not on an actual robot, check if we have
     #a working environment set for robot debugging:
-    ROBOT_ROOT = open(path.expanduser('~/.robotConf'), 'r').read().strip().close()
+    CONFIG_FILE = open(path.expanduser('~/.robotConf'), 'r')
+    ROBOT_ROOT = CONFIG_FILE.read().strip()
+    CONFIG_FILE.close()
 
     import Adafruit_BBIO_SIM.GPIO as GPIO
 
@@ -70,7 +72,7 @@ def pb_update_cb(data, arg):
         request and then reset the button's status
     """
     #Responding the request with the button pushing status
-    arg["connection"].send_to_client([arg["state"]])
+    arg["connection"].send([arg["state"]])
     #Reseting the button pushing status
     arg["state"] = False
 
