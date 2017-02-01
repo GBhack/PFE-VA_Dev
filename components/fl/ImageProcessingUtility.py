@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 from tkinter import *
 import os.path
+import time
 
 DEBUG = True
 USE_CAMERA = True
@@ -32,7 +33,7 @@ class GUI():
         self.value = IntVar()
         self.RED_SELECT = Radiobutton(colorChoiceFrame, text="Rouge", variable=self.value, value=0, command=self.GetLookfor)
         self.GREEN_SELECT = Radiobutton(colorChoiceFrame, text="Vert", variable=self.value, value=1, command=self.GetLookfor)
-        # self.BOTH = diobutton(colorChoiceFrame, text="TOUTES", variable=self.value, value=2, command=self.GetLookfor)
+        self.BOTH = Radiobutton(colorChoiceFrame, text="TOUTES", variable=self.value, value=2, command=self.GetLookfor)
 
         self.HUPG   = Scale(greenScales, orient='horizontal', from_=0, to=255, resolution=1, length=200, label='Upper H')
         self.HUPG.set(255)
@@ -80,7 +81,7 @@ class GUI():
 
         self.RED_SELECT.pack(side = LEFT)
         self.GREEN_SELECT.pack(side = LEFT)
-        # self.BOTH.pack(side=LEFT)
+        self.BOTH.pack(side=LEFT)
 
         self.HUPG.pack()
         self.SUPG.pack()
@@ -149,10 +150,10 @@ RET, FRAME = CAP.read()
 height,width,channels = FRAME.shape
 print("Height : " + str(height) + "\tWidth : " + str(width))
 guiObj = GUI(width,height)   
-
+guiObj.update()
 
 while True:
-	
+
     RET, FRAME = CAP.read()
     # FRAME = cv2.imread('trafficLightTest.jpg')
 
@@ -160,7 +161,13 @@ while True:
     SUPG = guiObj.SUPG.get()
     VUPG = guiObj.VUPG.get()
 
-    LOOKFOR = guiObj.LOOKFOR
+    WHATTODETECT = guiObj.LOOKFOR
+    if WHATTODETECT == 2:
+        LOOKFOR = 1 - LOOKFOR
+    else:
+        LOOKFOR = WHATTODETECT
+    
+    #LOOKFOR = 1 - LOOKFOR
 
     HDOWNG = guiObj.HDOWNG.get()
     SDOWNG = guiObj.SDOWNG.get()
@@ -195,7 +202,12 @@ while True:
 
     _HSV = cv2.cvtColor(FRAME, cv2.COLOR_BGR2HSV)
 
-    BOUNDARIES = [[[HUPG, SUPG, VUPG],[HDOWNG, SDOWNG, VDOWNG]],[[HUPR, SUPR, VUPR],[HDOWNR, SDOWNR, VDOWNR]]]
+    #BOUNDARIES = [[[HUPG, SUPG, VUPG],[HDOWNG, SDOWNG, VDOWNG]],[[HUPR, SUPR, VUPR],[HDOWNR, SDOWNR, VDOWNR]]]
+    BOUNDARIES = [[[255, 255, 255],[0, 20, 255]],[[72, 0, 255],[0, 0, 229]]]
+    ERODE = 0    
+    DILATE = 2
+    MAXCIRCLESIZE = 10
+    MINCIRCLESIZE = 2
 
     lower = np.array(BOUNDARIES[LOOKFOR][1])
     upper = np.array(BOUNDARIES[LOOKFOR][0])
@@ -205,7 +217,7 @@ while True:
     ERODED = cv2.erode(MASK, KERNEL, iterations=ERODE)
     ERODED_AND_DILATED = cv2.dilate(ERODED, KERNEL, iterations=DILATE)
 
-    HSVcol = cv2.bitwise_and(_HSV, _HSV, mask=ERODED_AND_DILATED)
+    HSVcol = cv2.bitwise_not(_HSV, _HSV, mask=ERODED_AND_DILATED)
 
 
     TMP = ERODED_AND_DILATED.copy()
@@ -213,16 +225,16 @@ while True:
     cv2.drawContours(ERODED_AND_DILATED, CNTS, -1, (255, 255, 255), -1)
     HSVcol = cv2.bitwise_and(_HSV, _HSV, mask=ERODED_AND_DILATED)
 
-    if len(CNTS) == 0:
-        pass
-    else:
-        indent = indent + "-"
-        if len(indent) == 15:
-            indent = ""
-        if LOOKFOR == 0:
-            print(indent + "TRAFFIC LIGHT IS RED")
-        if LOOKFOR == 1:
-            print(indent + "TRAFFIC LIGHT IS GREEN")       
+    # if len(CNTS) == 0:
+    #     pass
+    # else:
+    #     indent = indent + "-"
+    #     if len(indent) == 15:
+    #         indent = ""
+    #     if LOOKFOR == 0:
+    #         print(indent + "TRAFFIC LIGHT IS RED")
+    #     if LOOKFOR == 1:
+    #         print(indent + "TRAFFIC LIGHT IS GREEN")       
     
     DEBUGSCREEN = FRAME
     VIEW = FRAME[MINYLOCATION:MAXYLOCATION,MINXLOCATION:MAXXLOCATION]
@@ -239,6 +251,9 @@ while True:
         y > MINYLOCATION and y < MAXYLOCATION :
             finalCirclesArray.append([x,y,radius])
             cv2.circle(DEBUGSCREEN, (x, y), radius, (0, 255, 0), 2)
+
+    if len(finalCirclesArray)==1:
+        print("GREEN" if LOOKFOR else "RED")
 
     cv2.imshow('frame', FRAME)
     cv2.imshow('ERODED_AND_DILATED', ERODED_AND_DILATED)
