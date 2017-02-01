@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo $DIR
 
 #Functionnal Level
-sudo python3 $DIR/$DIR/fl/os.py &
+sudo python3 $DIR/fl/os.py &
 sleep 2
 python3 $DIR/fl/us.py &
 sleep 0.1
