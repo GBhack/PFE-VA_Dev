@@ -38,3 +38,6 @@ sleep 0.1
 python3 $DIR/dl/pfe.py &
 sleep 0.1
 python3 $DIR/dl/vp.py &
+
+sleep 0.1
+python3 $DIR/turnStatusLedOn.py &
