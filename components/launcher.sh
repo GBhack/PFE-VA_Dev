@@ -39,3 +39,5 @@ python3 dl/vp.py &
 read -rsp $'Press any key to quit...\n' -n1 key
 
 killall python3
+sleep 0.1
+python3 abort.py
