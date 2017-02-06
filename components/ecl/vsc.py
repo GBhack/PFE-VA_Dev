@@ -107,12 +107,13 @@ def apply_modifications(args):
 
     #We make sure not to go over 100% velocity on each wheel.
     #If so, we have to reduce the mean velocity :
-    if velocity*(1+0.005*abs(steering)) > 100:
-        velocity = 100/(1+abs(steering)*0.005)
-    elif velocity*(1+0.005*abs(steering)) < -100:
-        velocity = -100/(1+abs(steering)*0.005)
-    leftVelocity = round(velocity*(1+0.005*steering))
-    rightVelocity = round(velocity*(1-0.005*steering))
+    factor = 0.01
+    if velocity*(1+factor*abs(steering)) > 100:
+        velocity = 100/(1+abs(steering)*factor)
+    elif velocity*(1+factor*abs(steering)) < -100:
+        velocity = -100/(1+abs(steering)*factor)
+    leftVelocity = round(velocity*(1+factor*steering))
+    rightVelocity = round(velocity*(1-factor*steering))
 
     args["currentState"]["velocity"] = velocity
 

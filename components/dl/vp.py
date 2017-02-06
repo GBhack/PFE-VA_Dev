@@ -76,7 +76,7 @@ while VELOCITY_CLIENT.connected and PBC_CLIENT.connected:
     if PBC_CLIENT.request()[0]:
         RUNNING = not RUNNING
         if RUNNING:
-            VELOCITY_CLIENT.send([80])
+            VELOCITY_CLIENT.send([40])
         else:
             VELOCITY_CLIENT.send([0])
     time.sleep(0.25)

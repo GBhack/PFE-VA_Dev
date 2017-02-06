@@ -52,22 +52,36 @@ LOGGER = robotLogger("DL > pfe", ROBOT_ROOT+'logs/dl/')
 ###########################################################################
 
 def adjust_steering(sensorState, steeringClient):
-    steering = 0
-    if sensorState[4]:
-        if sensorState[3]:
-            steering = 10
-        elif sensorState[5]:
-            steering = -10
+
+    coeffs = [-100,-70,-50,0,50,70,100]
+    lineRead = 0
+    numberOfOnes = 0
+    coeffsSum = 0
+
+    numberOfOnes = sum(sensorState)
+    if numberOfOnes == 0:
+        for i in range(len(sensorState)):
+            if previousSensorState[i]:
+                coeffsSum = coeffsSum + coeffs[i]
+        if coeffsSum < 0:
+            lineRead = -100
+        else:
+            lineRead = 100
     else:
-        if sensorState[3]:
-            steering = 20
-        elif sensorState[5]:
-            steering = -20
-        if sensorState[2]:
-            steering = 40
-        elif sensorState[6]:
-            steering = -40
-    steeringClient.send([steering])
+        for i in range(len(sensorState)):
+            if sensorState[i]:
+                coeffsSum = coeffsSum + coeffs[i]
+
+        lineRead = coeffsSum/numberOfOnes
+    
+    # if abs(lineRead - previousSteering) > 50 : #We either read a barcode, or we are at an intersection
+    # 	if abs(lineRead) < 30: #We are on a straight line, in the middle (normal situation)
+    # 		if sensorState[0] == 1 and sensorState[1] == 0: #Bar code on the left
+
+
+    steering = lineRead
+    steeringClient.send([int(steering)])
+
 ###########################################################################
 #                     CONNECTIONS SET UP AND SETTINGS :                   #
 ###########################################################################
@@ -85,6 +99,7 @@ SENSOR_CLIENT = Client(OS_CS, LOGGER)
 SENSOR_CLIENT.connect()
 
 previousSensorState = [0, 0, 0, 0, 0, 0, 0]
+previousSteering = 50
 
 while STEERING_CLIENT.connected and SENSOR_CLIENT.connected:
     newSensorState = SENSOR_CLIENT.request()[0]

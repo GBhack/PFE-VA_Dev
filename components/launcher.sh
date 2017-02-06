@@ -1,12 +1,14 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR=$( cd $(dirname $0) ; pwd -P )
 
 echo $DIR
 
+echo "launching launch.sh" >> $DIR/test.txt
+
 #Functionnal Level
 sudo python3 $DIR/fl/os.py &
-sleep 2
+sleep 0.5
 python3 $DIR/fl/us.py &
 sleep 0.1
 #python3 $DIR/fl/qe.py &
@@ -41,3 +43,6 @@ python3 $DIR/dl/vp.py &
 
 sleep 0.1
 python3 $DIR/turnStatusLedOn.py &
+
+echo "launched launcher.sh" >> $DIR/test.txt
+
